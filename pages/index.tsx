@@ -2,12 +2,12 @@ import Skeleton from 'react-loading-skeleton'
 
 import Nav from '@/components/nav'
 import Container from '@/components/container'
-import Entries from '@/components/entries'
+import SignIn from '@/components/sign-in'
 
 import { useEntries } from '@/lib/swr-hooks'
 
 export default function IndexPage() {
-  const { entries, isLoading } = useEntries()
+  const { isLoading } = useEntries()
 
   if (isLoading) {
     return (
@@ -29,9 +29,9 @@ export default function IndexPage() {
 
   return (
     <div>
-      <Nav />
+      {/* <Nav /> */}
       <Container>
-        <Entries entries={entries} />
+        <SignIn signIn={SignIn} />
       </Container>
     </div>
   )
