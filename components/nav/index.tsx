@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import Container from '@/components/container'
-import ButtonLink from '@/components/button-link'
+import { signIn, signOut, useSession } from "next-auth/client";
 
 export default function Nav({ title = 'Student Analytics' }) {
+  const [session, loading] = useSession();
+
   return (
     <Container className="py-4 px-6">
       <nav>
@@ -10,6 +12,7 @@ export default function Nav({ title = 'Student Analytics' }) {
           <Link href="/">
             <a className="font-bold text-3xl">{title}</a>
           </Link>
+          <button onClick={() => { signOut() }}>Sign Out</button>
         </div>
       </nav>
     </Container>

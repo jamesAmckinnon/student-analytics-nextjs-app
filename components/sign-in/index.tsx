@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import ButtonLink from '@/components/button-link'
 
-function SignIn({ signIn, title = 'ballsak' }) {
-    if (signIn) {
+function SignIn() {
       return (
         <div>
             <div className= "signIn-frame">
@@ -12,11 +11,6 @@ function SignIn({ signIn, title = 'ballsak' }) {
                             <div className="heading">
                                 <h1>Sign In</h1>
                                 <div className="flex justify-between items-center">
-                                    {/* <Link href="/">
-                                        <a className="font-bold text-3xl">{title}</a>
-                                    </Link> */}
-                                    <ButtonLink href="/api/auth/login">Login</ButtonLink>
-                                    <ButtonLink href="/api/auth/logout">Logout</ButtonLink>
                                     
                                 </div>
                             </div>
@@ -26,9 +20,6 @@ function SignIn({ signIn, title = 'ballsak' }) {
             </div>
         </div>
       )
-    } else {
-      return null
-    }
   }
   
   export default SignIn

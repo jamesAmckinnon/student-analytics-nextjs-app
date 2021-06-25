@@ -1,67 +1,56 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Skeleton from 'react-loading-skeleton'
+import Container from '@/components/container'
 import React from "react";
 import Link from "next/link";
+import Layout from '../components/layout'
 import { signIn, signOut, useSession } from "next-auth/client";
+import { useEntries } from '@/lib/swr-hooks'
 
 export default function Home() {
   const [session, loading] = useSession();
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Auth Examples</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  const { isLoading } = useEntries();
 
-      <main className={styles.main}>
-        {!session && (
-          <>
-            Not signed in <br />
-            <button onClick={() => signIn()}>Sign in</button>
-          </>
-        )}
-        {session && (
-          <>
-            Signed in as {session.user.email} <br />
-            <div>You can now access our super secret pages</div>
-            <button>
-              <Link href="/secret">To the secret</Link>
-            </button>
-            <button onClick={() => signOut}>sign out</button>
-            
-          </>
-        )}
-      </main>
+  if (!isLoading) {
+    return (
+      <div>
+        <Head>
+          <title>Auth Examples</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+  
+        <div>
+          {!session && (
+            <>            
+              <div className= "signIn-frame">
+                  <div className="signIn-wrapper">
+                      <div className="signIn-body">
+                          <div className="signIn-heading">
+                              <div className="heading">
+                                  <div className="">
+                                      <h3>Not signed in</h3>
+                                      <button className="" onClick={() => signIn()}>Sign in</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </>
+          )}
+          {session && (
+            <>
+              <Layout>
+              </Layout>            
+            </>
+          )}
+        </div>
+      </div> 
+    );
+  }
+
+  return(
+    <div>
     </div>
-  );
+  )
 }
-
-// export default function IndexPage() {
-//   const { isLoading } = useEntries()
-
-//   if (isLoading) {
-//     return (
-//       <div>
-//         <Nav />
-//         <Container>
-//           <Skeleton width={180} height={24} />
-//           <Skeleton height={48} />
-//           <div className="my-4" />
-//           <Skeleton width={180} height={24} />
-//           <Skeleton height={48} />
-//           <div className="my-4" />
-//           <Skeleton width={180} height={24} />
-//           <Skeleton height={48} />
-//         </Container>
-//       </div>
-//     )
-//   }
-
-//   return (
-//     <div>
-//       <Container>
-//         <SignIn signIn={SignIn} />
-//       </Container>
-//     </div>
-//   )
-// }

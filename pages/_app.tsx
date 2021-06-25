@@ -1,13 +1,13 @@
 import { Provider } from 'next-auth/client'
-import Layout from '../components/layout'
+
 import '../styles/index.css'
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
-      <Layout>
+      {/* <Layout> */}
         <Component {...pageProps} />
-      </Layout>
+      {/* </Layout> */}
     </Provider>
   )
 }
