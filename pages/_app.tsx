@@ -1,12 +1,14 @@
+import { Provider } from 'next-auth/client'
+import Layout from '../components/layout'
 import '../styles/index.css'
-import Footer from '@/components/footer'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Component {...pageProps} />
-      {/* <Footer /> */}
-    </>
+    <Provider session={pageProps.session}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   )
 }
 
