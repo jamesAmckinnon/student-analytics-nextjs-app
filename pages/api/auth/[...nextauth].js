@@ -33,13 +33,6 @@ const options = {
   //   database: ":memory:",
   //   synchronize: true,
   // },
-  
-  callbacks: {
-    async redirect() {
-      return "https://student-analytics-nextjs.herokuapp.com"
-    }
-  }
-
 };
 
 
