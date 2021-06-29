@@ -33,6 +33,15 @@ const options = {
   //   database: ":memory:",
   //   synchronize: true,
   // },
+  
+  callbacks: {
+    async redirect() {
+      return "https://student-analytics-nextjs.herokuapp.com"
+    }
+  }
+
 };
+
+
 
 export default (req, res) => NextAuth(req, res, options);
