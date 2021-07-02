@@ -9,7 +9,7 @@ export default async (req, res) => {
     });
   } else {
     res.send({
-      error: "You need to be signed in .",
+      error: "You need to be signed in.",
     });
   }
 };
