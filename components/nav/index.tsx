@@ -13,7 +13,7 @@ export default function Nav({ title = 'Student Analytics' }) {
           <Link href="/">
             <a className="font-bold text-3xl">{title}</a>
           </Link>
-          <p>Signed in as {session.user.email}</p>
+          {/* <p>Signed in as {session.user.email}</p> */}
           <button onClick={() => { signOut() }}>Sign Out</button>
         </div>
       </nav>
