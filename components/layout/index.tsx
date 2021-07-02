@@ -1,10 +1,7 @@
 import Nav from '@/components/nav'
 import SideBar from '@/components/side-bar'
-import { signIn, signOut, useSession } from "next-auth/client";
-
 
 const Layout = ({children}) => {
-
     return (
         <div>
             <div className="wrapper">
