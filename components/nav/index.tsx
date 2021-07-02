@@ -3,7 +3,7 @@ import Container from '@/components/container'
 import { signIn, signOut, useSession } from "next-auth/client";
 
 export default function Nav({ title = 'Student Analytics' }) {
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
   return (
     <Container className="py-4 px-6">

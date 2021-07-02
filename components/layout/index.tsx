@@ -4,7 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/client";
 
 
 const Layout = ({children}) => {
-    const [session, loading] = useSession();
 
     return (
         <div>
