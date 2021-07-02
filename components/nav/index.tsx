@@ -12,6 +12,7 @@ export default function Nav({ title = 'Student Analytics' }) {
           <Link href="/">
             <a className="font-bold text-3xl">{title}</a>
           </Link>
+          {session.user.email}
           <button onClick={() => { signOut() }}>Sign Out</button>
         </div>
       </nav>
