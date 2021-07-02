@@ -40,8 +40,9 @@ export default function Home() {
           )}
           {session && (
             <>
-              <Layout>
-              </Layout>            
+            <p>{session.user.email}</p>
+              {/* <Layout>
+              </Layout>             */}
             </>
           )}
         </div>
