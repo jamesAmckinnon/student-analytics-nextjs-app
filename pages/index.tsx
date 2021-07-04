@@ -3,11 +3,10 @@ import Skeleton from 'react-loading-skeleton'
 import Container from '@/components/container'
 import React from "react";
 import Link from "next/link";
-import Layout from '../components/layout'
 import { signIn, signOut, useSession } from "next-auth/client";
 import { useEntries } from '@/lib/swr-hooks'
 
-export default function Home() {
+export default function Home({pageProps}) {
   const [session, loading] = useSession();
   const { isLoading } = useEntries();
 
@@ -39,9 +38,8 @@ export default function Home() {
             </>
           )}
           {session && (
-            <>
-              <Layout>
-              </Layout>            
+            <>       
+
             </>
           )}
         </div>
