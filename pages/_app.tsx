@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
               <div className="signInTile">
                   <div className="signIn">
                       <h3 className="">Not Signed In</h3>
-                      <button className="font-bold " onClick={() => signIn( 'auth0', { callbackUrl: 'https://student-analytics-next.js.herokuapp.com/dashboard/home' } )}>Sign in</button>
+                      <button className="font-bold " onClick={() => signIn( 'auth0', { callbackUrl: 'https://student-analytics-nextjs.herokuapp.com/dashboard/home' } )}>Sign in</button>
                   </div>
               </div>
           </div>
