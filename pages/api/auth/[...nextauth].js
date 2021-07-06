@@ -9,6 +9,11 @@ const options = {
       domain: process.env.AUTH0_DOMAIN,
     }),
   ],
+  callbacks: {
+    async signIn(user, account, profile) {
+      return true
+    }
+  }
 };
 
 

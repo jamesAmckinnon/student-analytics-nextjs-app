@@ -1,54 +1,25 @@
-import Head from "next/head";
-import Skeleton from 'react-loading-skeleton'
-import Container from '@/components/container'
-import React from "react";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/client";
-import { useEntries } from '@/lib/swr-hooks'
+import { useRouter } from 'next/router'
 
-export default function Home({pageProps}) {
-  const [session, loading] = useSession();
-  const { isLoading } = useEntries();
-
-  if (!isLoading) {
-    return (
-      <div>
-        <Head>
-          <title>Auth Examples</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-  
-        <div>
-          {!session && (
-            <>            
-              <div className= "signIn-frame">
-                  <div className="signIn-wrapper">
-                      <div className="signIn-body">
-                          <div className="signIn-heading">
-                              <div className="heading">
-                                  <div className="">
-                                      <h3>Not signed in</h3>
-                                      <button className="" onClick={() => signIn()}>Sign in</button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </>
-          )}
-          {session && (
-            <>       
-
-            </>
-          )}
-        </div>
-      </div> 
-    );
+function RedirectPage({ ctx }) {
+  const router = useRouter()
+  // Make sure we're in the browser
+  if (typeof window !== 'undefined') {
+    router.push('/dashboard/home');
+    return; 
   }
-
-  return(
-    <div>
-    </div>
-  )
 }
+
+RedirectPage.getInitialProps = ctx => {
+  // We check for ctx.res to make sure we're on the server.
+  if (ctx.res) {
+    ctx.res.writeHead(302, { Location: '/dashboard/home' });
+    ctx.res.end();
+  }
+  return { };
+}
+
+export default RedirectPage
+
+
+
+        
