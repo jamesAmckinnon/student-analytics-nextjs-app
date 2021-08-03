@@ -8,19 +8,16 @@ const { due_dates } = useDueDates(user_id, current_semester)
 
   function orderDueDates(dates, daysUntil){
     var ordered = [];
-    var options = {  weekday: "long", month: "short", day: "numeric"};
-
+    // var options = {  weekday: "long", month: "short", day: "numeric"};
 
     for(let i = 0 ; i < dates.length; i++){
       ordered.push([
         dates[i].course_name, 
         dates[i].due_date_description, 
-        new Date(dates[i].due_date).toLocaleDateString('en-us', options), 
+        new Date(dates[i].due_date), 
         daysUntil[i]
       ])
     }
-    
-    console.log(ordered + "<---")
 
     do{
       var count = 0;
@@ -59,10 +56,10 @@ const { due_dates } = useDueDates(user_id, current_semester)
     }
 
 
-    var options = {  weekday: 'long', month: 'short', day: 'numeric'};
-    var prnDt = 'Printed on ' + new Date().toLocaleDateString('en-us', options);
+    // var options = {  weekday: 'long', month: 'short', day: 'numeric'};
+    // var prnDt = 'Printed on ' + new Date().toLocaleDateString('en-us', options);
 
-    console.log(prnDt);
+    // console.log(prnDt);
 
     return (
       <>
