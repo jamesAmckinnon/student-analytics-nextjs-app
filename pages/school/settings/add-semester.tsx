@@ -1,31 +1,30 @@
 import Link from 'next/link'
+import Layout from 'pages/layout'
+import AddSemester from '@/components/add-semester'
+import { useEntries } from '@/lib/swr-hooks'
+import { useSession } from 'next-auth/client'
 
-function AddSemester() {
+function Semester() {
+    const { entries } = useEntries()
+    const [session] = useSession();
+    const user_id = session?.user?.email;
+
     return (
-      <>         
-        <div className="page-container h-full w-full grid justify-items-center">
-            <div className="small-container">
-                <div className="py-4 px-6 w-full flex flex-col">
-                    <h3 className="font-bold text-2xl">Add Semester</h3>
-                    <div className="py-2 flex flex-row justify-between">
-                        <div className="flex flex-row justify between">
-                            <select name="semester" className="bg-gray-200 rounded px-2">
-                                <option value="none">Select</option>
-                                <option value="fall">Fall</option>
-                                <option value="winter">Winter</option>
-                                <option value="spring">Spring</option>
-                                <option value="summer">Summer</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <input type="text" className="border-b-2 border-black mx-5 w-50px text-center" placeholder="YEAR"maxLength={4}></input>
-                        </div>
-                        <button className="bg-green-400 px-2 py-1 rounded font-bold">Add</button>
-                    </div>
-                </div>            
+        <Layout>
+        <>
+          <div className="page-container h-full w-full grid justify-items-center">
+            <div className="small-container py-4 px-6">  
+              <AddSemester title="Add Semester" entries={entries} user_id= {user_id}/>
+              <div className="w-full my-4 flex justify-end">
+                <Link href='/school/settings/choose-semester'>
+                  <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
+                </Link>
+              </div>
             </div>
-        </div>
-      </>
+          </div>
+        </>
+      </Layout>
     )
   } 
 
-export default AddSemester
+export default Semester

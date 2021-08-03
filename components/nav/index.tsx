@@ -1,45 +1,98 @@
 import Link from 'next/link'
 import Container from '@/components/container'
-import React, { useState } from 'react';
-import { signIn, signOut, useSession } from "next-auth/client";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import Router from 'next/router'
+import { signOut, useSession } from "next-auth/client";
 
-export default function Nav({ title = 'Student Analytics' }) {
-  const [session, loading] = useSession();
-  const [count, setCount] = useState("");
 
-  if(session){
-    var axios = require("axios").default;
+export default function Nav( {users} ) {
+  const [session] = useSession();
+  const userEmail = session?.user?.email;
+  const [width, setWidth] = useState(window.innerWidth);
+  const [menu, setMenu] = useState(false)
 
-    var options = {
-      method: 'GET',
-      url: 'https://personal-portal.us.auth0.com/api/v2/users?fields=user_id%2Cemail',
-      headers: {authorization: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlVOU1NRTFp2Q0gtTk9aLXlVdmlnTCJ9.eyJpc3MiOiJodHRwczovL3BlcnNvbmFsLXBvcnRhbC51cy5hdXRoMC5jb20vIiwic3ViIjoiV1JaUU5vN25mZzU4blJlSVVlRUlVNE9mWlZCUmgzN0NAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGVyc29uYWwtcG9ydGFsLnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaWF0IjoxNjI1MzU5ODUzLCJleHAiOjE2MjU0NDYyNTMsImF6cCI6IldSWlFObzduZmc1OG5SZUlVZUVJVTRPZlpWQlJoMzdDIiwic2NvcGUiOiJyZWFkOmNsaWVudF9ncmFudHMgY3JlYXRlOmNsaWVudF9ncmFudHMgZGVsZXRlOmNsaWVudF9ncmFudHMgdXBkYXRlOmNsaWVudF9ncmFudHMgcmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgZGVsZXRlOnVzZXJzIGNyZWF0ZTp1c2VycyByZWFkOnVzZXJzX2FwcF9tZXRhZGF0YSB1cGRhdGU6dXNlcnNfYXBwX21ldGFkYXRhIGRlbGV0ZTp1c2Vyc19hcHBfbWV0YWRhdGEgY3JlYXRlOnVzZXJzX2FwcF9tZXRhZGF0YSByZWFkOnVzZXJfY3VzdG9tX2Jsb2NrcyBjcmVhdGU6dXNlcl9jdXN0b21fYmxvY2tzIGRlbGV0ZTp1c2VyX2N1c3RvbV9ibG9ja3MgY3JlYXRlOnVzZXJfdGlja2V0cyByZWFkOmNsaWVudHMgdXBkYXRlOmNsaWVudHMgZGVsZXRlOmNsaWVudHMgY3JlYXRlOmNsaWVudHMgcmVhZDpjbGllbnRfa2V5cyB1cGRhdGU6Y2xpZW50X2tleXMgZGVsZXRlOmNsaWVudF9rZXlzIGNyZWF0ZTpjbGllbnRfa2V5cyByZWFkOmNvbm5lY3Rpb25zIHVwZGF0ZTpjb25uZWN0aW9ucyBkZWxldGU6Y29ubmVjdGlvbnMgY3JlYXRlOmNvbm5lY3Rpb25zIHJlYWQ6cmVzb3VyY2Vfc2VydmVycyB1cGRhdGU6cmVzb3VyY2Vfc2VydmVycyBkZWxldGU6cmVzb3VyY2Vfc2VydmVycyBjcmVhdGU6cmVzb3VyY2Vfc2VydmVycyByZWFkOmRldmljZV9jcmVkZW50aWFscyB1cGRhdGU6ZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpkZXZpY2VfY3JlZGVudGlhbHMgY3JlYXRlOmRldmljZV9jcmVkZW50aWFscyByZWFkOnJ1bGVzIHVwZGF0ZTpydWxlcyBkZWxldGU6cnVsZXMgY3JlYXRlOnJ1bGVzIHJlYWQ6cnVsZXNfY29uZmlncyB1cGRhdGU6cnVsZXNfY29uZmlncyBkZWxldGU6cnVsZXNfY29uZmlncyByZWFkOmhvb2tzIHVwZGF0ZTpob29rcyBkZWxldGU6aG9va3MgY3JlYXRlOmhvb2tzIHJlYWQ6YWN0aW9ucyB1cGRhdGU6YWN0aW9ucyBkZWxldGU6YWN0aW9ucyBjcmVhdGU6YWN0aW9ucyByZWFkOmVtYWlsX3Byb3ZpZGVyIHVwZGF0ZTplbWFpbF9wcm92aWRlciBkZWxldGU6ZW1haWxfcHJvdmlkZXIgY3JlYXRlOmVtYWlsX3Byb3ZpZGVyIGJsYWNrbGlzdDp0b2tlbnMgcmVhZDpzdGF0cyByZWFkOmluc2lnaHRzIHJlYWQ6dGVuYW50X3NldHRpbmdzIHVwZGF0ZTp0ZW5hbnRfc2V0dGluZ3MgcmVhZDpsb2dzIHJlYWQ6bG9nc191c2VycyByZWFkOnNoaWVsZHMgY3JlYXRlOnNoaWVsZHMgdXBkYXRlOnNoaWVsZHMgZGVsZXRlOnNoaWVsZHMgcmVhZDphbm9tYWx5X2Jsb2NrcyBkZWxldGU6YW5vbWFseV9ibG9ja3MgdXBkYXRlOnRyaWdnZXJzIHJlYWQ6dHJpZ2dlcnMgcmVhZDpncmFudHMgZGVsZXRlOmdyYW50cyByZWFkOmd1YXJkaWFuX2ZhY3RvcnMgdXBkYXRlOmd1YXJkaWFuX2ZhY3RvcnMgcmVhZDpndWFyZGlhbl9lbnJvbGxtZW50cyBkZWxldGU6Z3VhcmRpYW5fZW5yb2xsbWVudHMgY3JlYXRlOmd1YXJkaWFuX2Vucm9sbG1lbnRfdGlja2V0cyByZWFkOnVzZXJfaWRwX3Rva2VucyBjcmVhdGU6cGFzc3dvcmRzX2NoZWNraW5nX2pvYiBkZWxldGU6cGFzc3dvcmRzX2NoZWNraW5nX2pvYiByZWFkOmN1c3RvbV9kb21haW5zIGRlbGV0ZTpjdXN0b21fZG9tYWlucyBjcmVhdGU6Y3VzdG9tX2RvbWFpbnMgdXBkYXRlOmN1c3RvbV9kb21haW5zIHJlYWQ6ZW1haWxfdGVtcGxhdGVzIGNyZWF0ZTplbWFpbF90ZW1wbGF0ZXMgdXBkYXRlOmVtYWlsX3RlbXBsYXRlcyByZWFkOm1mYV9wb2xpY2llcyB1cGRhdGU6bWZhX3BvbGljaWVzIHJlYWQ6cm9sZXMgY3JlYXRlOnJvbGVzIGRlbGV0ZTpyb2xlcyB1cGRhdGU6cm9sZXMgcmVhZDpwcm9tcHRzIHVwZGF0ZTpwcm9tcHRzIHJlYWQ6YnJhbmRpbmcgdXBkYXRlOmJyYW5kaW5nIGRlbGV0ZTpicmFuZGluZyByZWFkOmxvZ19zdHJlYW1zIGNyZWF0ZTpsb2dfc3RyZWFtcyBkZWxldGU6bG9nX3N0cmVhbXMgdXBkYXRlOmxvZ19zdHJlYW1zIGNyZWF0ZTpzaWduaW5nX2tleXMgcmVhZDpzaWduaW5nX2tleXMgdXBkYXRlOnNpZ25pbmdfa2V5cyByZWFkOmxpbWl0cyB1cGRhdGU6bGltaXRzIGNyZWF0ZTpyb2xlX21lbWJlcnMgcmVhZDpyb2xlX21lbWJlcnMgZGVsZXRlOnJvbGVfbWVtYmVycyByZWFkOmVudGl0bGVtZW50cyByZWFkOmF0dGFja19wcm90ZWN0aW9uIHVwZGF0ZTphdHRhY2tfcHJvdGVjdGlvbiByZWFkOm9yZ2FuaXphdGlvbnMgdXBkYXRlOm9yZ2FuaXphdGlvbnMgY3JlYXRlOm9yZ2FuaXphdGlvbnMgZGVsZXRlOm9yZ2FuaXphdGlvbnMgY3JlYXRlOm9yZ2FuaXphdGlvbl9tZW1iZXJzIHJlYWQ6b3JnYW5pemF0aW9uX21lbWJlcnMgZGVsZXRlOm9yZ2FuaXphdGlvbl9tZW1iZXJzIGNyZWF0ZTpvcmdhbml6YXRpb25fY29ubmVjdGlvbnMgcmVhZDpvcmdhbml6YXRpb25fY29ubmVjdGlvbnMgdXBkYXRlOm9yZ2FuaXphdGlvbl9jb25uZWN0aW9ucyBkZWxldGU6b3JnYW5pemF0aW9uX2Nvbm5lY3Rpb25zIGNyZWF0ZTpvcmdhbml6YXRpb25fbWVtYmVyX3JvbGVzIHJlYWQ6b3JnYW5pemF0aW9uX21lbWJlcl9yb2xlcyBkZWxldGU6b3JnYW5pemF0aW9uX21lbWJlcl9yb2xlcyBjcmVhdGU6b3JnYW5pemF0aW9uX2ludml0YXRpb25zIHJlYWQ6b3JnYW5pemF0aW9uX2ludml0YXRpb25zIGRlbGV0ZTpvcmdhbml6YXRpb25faW52aXRhdGlvbnMiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.JEDKDHosAn7ueSP2UHGybjLUXRFsmGZuvWK85gcXjrtghtMgvEmnjWiE5QsClf0XrwtBgYKSYtZfALw95BqF9gPm81CSuiHdzasiKpnCCw1nrmmE-reUQZ5-YXzxzstp6FjTYJsEnN6l52oxk3lWHIieJiKwkUROdYCvqbDzBQVrxTTToLE4ysZhznS-EkVcO6-toGdQNpvAKXBAok4BTohQyw76QeoZYfHt3UMhg2FPHvDFdr75Z4YEtGyn_PPsCfGDLB_1yFRTapQv-XD7PT460RStXUOamcIkVjUfTWRoO859uQiWZfa7aBir0HdJZhnMGu0sL6szGHwMtdeUIg'}
-    };
-    
-    axios.request(options).then(function (response) {
-      response.data.forEach( (element) => {
-        console.error(element);
-        if(element.email === session.user.email){
-          setCount(element.email)
-          console.error(element);
-        }
-      });
-    }).catch(function (error) {
-      console.error(error);
-    });
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+
+  useEffect(() => {
+    width < 600 && handleSideNavToggle();
+  },[width]);
+
+  function handleSideNavToggle() {
+    console.log("toggle it");
+  }
+  
+
+  if(users) {
+    var isNewUser = true;
+    users.map((u) => {
+      if(u.user_id === userEmail){
+        isNewUser = false
+      }
+    })
+    if (isNewUser) {
+      newUser();
+    } 
   }
 
+    async function newUser() {
+      try {
+        const res = await fetch('/api/new-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userEmail,
+          }),
+        })
+        const json = await res.json()
+        if (!res.ok) throw Error(json.message)
+      } catch (e) {
+        return;
+      }
+    }
+
+    function menuOpen () {
+      setMenu(true);
+    }
+
+    function menuClose () {
+      setMenu(false)
+    }
+  
+
   return (
-    <Container className="py-4 px-6">
-      <nav>
-        <div className="flex justify-between items-center">
-          <Link href="/">
-            <a className="font-bold text-3xl">{title}</a>
-          </Link>
-          <p>{count}</p>
-          <button onClick={() => { signOut() }}>Sign Out</button>
-        </div>
-      </nav>
-    </Container>
+    <>
+      {!menu && <div className="mainNav py-4 px-6">
+        <nav>
+          <div className="flex justify-between items-center">
+            <Link href="/">
+              <a className="font-bold text-3xl"></a>
+            </Link>
+            {width > 870 &&
+              <button onClick={() => { signOut() }}>Sign Out</button>
+            } {width < 870 && 
+                <div className="w-full flex justify-end">
+                  <button onClick={ menuOpen }>Menu</button>
+                </div>
+            }
+          </div>
+        </nav>
+      </div>}
+      {menu && <div className="flex flex-col items-center pt-6 h-full w-full absolute bg-white">
+          <button onClick={ menuClose }>Menu</button>
+          <Link href="/dashboard/home"><a className="font-bold text-3xl">Dashboard</a></Link>
+          <Link href="/school/home"><a className="font-bold text-3xl">School</a></Link>
+          <Link href="/health/home"><a className="font-bold text-3xl">Health</a></Link>
+          <Link href="/scheduling/home"><a className="font-bold text-3xl">Scheduling</a></Link>
+      </div>}
+    </>
   )
 }

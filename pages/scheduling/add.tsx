@@ -1,12 +1,16 @@
+import Layout from "pages/layout"
+
 function Add() {
     return (
-      <>         
-        <div className="page-container flex flex-row h-full">
-            <div className="w-full">
-                Add Schedule Data
-            </div>
-        </div>
-      </>
+      <Layout>
+        <>         
+          <div className="page-container flex flex-row h-full">
+              <div className="w-full">
+                  Add Schedule Data
+              </div>
+          </div>
+        </>
+      </Layout>
     )
   } 
 

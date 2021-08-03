@@ -9,10 +9,20 @@ module.exports = {
       colors: {
         'accent-1': '#333',
         'customBlue': '#00c3f4ff',
-        'customYellow': '#f9e900ff'
+        'customYellow': '#f9e900ff',
+        'customBlue2': '#0981f2ff',
+        'customGreen': '#32a854ff',
+        'customGrey': '#d0d0d0ff',
       },
       width: {
         '50px': '50px',
+        '130px': '130px',
+        '35px':'35px',
+        '90px':'90px',
+        '200px': '200px',
+      },
+      height: {
+        '24px' : '24px',
       },
       padding: {
         '3px': '3px',

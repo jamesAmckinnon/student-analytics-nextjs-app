@@ -35,10 +35,17 @@ html, body, #root, #__next {
 
 }
 
-.sideBar {
-  height: 100%;
-  border-right: 1px solid #aaaaaa;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 .mainContent {
   height: 100%;
@@ -63,7 +70,30 @@ html, body, #root, #__next {
   border-right: 2px dashed #35d4f4ff;
 }
 
-@media (max-width: 600px) {
+.select1 {
+  width: 220px;
+}
+
+.calendarCont{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  height: auto;
+}
+
+
+
+.calendar_inputs {
+  width: 140px;
+}
+
+.dueDates {
+  display: grid;
+  grid-template-columns: 200px 100px 170px 80px;
+}
+
+
+@media (max-width: 870px) {
   .wrapper{
     grid-template-columns: 100%;
     grid-template-rows: min-content 1fr;
@@ -80,6 +110,12 @@ html, body, #root, #__next {
   .mainContent {
     grid-column-start: 1;
     grid-column-end: 2;
+  }
+}
+
+@media (max-width: 400px) {
+  .select1 {
+    width: 180px;
   }
 }
 

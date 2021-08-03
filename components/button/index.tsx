@@ -12,7 +12,7 @@ function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={cn(
+      className={cn( 
         'bg-black',
         'text-white',
         'p-2',
