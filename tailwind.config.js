@@ -27,7 +27,11 @@ module.exports = {
       },
       padding: {
         '3px': '3px',
+        '16px': '16px'
       },
+      margin: {
+        
+      }
     },
     borderColor: theme => ({
       ...theme('colors'),

@@ -81,7 +81,9 @@ input[type=number] {
   height: auto;
 }
 
-
+.schedule-cols{
+  margin: 20px;
+}
 
 .calendar_inputs {
   width: 140px;
@@ -89,7 +91,17 @@ input[type=number] {
 
 .dueDates {
   display: grid;
-  grid-template-columns: 200px 100px 170px 80px;
+  grid-template-columns: 2fr 4.5fr 2fr 1.5fr;
+}
+
+@media (max-width: 1080px) {
+  .schedule-times{
+    font-size: .8em;
+  }
+
+  .schedule-cols{
+    margin: 6px 10px;
+  }
 }
 
 
@@ -110,6 +122,18 @@ input[type=number] {
   .mainContent {
     grid-column-start: 1;
     grid-column-end: 2;
+  }
+}
+
+@media (max-width: 630px) {
+  .dueDates {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+  }
+
+  .dateGrid {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
   }
 }
 
