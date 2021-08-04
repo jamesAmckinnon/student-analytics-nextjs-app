@@ -12,7 +12,7 @@ function ClassesSection( {season, year, semester_id, course} ) {
   if (course) {
     return (
       <div>
-        <div className="py-4 pr-4 my-3 w-full flex flex-row justify-between">
+        <div className="py-4 pr-4 my-3 w-full h-80px flex flex-row justify-between">
             <div className="border-4 rounded-lg border-green-500 px-2 pb-3px">
                 <h3 className="font-bold text-2xl">Classes</h3>
             </div>

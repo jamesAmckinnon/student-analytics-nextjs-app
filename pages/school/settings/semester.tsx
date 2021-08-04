@@ -16,10 +16,8 @@ function Semester( { router: { query } } ) {
   const { course } = useClass(userEmail);
   const [checked, setChecked] = useState((object.semester_id === object.current_semester) ? true : false); 
   
-
-
-  async function updateSemester(checked) {
-    if(checked){
+  async function updateSemester(checkedBool) {
+    if(checkedBool){
       setChecked(true)
       const current_semester = object.semester_id
       try {

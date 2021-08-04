@@ -8,13 +8,13 @@ const { due_dates } = useDueDates(user_id, current_semester)
 
   function orderDueDates(dates, daysUntil){
     var ordered = [];
-    // var options = {  weekday: "long", month: "short", day: "numeric"};
+
 
     for(let i = 0 ; i < dates.length; i++){
       ordered.push([
         dates[i].course_name, 
         dates[i].due_date_description, 
-        new Date(dates[i].due_date), 
+        new Date(dates[i].due_date).toLocaleDateString('en-us', {  weekday: 'long', month: 'short', day: 'numeric'}),
         daysUntil[i]
       ])
     }
@@ -44,22 +44,15 @@ const { due_dates } = useDueDates(user_id, current_semester)
 
     var htmlDiv = []
 
-    console.log(ordered)
-    for (let i = 0; i < ordered.length ; i++) {
+    for (let dueDate of ordered) {
       htmlDiv.push( <div className="dueDates mx-5 my-2">
-                      <div className="font-bold">{ordered[i][0]}</div>
-                      <div className="ml-4">{ordered[i][1]}</div>
-                      <div className="ml-4">{ordered[i][2]}</div>
-                      <div className="font-bold ml-4">{ordered[i][3] + " days"}</div>
+                      <div className="font-bold">{dueDate[0]}</div>
+                      <div className="ml-4">{dueDate[1]}</div>
+                      <div className="ml-4">{dueDate[2]}</div>
+                      <div className="font-bold ml-4">{dueDate[3] + " days"}</div>
                     </div>
                   )
     }
-
-
-    // var options = {  weekday: 'long', month: 'short', day: 'numeric'};
-    // var prnDt = 'Printed on ' + new Date().toLocaleDateString('en-us', options);
-
-    // console.log(prnDt);
 
     return (
       <>
@@ -68,7 +61,7 @@ const { due_dates } = useDueDates(user_id, current_semester)
         </div>
       </>
     )
-  };
+  }
 
 if(due_dates){
   daysUntil(due_dates);
@@ -77,9 +70,9 @@ if(due_dates){
 function daysUntil(dates){ 
   var days_until = [] 
   
-  for(let i = 0 ; i < dates.length ; i++){
+  for(let date of dates){
     const start = new Date();
-    const end = new Date(dates[i].due_date);
+    const end = new Date(date.due_date);
 
     const daysBetween = (end.getTime() - start.getTime()) / (1000 * 3600 * 24);
     days_until.push(Math.ceil(daysBetween))
@@ -93,11 +86,11 @@ function daysUntil(dates){
   //   console.log(parseInt(ordered[j][1].substring(0,2)))
 
     return (
-        <>    
+      <>    
         <div className="flex flex-row mt-6">  
           {due_dates && orderDueDates(due_dates, daysUntil(due_dates))}
         </div>
-        </>
+      </>
     )
   } 
 
