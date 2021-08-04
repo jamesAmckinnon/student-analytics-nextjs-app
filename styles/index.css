@@ -63,6 +63,8 @@ input[type=number] {
   grid-template-rows: min-content 1fr;
 }
 
+.topNav{}
+
 .small-container{
   max-width: 650px;
   width: 100%;
