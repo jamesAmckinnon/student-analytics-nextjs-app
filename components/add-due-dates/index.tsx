@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import Button from '@/components/button'
+import SemesterButton from '@/components/semester-button'
 import { useState } from 'react'
 import { useEntries } from '@/lib/swr-hooks'
 
@@ -9,10 +9,12 @@ function AddDates({ current_courses, current_semester, user_id }) {
     const [due_date_description, setDueDateDescription] = useState("")
     const [course_name, setCourseName] = useState("")
     const [submitting, setSubmitting] = useState(false)
+    const [addAnother, setAddAnother] = useState('Add')
     console.log(current_semester)
 
     async function submitHandler(e) {
         setSubmitting(true)
+        e.preventDefault()
         try {
             const res = await fetch('/api/add-due-date', {
                 method: 'POST',
@@ -96,9 +98,9 @@ function AddDates({ current_courses, current_semester, user_id }) {
                             </div>
                         </div>
                     </div>
-                    <Button disabled={submitting} type="submit">
-                        {submitting ? 'Entering ...' : 'Enter'}
-                    </Button>
+                    <SemesterButton disabled={submitting} type="submit">
+                        {submitting ? 'Adding ...' : addAnother}
+                    </SemesterButton>
                 </form>
             </>
         )

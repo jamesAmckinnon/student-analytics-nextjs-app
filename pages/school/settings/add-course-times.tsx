@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDayTime } from "@/lib/swr-hooks";
 import Router from "next/router";
-import Button from '@/components/button'
+import SemesterButton from '@/components/semester-button'
 import Layout from "pages/layout";
 import Link from "next/link";
 import { withRouter } from 'next/router';
@@ -12,6 +12,7 @@ function AddCourseTime( { router: { query } } ) {
     const [time_out, setTimeOut] = useState("08:50")
     const [day_of_week, setDay] =useState("")
     const [submitting, setSubmitting] = useState(false)
+    const [addAnother, setAddAnother] = useState('Add')
     const object = JSON.parse(query.object);
     
 
@@ -39,8 +40,7 @@ function AddCourseTime( { router: { query } } ) {
             setDay("")
             setTimeIn("08:00")
             setTimeOut("08:50")
-            const url = '/school/settings/class?object=%7B%22season%22%3A%22' + object.season + '%22%2C%22year%22%3A' + object.year + '%2C%22semester_id%22%3A' + object.semester_id + '%2C%22course_name%22%3A%22' + object.course_name + '%22%2C%22course_id%22%3A' + object.course_id + '%7D'; 
-            Router.push(url)
+            setAddAnother('Add Another')
             const json = await res.json()
             if (!res.ok) throw Error(json.message)
         } catch (e) {
@@ -55,7 +55,7 @@ function AddCourseTime( { router: { query } } ) {
           <div className="page-container h-full w-full grid justify-items-center">
             <div className="small-container py-4 px-6"> 
               <div className="py-5 pr-0 w-full flex flex-row justify-between items-center">
-                <div className="border-4 rounded-lg border-customGreen px-2 pb-3px">
+                <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                     <h3 className="font-bold text-3xl">Add Course Time</h3>
                 </div>
               </div>
@@ -100,9 +100,9 @@ function AddCourseTime( { router: { query } } ) {
                           />
                       </div>
                   </div>
-                  <Button disabled={submitting} type="submit">
-                          {submitting ? 'Add ...' : 'Add'}
-                  </Button> 
+                  <SemesterButton disabled={submitting} type="submit">
+                          {submitting ? 'Add ...' : addAnother}
+                  </SemesterButton> 
               </form>
               <div className="w-full flex justify-end">
                 <Link href={{ pathname: '/school/settings/class', query: { object: JSON.stringify(object) } }}>

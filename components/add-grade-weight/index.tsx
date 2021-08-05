@@ -5,6 +5,7 @@ import { useState } from 'react'
 function GradeWeight( {object, course_id} ) {
     const [grade_weight, setGradeWeight] = useState('')
     const [grade_weight_type, setGradeWeightType] = useState('')
+    const [addAnother, setAddAnother] = useState('Add')
     const [submitting, setSubmitting] = useState(false)
 
 
@@ -24,11 +25,11 @@ function GradeWeight( {object, course_id} ) {
             }),
           })
           setSubmitting(false)
+          setGradeWeightType('')
+          setGradeWeight('') 
+          setAddAnother('Add Another')
           const json = await res.json()
-          if (!res.ok) throw Error(json.message)  
-          const url = '/school/settings/class?object=%7B%22season%22%3A%22' + object.season + '%22%2C%22year%22%3A' + object.year + '%2C%22semester_id%22%3A' + object.semester_id + '%2C%22course_name%22%3A%22' + object.course_name + '%22%2C%22course_id%22%3A' + object.course_id + '%7D';        
-          Router.push(url)
-          Router.push(url)
+          if (!res.ok) throw Error(json.message)   
         } catch (e) {
           throw Error(e.message)
         }
@@ -66,7 +67,7 @@ function GradeWeight( {object, course_id} ) {
                         />
                     </div>
                     <SemesterButton disabled={submitting} type="submit">
-                        {submitting ? 'Adding ...' : 'Add'}
+                        {submitting ? 'Adding ...' : addAnother}
                     </SemesterButton>
                 </div>
             </form>

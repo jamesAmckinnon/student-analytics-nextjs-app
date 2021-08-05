@@ -57,7 +57,7 @@ function CourseTime( { object, semester_id, course_id, course_day_time} ) {
 
     return (
         <>
-            <div className="flex flex-row justify-between items-center">
+            <div className="pb-2 pt-4 pr-0 mt-3 flex flex-row justify-between items-center">
                 <div className="border-4 rounded-lg border-customYellow px-2 pb-3px">
                     <h3 className="font-bold text-2xl">Course Times</h3>
                 </div>
@@ -65,9 +65,9 @@ function CourseTime( { object, semester_id, course_id, course_day_time} ) {
                     <img src="/add-icon.svg" style={{ height: 28, width: 24, cursor: 'pointer'}}/>
                 </Link>
             </div>
-            <div className="flex flex-col my-4">
+            <div className="flex flex-col my-1">
                 {course_day_time && course_day_time.map((e) => (
-                    <div className="py-2 w-full flex flex-row justify-between">
+                    <div className="py-1 w-full flex flex-row justify-between">
                         <h3 key={day_of_week} >{e.day_of_week.charAt(0).toUpperCase() + e.day_of_week.slice(1)}</h3>
                         <h3 className='font-bold mr-2'>{tConvert (e.time_in)} {(e.time_out === null) ? "" : ("- " + tConvert (e.time_out)) }</h3>
                     </div>

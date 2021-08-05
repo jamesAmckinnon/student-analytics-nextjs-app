@@ -16,14 +16,10 @@ function Add() {
         <>
           <div className="page-container h-full w-full grid justify-items-center">
             <div className="small-container py-4 px-6">  
-              <div className="flex flex-row justify-between pt-2">
-
+              <div className="flex flex-row items-center justify-between pt-2">
                 <h3 className="font-bold text-2xl">Activity</h3>
-                {/* <Link href='/health/new-activity'>
-                  <img src="/add-icon.svg" style={{ height: "auto", width: 25, cursor: 'pointer'}}/>
-                </Link> */}
                 <Link href='/health/new-activity'>
-                  <button className="border-2 font-bold px-2 rounded border-green-500">+ New</button>
+                    <img src="/add-icon.svg" style={{ height: 28, width: 24, cursor: 'pointer'}}/>
                 </Link>
               </div>
               <div className="flex flex-row justify-between">

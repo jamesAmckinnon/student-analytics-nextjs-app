@@ -7,6 +7,7 @@ function AddClass( {router: { query }} ) {
     const [course_name, setCourseName] = useState('')
     const [course_code, setCourseCode] = useState('')
     const [submitting, setSubmitting] = useState(false)
+    const [addAnother, setAddAnother] = useState('Add')
     const { entries } = useEntries()
     const object = JSON.parse(query.object);
     const[semester_id, setSemesterId] = useState(0)
@@ -29,10 +30,11 @@ function AddClass( {router: { query }} ) {
                 }),
             })
             setSubmitting(false)
+            setAddAnother('Add Another')
+            setCourseName('')
+            setCourseCode('')
             const json = await res.json()
             if (!res.ok) throw Error(json.message)
-            const url = '/school/settings/semester?object=%7B%22season%22%3A%22'+ object.season + '%22%2C%22year%22%3A' + object.year + '%2C%22semester_id%22%3A' + object.semester_id + '%7D';
-            Router.push(url)
             } catch (e) {
             throw Error(e.message)
             }
@@ -82,7 +84,7 @@ function AddClass( {router: { query }} ) {
                             </div>
                             <div className="w-full mt-4">
                                 <SemesterButton disabled={submitting} type="submit">
-                                    {submitting ? 'Adding ...' : 'Add'}
+                                    {submitting ? 'Adding ...' : addAnother}
                                 </SemesterButton>
                             </div>
                         </div>

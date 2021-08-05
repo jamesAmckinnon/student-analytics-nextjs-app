@@ -24,10 +24,10 @@ function Class( { router: { query } } ) {
                               <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                           </div>
                       </div>
-                      <GradeWeighting season={object.season} year={object.year} semester_id={object.semester_id} course_name={object.course_name} course_id={object.course_id}/>
-                      <Grades/>
                       {course_day_time && <CourseTime object={object} semester_id={object.semester_id} course_id={object.course_id} course_day_time={course_day_time}/>}
-                      <div className="w-full flex justify-end">
+                      { object && <GradeWeighting object= {object}/>}
+                      { object && <Grades object= {object}/>}
+                      <div className="w-full mt-6 flex justify-end">
                         <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
                           <button className="border-2  border-black font-bold py-1 px-2 rounded">Back</button>
                         </Link>

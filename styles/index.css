@@ -42,16 +42,20 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
-
 
 .mainContent {
   height: 100%;
   grid-column-start: 2;
   grid-column-end: 3;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mainContent::-webkit-scrollbar {
+  display: none;
 }
 
 .wrapper {
