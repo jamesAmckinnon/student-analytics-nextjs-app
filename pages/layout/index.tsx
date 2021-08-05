@@ -7,7 +7,7 @@ export default function Layout ({children}) {
 
     return (
         <>     
-          <div className="wrapper overflow-y-hidden">
+          <div className="wrapper h-screen overflow-y-hidden">
             <div className="topNav border-b-2 border-gray-600 auto-rows-max col-span-full overflow-y-hidden">
               <Nav users = {users}/>
             </div>
