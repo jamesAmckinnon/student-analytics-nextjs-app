@@ -8,10 +8,10 @@ export default function Layout ({children}) {
     return (
         <>     
           <div className="wrapper ">
-            <div className="topNav border-b-2 border-gray-600 col-span-full">
+            <div className="topNav border-b-2 border-gray-600 auto-rows-max col-span-full">
               <Nav users = {users}/>
             </div>
-            <div className="sideBar border-r-2 border-gray-600 col-start-1 col-end-2 row-start-2 row-end-4">
+            <div className="sideBar border-r-2 border-gray-600 auto-rows-max col-start-1 col-end-2 row-start-2 row-end-4">
               <SideBar />
             </div>
             <div className="mainContent overflow-y-scroll">
