@@ -23,7 +23,7 @@ function AddDueDates() {
             }
               <div className="w-full my-4 flex justify-end">
                 <Link href= '/scheduling/home'>
-                  <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
+                  <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
                 </Link>
               </div>
             </div>

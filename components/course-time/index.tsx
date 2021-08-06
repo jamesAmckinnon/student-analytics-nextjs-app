@@ -10,6 +10,7 @@ function CourseTime( { object, semester_id, course_id, course_day_time} ) {
     const [time_out, setTimeOut] = useState("08:50")
     const [day_of_week, setDay] =useState("")
     const [submitting, setSubmitting] = useState(false)
+    const [deleteBool, setDelete] = useState(false)
     
 
     async function submitHandler(e) {
@@ -54,6 +55,14 @@ function CourseTime( { object, semester_id, course_id, course_day_time} ) {
         return time.join (''); // return adjusted time or original string
       }
 
+    function toggleDelete(toggle_delete) {
+        if(!toggle_delete){
+            setDelete(true)
+        } else {
+            setDelete(false)
+        }
+    }
+
 
     return (
         <>
@@ -61,15 +70,27 @@ function CourseTime( { object, semester_id, course_id, course_day_time} ) {
                 <div className="border-4 rounded-lg border-customYellow px-2 pb-3px">
                     <h3 className="font-bold text-2xl">Course Times</h3>
                 </div>
-                <Link href={{ pathname: '/school/settings/add-course-times', query: { object: JSON.stringify(object) } }}>
-                    <img src="/add-icon.svg" style={{ height: 28, width: 24, cursor: 'pointer'}}/>
-                </Link>
+                <div className="flex flex-row">
+                    <a className="mr-4" onClick={() => toggleDelete(deleteBool)}>
+                        <img src="/edit-icon.svg" style={{ height: 28, width: 24, cursor: 'pointer'}}/>
+                    </a>
+                    <Link href={{ pathname: '/school/settings/add-course-times', query: { object: JSON.stringify(object) } }}>
+                        <img src="/add-icon.svg" style={{ height: 28, width: 24, cursor: 'pointer'}}/>
+                    </Link>
+                </div>
             </div>
             <div className="flex flex-col my-1">
                 {course_day_time && course_day_time.map((e) => (
                     <div className="py-1 w-full flex flex-row justify-between">
                         <h3 key={day_of_week} >{e.day_of_week.charAt(0).toUpperCase() + e.day_of_week.slice(1)}</h3>
-                        <h3 className='font-bold mr-2'>{tConvert (e.time_in)} {(e.time_out === null) ? "" : ("- " + tConvert (e.time_out)) }</h3>
+                        <div className="endCont flex flex-row">
+                            <h3 className='font-bold mr-2'>{tConvert (e.time_in)} {(e.time_out === null) ? "" : ("- " + tConvert (e.time_out)) }</h3>
+                            {deleteBool && 
+                                <a className="deleteEntry">
+                                    <img src="/add-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                                </a> 
+                            }
+                        </div>
                     </div>
                 ))}
             </div>

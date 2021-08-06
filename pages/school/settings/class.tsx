@@ -27,10 +27,13 @@ function Class( { router: { query } } ) {
                       {course_day_time && <CourseTime object={object} semester_id={object.semester_id} course_id={object.course_id} course_day_time={course_day_time}/>}
                       { object && <GradeWeighting object= {object}/>}
                       { object && <Grades object= {object}/>}
-                      <div className="w-full mt-6 flex justify-end">
+                      <div className="w-full mt-6 flex justify-between">
                         <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
                           <button className="border-2  border-black font-bold py-1 px-2 rounded">Back</button>
                         </Link>
+                        <Link href='/school/home'>
+                          <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
+                        </Link> 
                       </div>  
                   </div> 
               </div>
