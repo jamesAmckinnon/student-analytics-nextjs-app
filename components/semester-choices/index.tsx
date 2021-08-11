@@ -48,7 +48,7 @@ function SemesterChoices( {semester} ) {
                                     user_id: e.user_id,
                                 };
                                 return (
-                                <div id={e.semester_id} className="flex flex-row justify-between">
+                                <div id={e.semester_id} className="flex flex-row justify-between h-24px">
                                     <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
                                         <a>{e.semester_season} {e.semester_year}</a>
                                     </Link>

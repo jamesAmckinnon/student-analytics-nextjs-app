@@ -18,7 +18,9 @@ function ChooseSemester() {
         <>         
           <div className="page-container h-full w-full grid justify-items-center">
               <div className="small-container py-4 px-6">
-                  <SemesterChoices semester = {semester} />
+                <div className="">
+                  <SemesterChoices semester = {semester} /> 
+                </div>
                   <div className="w-full flex justify-end">
                     <Link href='/school/home'>
                       <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
