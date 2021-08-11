@@ -2,13 +2,13 @@ import { NextApiHandler } from 'next'
 import { query } from '../../lib/db'
 
 const handler: NextApiHandler = async (req, res) => {
-  const { current_semester, course_name, due_date_description, due_date } = req.body
+  const { current_semester, course_name, due_date_description, due_date, grade_weight_id } = req.body
   
   try {
     const results = await query(
       `
-      INSERT INTO due_date ( semester_id, course_id, due_date_description, due_date )
-      VALUES (?, ?, ?, ?) `, [ current_semester, course_name, due_date_description, due_date ]
+      INSERT INTO due_date ( semester_id, course_id, due_date_description, due_date, grade_weight_id)
+      VALUES (?, ?, ?, ?, ?) `, [ current_semester, course_name, due_date_description, due_date, grade_weight_id ]
       )
       
     return res.json(results)

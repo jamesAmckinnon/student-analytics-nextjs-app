@@ -1,11 +1,9 @@
 import Link from 'next/link'
 import Layout from 'pages/layout'
 import AddClass from '@/components/add-class'
-import { useEntries } from '@/lib/swr-hooks'
 import { withRouter } from 'next/router';
 
 function Class( { router: { query } } ) {
-    const { entries } = useEntries()
     const object = JSON.parse(query.object);
 
     return (

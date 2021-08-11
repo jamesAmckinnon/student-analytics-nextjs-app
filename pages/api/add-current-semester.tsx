@@ -2,10 +2,10 @@ import { NextApiHandler } from 'next'
 import { query } from '../../lib/db'
 
 const handler: NextApiHandler = async (req, res) => {
-  const { current_semester, userEmail } = req.body
+  const { current_semester_id, userEmail } = req.body
   
   try {
-    if (!current_semester) {
+    if (!current_semester_id) {
       return res
         .status(400)
         .json({ message: '`current_semester` is required' })
@@ -14,7 +14,7 @@ const handler: NextApiHandler = async (req, res) => {
     const results = await query(
       `
       UPDATE users SET current_semester = ? WHERE users.user_id = ?
-      `, [current_semester, userEmail]  
+      `, [current_semester_id, userEmail]  
     )
     
     return res.json(results)

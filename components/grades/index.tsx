@@ -1,7 +1,24 @@
 import { useGrades } from "@/lib/swr-hooks";
+import { useState } from "react";
 
 function Grades( {object } ) {
   const { grades } = useGrades(object.course_id);
+  const [deleteBool, setDelete] = useState(false)
+
+  async function deleteHandler(grade_id) {
+    document.getElementById(`${grade_id}`).style.display = "none";
+    let res = await fetch(`/api/delete-grade?grade_id=${grade_id}`, { method: 'DELETE' })
+    let json = await res.json()
+    if (!res.ok) throw Error(json.message)
+  }
+
+  function toggleDelete(toggle_delete) {
+    if(!toggle_delete){
+        setDelete(true)
+    } else {
+        setDelete(false)
+    }
+  }
 
   if (grades) {
     return (
@@ -10,16 +27,23 @@ function Grades( {object } ) {
             <div className="border-4 rounded-lg border-customGreen px-2 pb-3px">
                 <h3 className="font-bold text-2xl">Grades</h3>
             </div>
-            <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+            <a className="" onClick={() => toggleDelete(deleteBool)}>
+              <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+            </a>
         </div> 
         <div className="my-1">
           {grades.map((e) => (
-            <div className="py-1 flex flex-row justify-between">
+            <div id={e.grade_id} className="py-1 flex flex-row justify-between">
               <div className="">
                 {e.grade_description}
               </div>
-              <div className="">
+              <div className="flex flex-row">
                 {e.grade_received}
+                { deleteBool &&
+                  <a onClick={() => deleteHandler(e.grade_id)} className="ml-2 deleteEntry">
+                      <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                  </a> 
+                }
               </div>
             </div>
           ))}

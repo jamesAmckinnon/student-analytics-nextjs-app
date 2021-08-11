@@ -1,28 +1,69 @@
 import Link from "next/link"
+import { useState } from "react"
 
-function SemesterChoices( {semester, current_semester } ) {
+function SemesterChoices( {semester} ) {
+    const [deleteBool, setDelete] = useState(false)
+
+    function toggleDelete(toggle_delete) {
+        if(!toggle_delete){
+            setDelete(true)
+        } else {
+            setDelete(false)
+        }
+      }
+
+    async function deleteHandler(semester_id) {
+        document.getElementById(`${semester_id}`).style.display = "none";
+        let res = await fetch(`/api/delete-semester?semester_id=${semester_id}`, { method: 'DELETE' })
+        let json = await res.json()
+        if (!res.ok) throw Error(json.message)
+    }
+
     if (semester) {
         try{
             return (
-                <div className="flex flex-col">
-                    {semester.map((e) => {
-                        if(e.semester_season != null){
-                            const object = {
-                                season: e.semester_season,
-                                year: e.semester_year,
-                                semester_id: e.semester_id,
-                                current_semester: current_semester,
-                            };
-                            return (
-                            <>
-                                <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
-                                    <a>{e.semester_season} {e.semester_year}</a>
-                                </Link>
-                            </>
-                            )
-                        }
-                    })}
+            <>
+                <div className="w-full flex flex-row justify-between">
+                    <h3 className="font-bold text-2xl">Choose Semester</h3>
+                    <div className="flex flex-row">
+                        <a className="flex items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
+                            <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                        </a>
+                        <Link href='/school/settings/add-semester'>
+                            <img src="/add-icon.svg" style={{ height: "auto", width: 30, cursor: 'pointer'}}/>
+                        </Link>
+                    </div>
+                </div> 
+                <div className="py-4">
+                    <div className="flex flex-col">
+                        {semester.map((e) => {
+                            if(e.semester_season != null){
+                                console.log(e.current_semester)
+                                const object = {
+                                    season: e.semester_season,
+                                    year: e.semester_year,
+                                    semester_id: e.semester_id,
+                                    current_semester: e.current_semester,
+                                    target_gpa: e.target_gpa,
+                                    user_id: e.user_id,
+                                };
+                                return (
+                                <div id={e.semester_id} className="flex flex-row justify-between">
+                                    <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
+                                        <a>{e.semester_season} {e.semester_year}</a>
+                                    </Link>
+                                    { deleteBool &&
+                                        <a onClick={() => deleteHandler(e.semester_id)} className="deleteEntry mr-1">
+                                            <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                                        </a> 
+                                    }
+                                </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
+            </>
             )
         } catch {
             return null;

@@ -5,7 +5,7 @@ const handler: NextApiHandler = async (req, res) => {
   const { user_id } = req.query
   try {
     const results = await query(`
-      SELECT course.course_name, semester.semester_id, course.course_id
+      SELECT course.course_name, semester.semester_id, course.course_id, course.target_course_gpa
       FROM semester
       INNER JOIN course
       ON semester.semester_id = course.semester_id

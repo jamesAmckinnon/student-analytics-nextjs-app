@@ -6,7 +6,7 @@ const handler: NextApiHandler = async (req, res) => {
 
   try {
     const results = await query(`
-      SELECT schedule.day_of_week, schedule.time_in, schedule.time_out
+      SELECT schedule.day_of_week, schedule.time_in, schedule.time_out, schedule.schedule_id
       FROM schedule 
       WHERE schedule.course_id = ${course_id} 
       AND schedule.semester_id = ${semester_id} `

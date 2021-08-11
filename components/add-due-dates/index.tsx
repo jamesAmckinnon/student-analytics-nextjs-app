@@ -1,16 +1,20 @@
 import Router from 'next/router'
 import SemesterButton from '@/components/semester-button'
 import { useState } from 'react'
-import { useEntries } from '@/lib/swr-hooks'
+import { useGradeWeight } from '@/lib/swr-hooks'
 
 function AddDates({ current_courses, current_semester, user_id }) {
     const [due_date, setDueDate] = useState("")
     const [date, setDate] = useState('')
+    const [course, setCourse] = useState('')
+    const [course_id, setCourseId] = useState(0)
+    const { gradeWeight } = useGradeWeight( course_id )
+    const [grade_weight_id, setGradeType] = useState(0)
     const [due_date_description, setDueDateDescription] = useState("")
     const [course_name, setCourseName] = useState("")
     const [submitting, setSubmitting] = useState(false)
     const [addAnother, setAddAnother] = useState('Add')
-    console.log(current_semester)
+
 
     async function submitHandler(e) {
         setSubmitting(true)
@@ -23,9 +27,10 @@ function AddDates({ current_courses, current_semester, user_id }) {
                 },
                 body: JSON.stringify({
                     current_semester,
-                    course_name,
+                    course_id,
                     due_date_description,
                     due_date,
+                    grade_weight_id,
                 }),
             })
             setSubmitting(false)
@@ -47,7 +52,20 @@ function AddDates({ current_courses, current_semester, user_id }) {
         return month + "/" + day + "/" + year ;
     }
 
-    if (current_courses) {
+    function getCourseId ( courseName ) {
+        for(let courses of current_courses){
+            if(courses.course_name == courseName){
+                setCourseId(courses.course_id);
+            }
+        }
+    }
+
+    function setGradeWeight( weightId ){
+        setGradeType(parseInt(weightId))
+    }
+
+    if (current_courses && gradeWeight) {
+        
         return (
             <>
                 <div className="py-5 pr-0 w-full flex flex-row justify-between items-center">
@@ -74,15 +92,34 @@ function AddDates({ current_courses, current_semester, user_id }) {
                                     id="course"
                                     className="shadow border rounded ml-4"
                                     name="course"
-                                    value={course_name}
-                                    onChange={(e) => { setCourseName(e.target.value) }}
+                                    value={course}
+                                    onChange={(e) => { setCourse(e.target.value); getCourseId(e.target.value);}}
                                 >
                                     <option value="115">Select</option> 
                                     {current_courses.map((e) => (
-                                        <option value={e.course_id}>{e.course_name}</option>
+                                        <option value={e.course_name}>{e.course_name}</option>
                                     ))}
                                 </select>
                             </div>
+                            { (gradeWeight.length != 0) &&
+                                <div className="flex flex-row my-4">
+                                    <label htmlFor="grade_type">
+                                    <h3 className="font-bold">Grade Type:</h3>
+                                    </label>
+                                    <select
+                                    id="grade_type"
+                                    className="ml-2 shadow border rounded"
+                                    name="grade_type"
+                                    value={grade_weight_id}
+                                    onChange={(e) => setGradeWeight(e.target.value)}
+                                    >
+                                        <option value="none">Select</option>
+                                        {gradeWeight.map((e) => (
+                                            <option value={e.grade_weight_id}>({e.grade_weight}%)&nbsp;&nbsp;{e.grade_weight_type}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            }
                             <div className="py-2  flex flex-row font-bold">
                                 <h3>Description: </h3>
                                 <input
