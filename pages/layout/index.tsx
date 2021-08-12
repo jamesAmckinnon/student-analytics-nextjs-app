@@ -38,7 +38,7 @@ export default function Layout ({children}) {
               <div className="topNav fixed w-full z-10 bg-white border-b-2 border-gray-600 ">
                 <Nav users = {users}/>
               </div>
-              <div className="h-full w-full pt-16">
+              <div className="h-full w-full pt-54px pb-10">
                 {children}
               </div>
             </>
