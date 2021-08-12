@@ -8,7 +8,7 @@ export default function Logic ({children}) {
             <>     
                 {session && (
                     <>
-                        <div className="overflow-y-hidden">
+                        <div className="overflow-y-hidden h-full">
                             {children}
                         </div>
                     </>
