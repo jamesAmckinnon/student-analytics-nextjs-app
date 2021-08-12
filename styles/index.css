@@ -118,7 +118,7 @@ input[type=number] {
 @media (max-width: 870px) {
 
   html, body, #root, #__next {
-    height: 100vh;
+    height: auto;
     width: auto;
     position: static;
   }
