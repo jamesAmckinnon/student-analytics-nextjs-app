@@ -18,6 +18,7 @@ function AddDates({ current_courses, current_semester, user_id }) {
 
     async function submitHandler(e) {
         setSubmitting(true)
+        console.log(course_id, "<--- submit")
         e.preventDefault()
         try {
             const res = await fetch('/api/add-due-date', {
@@ -53,11 +54,16 @@ function AddDates({ current_courses, current_semester, user_id }) {
     }
 
     function getCourseId ( courseName ) {
+        console.log(course_id)
         for(let courses of current_courses){
+            console.log(courses.course_name,courses.course_id, courseName)
             if(courses.course_name == courseName){
                 setCourseId(courses.course_id);
+                console.log(courses.course_id)
+                console.log(course_id)
             }
         }
+        console.log(course_id)
     }
 
     function setGradeWeight( weightId ){

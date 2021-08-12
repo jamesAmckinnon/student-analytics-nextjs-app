@@ -89,10 +89,10 @@ export default function Nav( {users} ) {
       {menu && <div className="flex flex-col items-center pt-6 h-screen w-full absolute bg-white">
           <button onClick={ menuClose }>Menu</button>
           <button onClick={() => { signOut() }}>Sign Out</button>
-          <Link href="/dashboard/home"><a className="font-bold text-3xl">Dashboard</a></Link>
-          <Link href="/school/home"><a className="font-bold text-3xl">School</a></Link>
-          <Link href="/health/home"><a className="font-bold text-3xl">Health</a></Link>
-          <Link href="/scheduling/home"><a className="font-bold text-3xl">Scheduling</a></Link>
+          <Link href="/dashboard/home"><a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a></Link>
+          <Link href="/school/home"><a onClick={ menuClose } className="font-bold text-3xl">School</a></Link>
+          <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>
+          <Link href="/scheduling/home"><a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a></Link>
       </div>}
     </>
   )
