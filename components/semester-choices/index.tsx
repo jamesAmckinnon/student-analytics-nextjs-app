@@ -23,9 +23,9 @@ function SemesterChoices( {semester} ) {
         try{
             return (
             <>
-                <div className="w-full flex flex-row justify-between">
-                    <h3 className="font-bold text-2xl">Choose Semester</h3>
-                    <div className="flex flex-row">
+                <div className="w-full flex flex-row justify-between h-36px">
+                    <h3 className="font-bold text-2xl h-36px">Choose Semester</h3>
+                    <div className="flex flex-row h-36px">
                         <a className="flex items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
                             <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                         </a>
