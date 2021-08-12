@@ -68,7 +68,6 @@ input[type=number] {
   grid-template-rows: min-content 1fr;
 }
 
-.topNav{}
 
 .small-container{
   max-width: 650px;
@@ -113,6 +112,13 @@ input[type=number] {
 
 
 @media (max-width: 870px) {
+
+  html, body, #root, #__next {
+    height: auto;
+    width: auto;
+    position: static;
+  }
+
   .wrapper{
     grid-template-columns: 100%;
     grid-template-rows: min-content 1fr;
