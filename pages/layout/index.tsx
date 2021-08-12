@@ -16,7 +16,8 @@ export default function Layout ({children}) {
   }, [width]);
 
     return (
-        <>     
+        <>  
+
           {width > 870 &&
             <div className="wrapper h-screen overflow-y-hidden">
               <div className="topNav border-b-2 border-gray-600 auto-rows-max col-span-full overflow-y-hidden">
@@ -29,16 +30,20 @@ export default function Layout ({children}) {
                 {children}
               </div>
             </div>  
-          }  {width < 870 &&
-            <div className="wrapper flex flex-col h-full">
-              <div className="topNav border-b-2 border-gray-600 ">
+          }  
+          
+          
+          {width < 870 &&
+            <>
+              <div className="topNav fixed w-full z-10 bg-white border-b-2 border-gray-600 ">
                 <Nav users = {users}/>
               </div>
-              <div className="mainContent overflow-y-scroll">
+              <div className="mainContent h-full mt-10 mb-10 overflow-y-scroll">
                 {children}
               </div>
-            </div>  
+            </>
           }
+
         </>
     )
   }
