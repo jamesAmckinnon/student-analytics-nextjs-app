@@ -35,15 +35,16 @@ export default function Layout ({children}) {
           
           {width < 870 &&
             <>
-              <div className="topNav fixed w-full z-10 bg-white border-b-2 border-gray-600 ">
-                <Nav users = {users}/>
-              </div>
-              <div className="h-full w-full">
-                {children}
+              <div className="flex flex-col overflow-y-scroll">
+                <div className="topNav w-full z-10 bg-white border-b-2 border-gray-600 ">
+                  <Nav users = {users}/>
+                </div>
+                <div className="h-full w-full">
+                  {children}
+                </div>
               </div>
             </>
           }
-
         </>
     )
   }

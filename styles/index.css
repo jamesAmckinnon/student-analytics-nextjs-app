@@ -80,6 +80,10 @@ input[type=number] {
   width: 220px;
 }
 
+.childCont{
+  overflow-y: hidden;
+}
+
 .calendarCont{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -120,7 +124,7 @@ input[type=number] {
   }
 
   .childCont{
-    overflow-y:scroll;
+    overflow-y: scroll;
   }
 
   .page-container{
