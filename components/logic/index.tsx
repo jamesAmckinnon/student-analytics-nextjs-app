@@ -14,18 +14,18 @@ export default function Logic ({children}) {
         return () => window.removeEventListener("resize", handleResize);
     }, [width]);
 
-    if(!loading) {
+    if(!loading && (width > 870)) {
         return (
             <>     
 
-                {session && (width > 870) && (
+                {session && (
                     <>
                         <div className="overflow-y-hidden h-full">
                             {children}
                         </div>
                     </>
                 )}
-                {!session && (width > 870) && (
+                {!session && (
                     <div className="w-full h-full">          
                         <div className="signInWrapper">
                             <div className="signInTile">
@@ -37,15 +37,20 @@ export default function Logic ({children}) {
                         </div>
                     </div>
                 )}
-
-                {session && (width < 870) && (
+            
+            </>
+        )
+    } else if (!loading && (width > 870)) {
+        return (
+            <>     
+                {session && (
                     <>
                         <div className="h-full">
                             {children}
                         </div>
                     </>
                 )}
-                {!session && (width < 870) && (
+                {!session && (
                     <div className="w-full h-full">          
                         <div className="signInWrapper">
                             <div className="signInTile">
