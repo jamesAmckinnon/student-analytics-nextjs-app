@@ -29,7 +29,7 @@ export default function Nav( {users} ) {
   }
   
 
-  if(users) {
+  if(users) { ////////////////////// bad. more users == slower
     var isNewUser = true;
     users.map((u) => {
       if(u.user_id === userEmail){

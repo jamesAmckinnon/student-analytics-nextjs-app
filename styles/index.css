@@ -119,13 +119,13 @@ input[type=number] {
     position: static;
   }
 
+  .page-container{
+    overflow-y: scroll;
+  }
+
   .wrapper{
     grid-template-columns: 100%;
     grid-template-rows: min-content 1fr;
-  }
-
-  .topNav {
-
   }
 
   .sideBar {
