@@ -119,6 +119,10 @@ input[type=number] {
     position: static;
   }
 
+  .childCont{
+    overflow-y:scroll;
+  }
+
   .page-container{
     overflow-y: scroll;
   }
