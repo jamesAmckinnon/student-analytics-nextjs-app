@@ -131,6 +131,12 @@ input[type=number] {
     overflow-y: scroll;
   }
 
+  .small-container{
+    max-width: 650px;
+    width: 100%;
+    border: none;
+  }
+
   .wrapper{
     grid-template-columns: 100%;
     grid-template-rows: min-content 1fr;

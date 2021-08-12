@@ -86,7 +86,7 @@ export default function Nav( {users} ) {
           </div>
         </nav>
       </div>}
-      {menu && <div className="flex flex-col items-center pt-6 h-full w-full absolute bg-white">
+      {menu && <div className="flex flex-col items-center pt-6 h-screen w-full absolute bg-white">
           <button onClick={ menuClose }>Menu</button>
           <button onClick={() => { signOut() }}>Sign Out</button>
           <Link href="/dashboard/home"><a className="font-bold text-3xl">Dashboard</a></Link>
