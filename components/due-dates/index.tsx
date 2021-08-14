@@ -115,6 +115,7 @@ function DueDates( {user_id, current_semester} ) {
 
 
   if(due_dates){
+    console.log(due_dates)
     daysUntil(due_dates);
   }
 

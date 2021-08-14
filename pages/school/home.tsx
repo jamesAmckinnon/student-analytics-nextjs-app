@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Layout from "pages/layout"
 import DisplayGrades from '@/components/display-grades'
-import UpcomingGrades from '@/components/upcomingGrades'
-import GradeCalculator from '@/components/gradeCalculator'
+import UpcomingGrades from '@/components/upcoming-grades'
+import GradeCalculator from '@/components/grade-calculator'
 import { useCurrentGrades, useCurrentSem } from '@/lib/swr-hooks'
 import { useSession } from 'next-auth/client'
 import SchoolMain from '@/components/school-main'

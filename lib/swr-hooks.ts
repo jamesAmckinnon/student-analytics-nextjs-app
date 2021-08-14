@@ -54,6 +54,16 @@ export function useGradeWeight(course_id) {
   }
 }
 
+export function useGradeWeights(current_semester) {
+  const { data, error } = useSWR(`/api/get-grade-weights?current_semester=${current_semester}`, fetcher)
+  
+  return {
+    grade_weights: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
 export function useGrades( course_id ){
   const {data, error} = useSWR(`/api/get-grades?course_id=${course_id}`, fetcher)
 

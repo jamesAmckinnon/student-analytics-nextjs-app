@@ -13,6 +13,7 @@ module.exports = {
         'customBlue2': '#0981f2ff',
         'customGreen': '#32a854ff',
         'customGrey': '#d0d0d0ff',
+        'selectGrey': '#ddddddff',
       },
       width: {
         '50px': '50px',
@@ -20,6 +21,7 @@ module.exports = {
         '35px':'35px',
         '90px':'90px',
         '107px':'107px',
+        '170px':'170px',
         '200px': '200px',
         '230px': '230px',
       },

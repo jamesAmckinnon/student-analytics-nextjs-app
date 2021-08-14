@@ -22,7 +22,6 @@ function UpcomingGrades( { upcoming_grades } ) {
         var gradeNeeded = 0
 
         gradeNeeded = (target - ( (1 - weight) * (current) )) / weight;
-        console.log(gradeNeeded)
 
         return gradeNeeded
     }
