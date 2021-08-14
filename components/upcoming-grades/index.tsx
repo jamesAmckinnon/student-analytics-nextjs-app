@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react';
 function UpcomingGrades( { upcoming_grades } ) {
     const [width, setWidth] = useState(window.innerWidth)
     
-    console.log(upcoming_grades)
-
     useEffect(() => {
         function handleResize() {
         setWidth(window.innerWidth);

@@ -4,6 +4,16 @@ function fetcher(url: string) {
   return window.fetch(url).then((res) => res.json())
 }
 
+export function useBetaTest(user_id) {
+  const { data, error } = useSWR(`/api/get-beta-test?user_id=${user_id}`, fetcher)
+
+  return {
+    beta_test: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
 export function useEntries() {
   const { data, error } = useSWR(`/api/get-entries`, fetcher)
 

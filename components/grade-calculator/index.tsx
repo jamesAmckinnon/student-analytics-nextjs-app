@@ -22,9 +22,6 @@ function GradeCalculator( { current_courses, gradeWeight }) {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, [width]);
-  
-    console.log(gradeWeight)
-    console.log(current_courses, "<--- current")
 
     function sortGradeWeights(){
         for(var i = 0 ; i < gradeWeight.length ; i++){
@@ -32,8 +29,6 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                 weights[i] = [gradeWeight[i].grade_weight, gradeWeight[i].grade_weight_type ]
             }
         }
-
-        console.log(weights, "<--- weights")
     }
 
 
@@ -43,10 +38,7 @@ function GradeCalculator( { current_courses, gradeWeight }) {
         var current = course_grade;
         var gradeNeeded = 0
 
-        console.log(target, weight, current)
-
         gradeNeeded = (target - ( (1 - weight) * (current) )) / weight;
-        console.log(gradeNeeded)
 
         return gradeNeeded
     }
@@ -60,7 +52,6 @@ function GradeCalculator( { current_courses, gradeWeight }) {
             if(current_courses[i].course_name == courseName){
                 setCourseId(current_courses[i].course_id);
                 setTargetGrade(current_courses[i].target_course_gpa)
-                console.log(current_courses[i].grade_total, "<----")
                 setCourseGrade(current_courses[i].grade_total)
             }
         }

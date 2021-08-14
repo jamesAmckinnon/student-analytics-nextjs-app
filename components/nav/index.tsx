@@ -4,9 +4,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Router from 'next/router'
 import { signOut, useSession } from "next-auth/client";
+import { useBetaTest } from '@/lib/swr-hooks'
 
 
-export default function Nav( {users} ) {
+export default function Nav( {users, beta_test} ) {
   const [session] = useSession();
   const userEmail = session?.user?.email;
   const [width, setWidth] = useState(window.innerWidth);
@@ -21,12 +22,9 @@ export default function Nav( {users} ) {
   }, [width]);
 
   useEffect(() => {
-    width < 600 && handleSideNavToggle();
+    width < 600;
   },[width]);
 
-  function handleSideNavToggle() {
-    console.log("toggle it");
-  }
   
 
   if(users) { ////////////////////// bad. more users == slower
@@ -67,33 +65,36 @@ export default function Nav( {users} ) {
       setMenu(false)
     }
   
-
-  return (
-    <>
-      {!menu && <div className="mainNav py-4 px-6">
-        <nav>
-          <div className="flex justify-between items-center">
-            <Link href="/">
-              <a className="font-bold text-3xl"></a>
-            </Link>
-            {width > 870 &&
-              <button onClick={() => { signOut() }}>Sign Out</button>
-            } {width < 870 && 
-                <div className="w-full flex justify-end">
-                  <button onClick={ menuOpen }>Menu</button>
-                </div>
-            }
-          </div>
-        </nav>
-      </div>}
-      {menu && <div className="flex flex-col items-center pt-6 h-screen w-full absolute bg-white">
-          <button onClick={ menuClose }>Menu</button>
-          <button onClick={() => { signOut() }}>Sign Out</button>
-          <Link href="/dashboard/home"><a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a></Link>
-          <Link href="/school/home"><a onClick={ menuClose } className="font-bold text-3xl">School</a></Link>
-          <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>
-          <Link href="/scheduling/home"><a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a></Link>
-      </div>}
-    </>
-  )
+  if(beta_test) {
+    return (
+      <>
+        {!menu && <div className="mainNav py-4 px-6">
+          <nav>
+            <div className="flex justify-between items-center">
+              <Link href="/">
+                <a className="font-bold text-3xl"></a>
+              </Link>
+              {width > 870 &&
+                <button onClick={() => { signOut() }}>Sign Out</button>
+              } {width < 870 && 
+                  <div className="w-full flex justify-end">
+                    <button onClick={ menuOpen }>Menu</button>
+                  </div>
+              }
+            </div>
+          </nav>
+        </div>}
+        {menu && <div className="flex flex-col items-center pt-6 h-screen w-full absolute bg-white">
+            <button onClick={ menuClose }>Menu</button>
+            <button onClick={() => { signOut() }}>Sign Out</button>
+            <Link href="/dashboard/home"><a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a></Link>
+            <Link href="/school/home"><a onClick={ menuClose } className="font-bold text-3xl">School</a></Link>
+            {beta_test[0].health_beta != 0 && <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>}
+            <Link href="/scheduling/home"><a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a></Link>
+        </div>}
+      </>
+    )
+  } else {
+    return null
+  }
 }
