@@ -75,6 +75,10 @@ input[type=number] {
   border-left: 2px dashed #35d4f4ff;
   border-right: 2px dashed #35d4f4ff;
 }
+.contentCont {
+  max-width: 550px;
+  width: 100%;
+}
 
 .select1 {
   width: 220px;
@@ -104,6 +108,10 @@ input[type=number] {
   grid-template-columns: 2fr 4.5fr 2fr 1.5fr;
 }
 
+/* .topBar {
+  position: fixed;
+} */
+
 @media (max-width: 1080px) {
   .schedule-times{
     font-size: .8em;
@@ -121,16 +129,33 @@ input[type=number] {
     height: auto;
     width: auto;
     position: static;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   .childCont{
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .childCont::-webkit-scrollbar {
+    display: none;
   }
 
   .page-container{
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
+  
+  .page-container::-webkit-scrollbar {
+    display: none;
+  }
   .small-container{
     max-width: 650px;
     width: 100%;

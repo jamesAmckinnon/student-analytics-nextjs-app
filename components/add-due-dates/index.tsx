@@ -13,12 +13,12 @@ function AddDates({ current_courses, current_semester, user_id }) {
     const [due_date_description, setDueDateDescription] = useState("")
     const [course_name, setCourseName] = useState("")
     const [submitting, setSubmitting] = useState(false)
+    const [display_grade_type, setDisplayGradeType] = useState(false)
     const [addAnother, setAddAnother] = useState('Add')
 
 
     async function submitHandler(e) {
         setSubmitting(true)
-        console.log(course_id, "<--- submit")
         e.preventDefault()
         try {
             const res = await fetch('/api/add-due-date', {
@@ -38,6 +38,8 @@ function AddDates({ current_courses, current_semester, user_id }) {
             setDueDate('')
             setDueDateDescription('')
             setCourseName('')
+            setCourse('')
+            setDisplayGradeType(false)
             const json = await res.json()
             if (!res.ok) throw Error(json.message)
         } catch (e) {
@@ -70,6 +72,14 @@ function AddDates({ current_courses, current_semester, user_id }) {
         setGradeType(parseInt(weightId))
     }
 
+    function setDisplayType (){
+        if(gradeWeight.length != 0){
+            setDisplayGradeType(true)
+        } else {
+            setDisplayGradeType(false)
+        }
+    }
+
     if (current_courses && gradeWeight) {
         
         return (
@@ -99,7 +109,7 @@ function AddDates({ current_courses, current_semester, user_id }) {
                                     className="shadow border rounded ml-4"
                                     name="course"
                                     value={course}
-                                    onChange={(e) => { setCourse(e.target.value); getCourseId(e.target.value);}}
+                                    onChange={(e) => { setCourse(e.target.value); getCourseId(e.target.value); setDisplayType();}}
                                 >
                                     <option value="115">Select</option> 
                                     {current_courses.map((e) => (
@@ -107,7 +117,7 @@ function AddDates({ current_courses, current_semester, user_id }) {
                                     ))}
                                 </select>
                             </div>
-                            { (gradeWeight.length != 0) &&
+                            { (gradeWeight.length != 0) && display_grade_type === true &&
                                 <div className="flex flex-row my-4">
                                     <label htmlFor="grade_type">
                                     <h3 className="font-bold">Grade Type:</h3>

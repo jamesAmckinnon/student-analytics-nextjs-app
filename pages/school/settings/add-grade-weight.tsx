@@ -14,7 +14,7 @@ function AddGradeWeight( { router: { query } } ) {
             {object && <GradeWeight object={object} course_id={object.course_id} />}
             <div className="w-full my-4 flex justify-end">
               <Link href={{ pathname: '/school/settings/class', query: { object: JSON.stringify(object) } }}>
-                <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
+                <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
               </Link>
             </div>
           </div>

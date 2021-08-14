@@ -120,7 +120,7 @@ function Semester( { router: { query } } ) {
                       />
                     </div>
                     <div className="flex flex-row justify-between text-2xl items-center">
-                      <h3>Target GPA: </h3>   
+                      <h3>Target Grade: </h3>   
                       <div className="flex flex-row justify-between items-center">
                         {!targetGpa && 
                           <h3 className="mr-4">{gpa}</h3>
@@ -131,7 +131,7 @@ function Semester( { router: { query } } ) {
                             className="border-b border-black text-center pl-1 pr-1 w-50px mr-4"
                             name="gpa"
                             type="text"
-                            placeholder={gpa}
+                            placeholder={gpa === 0 ? "%" : gpa}
                             value={gpa}
                             onChange={(e) => setGpa(e.target.value)}
                           />

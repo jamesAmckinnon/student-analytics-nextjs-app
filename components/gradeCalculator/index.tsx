@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useDayTime } from '@/lib/swr-hooks';
 import { useState } from 'react';
 
-function ClassesSection( {season, year, semester_id, course, object2, current_semester, user_id} ) {
+function GradeCalculator( {season, year, semester_id, course, object2, current_semester, user_id} ) {
   const [deleteBool, setDelete] = useState(false)
   
   function toggleDelete(toggle_delete) {
@@ -21,6 +21,7 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
   }
 
   if (course) {
+    console.log(object2, "object2")
     const object = {
       course_name: course.course_name,
       course_id: course.course_id,
@@ -88,4 +89,4 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
   }
 }
 
-export default ClassesSection
+export default GradeCalculator

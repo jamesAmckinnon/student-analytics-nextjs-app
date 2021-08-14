@@ -1,22 +1,29 @@
 import Link from 'next/link'
 import Layout from "pages/layout"
+import DisplayGrades from '@/components/display-grades'
+import UpcomingGrades from '@/components/upcomingGrades'
+import GradeCalculator from '@/components/gradeCalculator'
+import { useCurrentGrades, useCurrentSem } from '@/lib/swr-hooks'
+import { useSession } from 'next-auth/client'
+import SchoolMain from '@/components/school-main'
 
 function School() {
+  const [session] = useSession();
+  const userEmail = session?.user?.email;
+  const { current_semester } = useCurrentSem(userEmail)
+
+  if(current_semester) {
     return (
       <Layout>
         <>         
-          <div className="page-container flex flex-row h-full w-full">
-              <div className="topBar w-full h-20 flex flex-row justify-items-start space-x-4 ">
-                <div></div>
-                <Link href='/school/settings/choose-semester' ><img src="/gear-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer' }}/></Link>
-                <Link href='/school/add'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link>
-                
-              </div>
-          </div>
+          <SchoolMain current_semester = {current_semester[0].current_semester} user_id={userEmail}/>
         </>
       </Layout>
-
     )
+  } else {
+    return null
+  }
+
   } 
 
 export default School

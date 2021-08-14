@@ -84,6 +84,16 @@ export function useCurrentCourse(user_id){
   }
 }
 
+export function useCurrentGrades(current_semester){
+  const {data, error} = useSWR(`/api/get-current-grades?current_semester=${current_semester}`, fetcher)
+  
+  return {
+    current_grades: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
 export function useEntry(id: string) {
   return useSWR(`/api/get-entry?id=${id}`, fetcher)
 }
@@ -113,6 +123,16 @@ export function useDueDates(user_id, current_semester){
 
   return {
     due_dates: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+export function useUpcomingGrades(current_semester){
+  const {data, error} = useSWR(`/api/get-upcoming-grades?current_semester=${current_semester}`, fetcher)
+
+  return {
+    upcoming_grades: data,
     isLoading: !error && !data,
     isError: error,
   }

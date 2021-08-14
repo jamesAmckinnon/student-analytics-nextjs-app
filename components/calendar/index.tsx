@@ -70,7 +70,7 @@ function Calendar( {user_id, current_semester} ) {
 
   function orderDays(day){
     var ordered = [];
-    var htmlDiv = []
+    var htmlDiv = [];
 
     for(let entry of schedule){
       if(entry.day_of_week === day){

@@ -8,7 +8,7 @@ function Add() {
   const [ session ] = useSession()
   const { current_courses } = useCurrentCourse(session.user.email)
   
-  
+  console.log(current_courses)
     return (
       <Layout>
         <>

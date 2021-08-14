@@ -19,6 +19,7 @@ module.exports = {
         '130px': '130px',
         '35px':'35px',
         '90px':'90px',
+        '107px':'107px',
         '200px': '200px',
         '230px': '230px',
       },
@@ -28,12 +29,17 @@ module.exports = {
         '36px' : '36px',
       },
       padding: {
+        '2px':'2px',
         '3px': '3px',
+        '4px':'4px',
+        '5px':'5px',
         '16px': '16px',
         '54px': '54px'
       },
       margin: {
-        
+        '2px': '2px',
+        '22px': '22px',
+        '1px':'1px',
       }
     },
     borderColor: theme => ({

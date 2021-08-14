@@ -11,7 +11,7 @@ function AddGrades( {current_courses} ) {
     const [grade, setGrade] = useState('')
     const [description, setDescription] = useState('')
     const [submitting, setSubmitting] = useState(false)
-    const [enterAnother, setEnterAnother] = useState('Enter')
+    const [addAnother, setAddAnother] = useState('Add')
     const { gradeWeight } = useGradeWeight( course_id )
   
     
@@ -36,11 +36,11 @@ function AddGrades( {current_courses} ) {
             setGradeType(0)
             setGrade('')
             setDescription('')
-            setEnterAnother('Enter Another')
+            setAddAnother('Add Another')
             const json = await res.json()
             if (!res.ok) throw Error(json.message)
             setCourse("")
-            Router.push('/school/add')
+            Router.push('/school/settings/add')
         } catch (e) {
             throw Error(e.message)
         }
@@ -130,7 +130,7 @@ function AddGrades( {current_courses} ) {
                             />
                     </div>
                     <Button disabled={submitting} type="submit">
-                        {submitting ? 'Entering ...' : enterAnother}
+                        {submitting ? 'Adding ...' : addAnother}
                     </Button>
                 </form>
             </>
