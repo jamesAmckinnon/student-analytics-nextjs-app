@@ -45,8 +45,10 @@ function GradeCalculator( { current_courses, gradeWeight }) {
 
     function getCourseInfo ( courseName ) {
         setDesiredGrade('')
-        weights = []
         setGradeType(0)
+        setCourseGrade(0)
+        weights = []
+        
 
         for(let i = 0; i < current_courses.length ; i++){
             if(current_courses[i].course_name == courseName){
@@ -63,9 +65,9 @@ function GradeCalculator( { current_courses, gradeWeight }) {
 
     return (
     <>
-        <div className="flex flex-start w-full my-2">
-            <div className="mt-8 text-lg font-bold  border-2 border-customYellow rounded px-5px py-2px">
-                <h2>Grade Calculator</h2>
+        <div className="flex flex-start w-full my-4">
+            <div className="border-4 rounded-lg border-customYellow mt-6 px-2 pb-3px">
+                <h3 className="font-bold text-2xl">Grade Calculator</h3>
             </div>
         </div>
         <form onSubmit={gradeNeed} autoComplete="off">
@@ -80,7 +82,8 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                 value={course}
                 onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
                 >
-                    <option value="none">Select</option>
+                    <option value=''>Select</option>
+                    <option value='custom'>Custom Calculation</option>
                         {current_courses.map((e) => (
                     <option value={e.course_name}>{e.course_name}</option>
                 ))}
@@ -96,7 +99,7 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                     id="grade_type"
                     className="ml-2 shadow border rounded"
                     name="grade_type"
-                    value={grade_type}
+                    // value={grade_type}
                     onChange={(e) => setGradeWeight(e.target.value)}
                     >
                         <option value="none">Select</option>
@@ -106,11 +109,69 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                     </select>
                 </div>
             }
+            { (weights.length === 0) && course != '' &&
+                <>
+                    <div className="flex flex-row my-4">
+                        <label htmlFor="grade_type">
+                        <h3 className="font-bold">Current Course Grade:</h3>
+                        </label>
+                        <input
+                        id="current_grade"
+                        autoComplete="off"
+                        className="ml-2 w-35px text-center shadow border rounded"
+                        type="text"
+                        placeholder="%"
+                        name="current_grade"
+                        value={((course_grade === 0) || Number.isNaN(course_grade)) ? "" : course_grade}
+                        onChange={(e) => setCourseGrade(parseInt(e.target.value))}
+                        >
+                        </input>
+                    </div>
+                    <div className="flex flex-row my-4">
+                        <label htmlFor="grade_type">
+                        <h3 className="font-bold">Grade Weight:</h3>
+                        </label>
+                        <input
+                        id="grade_type"
+                        autoComplete="off"
+                        className="ml-2 w-35px text-center shadow border rounded"
+                        type="text"
+                        placeholder="%"
+                        name="grade_type"
+                        value={((grade_type === 0) || Number.isNaN(grade_type)) ? "" : grade_type}
+                        onChange={(e) => setGradeType(parseInt(e.target.value))}
+                        >
+                        </input>
+                    </div>
+                    <div className="flex flex-row font-bold my-4">
+                        <h3>Desired Course Grade: </h3>
+                        <input
+                            id="desired"
+                            autoComplete="off"
+                            className="border-b border-black text-center pl-1 pr-1 w-35px mb-1 ml-2"
+                            name="description"
+                            type="text"
+                            placeholder="%"
+                            value={desired_grade}
+                            onChange={(e) => setDesiredGrade(e.target.value)}
+                            />
+                    </div>
+                    {desired_grade != '' && (document.getElementById('current_grade') as HTMLInputElement).value != ''
+                                         && (document.getElementById('grade_type') as HTMLInputElement).value != '' 
+                                         && (document.getElementById('desired') as HTMLInputElement).value != '' &&
+                        <div className="flex flex-row my-4">
+                            <h3 className="font-bold">Grade Needed:</h3>
+                            <h3 className="ml-2">{Number.isNaN(Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)  ? '' :
+                                          (Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)}</h3>
+                        </div>
+                    }
+                </>
+            }
             { (weights.length != 0) &&
                 <div className="flex flex-row font-bold my-4">
                     <h3>Desired Course Grade: </h3>
                     <input
-                        id="description"
+                        id="desired"
                         autoComplete="off"
                         className="border-b border-black text-center pl-1 pr-1 w-35px mb-1 ml-2"
                         name="description"
@@ -121,10 +182,11 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                         />
                 </div>
             }
-            {desired_grade != '' && (weights.length != 0) &&
+            {desired_grade != '' && grade_type != 0 && course != '' && course_grade != 0 &&(weights.length != 0) &&
                 <div className="flex flex-row my-4">
                     <h3 className="font-bold">Grade Needed:</h3>
-                    <h3 className="ml-2">{Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100}</h3>
+                    <h3 className="ml-2">{Number.isNaN(Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)  ? '' :
+                                          (Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)}</h3>
                 </div>
             }
         </form>

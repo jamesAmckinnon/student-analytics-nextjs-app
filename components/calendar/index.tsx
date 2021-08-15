@@ -6,8 +6,10 @@ import { useSchedule } from "@/lib/swr-hooks";
 function Calendar( {user_id, current_semester} ) {
   const { schedule } = useSchedule(user_id, current_semester)
   const [width, setWidth] = useState(window.innerWidth)
-  const [ day, setDay ] = useState(getDayOfWeek(new Date().getDay()))
-  const [dayNum, setDayNum] = useState(new Date().getDay())
+  var today = (new Date().getDay() === 6 || new Date().getDay() === 0 ) ? 1 : new Date().getDay();
+  const [ day, setDay ] = useState(getDayOfWeek(today))
+  var todayNum = (new Date().getDay() === 6 || new Date().getDay() === 0 ) ? 1 : new Date().getDay();
+  const [dayNum, setDayNum] = useState(todayNum)
 
   function getDayOfWeek(theDay){
     var dayOfWeek;

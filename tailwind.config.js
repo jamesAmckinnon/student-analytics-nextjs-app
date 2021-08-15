@@ -14,6 +14,8 @@ module.exports = {
         'customGreen': '#32a854ff',
         'customGrey': '#d0d0d0ff',
         'selectGrey': '#ddddddff',
+        'customRed': '#ff0000ff',
+        'bgBlue': '#c9f3ffff',
       },
       width: {
         '50px': '50px',

@@ -6,7 +6,7 @@ import GradeCalculator from '@/components/grade-calculator'
 import { useCurrentCourse, useCurrentGrades, useDueDates, useUpcomingGrades, useGradeWeights } from '@/lib/swr-hooks'
 import { useSession } from 'next-auth/client'
 
-function SchoolMain( { current_semester, user_id } ) {
+function SchoolDashboard( { current_semester, user_id } ) {
   const { current_grades } = useCurrentGrades( current_semester )
   const { upcoming_grades } = useUpcomingGrades( current_semester )
   const { current_courses } = useCurrentCourse( user_id )
@@ -14,16 +14,11 @@ function SchoolMain( { current_semester, user_id } ) {
 
   return (
       <>         
-        <div className="page-container flex flex-col h-full w-full p-4">
-            <div className="topBar w-full h-20 flex flex-row justify-items-start space-x-4 ">
-                <Link href='/school/settings/choose-semester' ><img src="/gear-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer' }}/></Link>
-                <Link href='/school/settings/add'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link>
-            </div>
+        <div className="page-container flex flex-col h-full w-full">
             <div className="flex flex-col items-center w-full">
                 <div className="contentCont">
                     <DisplayGrades current_grades = {current_grades}/>
                     <GradeCalculator current_courses={current_courses} gradeWeight={grade_weights}/>
-                    {upcoming_grades && <UpcomingGrades upcoming_grades={upcoming_grades}/>}
                 </div>
             </div>
         </div>
@@ -32,4 +27,4 @@ function SchoolMain( { current_semester, user_id } ) {
   )
 } 
 
-export default SchoolMain
+export default SchoolDashboard

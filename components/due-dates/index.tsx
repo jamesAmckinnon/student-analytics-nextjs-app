@@ -23,8 +23,6 @@ function DueDates( {user_id, current_semester} ) {
     do{
       var count = 0;
       for (let i = 0; i < ordered.length - 1 ; i++) {
-        console.log(i)
-        console.log(parseInt(ordered[i][1].substring(0,2)))
         if(ordered[i][3] > ordered[i+1][3]){
           count++;
           var temp1 = ordered[i][0];
@@ -47,6 +45,7 @@ function DueDates( {user_id, current_semester} ) {
 
     if(width > 630){
       for (let dueDate of ordered) {
+        if(dueDate[3] >= 0) {
         htmlDiv.push( <div className="dueDates border-t">
                         <div className="border-r border-black text-center">{dueDate[0]}</div>
                         <div className="border-r border-black ml-6">{dueDate[1]}</div>
@@ -54,12 +53,14 @@ function DueDates( {user_id, current_semester} ) {
                         <div className="text-center">{dueDate[3] + " days"}</div>
                       </div>
                     )
+        }
       }
     } else {
       for (let dueDate of ordered) {
+        if(dueDate[3] >= 0) {
         htmlDiv.push( <div className="flex flex-col mt-4">
                         <div className="flex flex-row justify-between w-full items-center">
-                          <div className="py-1 px-2  bg-blue-200 text-sm ">
+                          <div className="py-1 px-2  bg-bgBlue text-sm ">
                             {dueDate[0]}
                           </div>
                           <div className="text-center font-bold">{dueDate[3] + " days"}</div>
@@ -76,13 +77,14 @@ function DueDates( {user_id, current_semester} ) {
                         </div>
                       </div>
                     )
+        }
       }
     }
 
     return (
       <>
       { width > 630 && 
-        <div className="flex flex-col w-full max-w-3xl mx-6">
+        <div className="flex flex-col w-full max-w-3xl">
           <div className="dueDates w-full border border-black">
             <div className="font-bold border-r border-black text-center">Course</div>
             <div className="font-bold border-r border-black ml-6">Description</div>
@@ -95,7 +97,7 @@ function DueDates( {user_id, current_semester} ) {
         </div> }
 
         { width < 630 && 
-          <div className="flex flex-col w-full max-w-3xl mx-6">
+          <div className="flex flex-col w-full max-w-3xl">
             <div className="w-full">
               {htmlDiv}
             </div>
@@ -122,7 +124,7 @@ function DueDates( {user_id, current_semester} ) {
   function daysUntil(dates){ 
     var days_until = [] 
     
-    for(let date of dates){
+    for (let date of dates){
       const start = new Date();
       const end = new Date(date.due_date);
 
@@ -134,7 +136,7 @@ function DueDates( {user_id, current_semester} ) {
 
   return (
       <>    
-        <div className="flex flex-row justify-center mt-6">  
+        <div className="flex flex-row justify-center">  
           {due_dates && orderDueDates(due_dates, daysUntil(due_dates))}
         </div>
       </>

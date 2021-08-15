@@ -15,14 +15,16 @@ function Scheduling() {
   return (
     <Layout>
       <>
-        <div className="w-full pl-16px">
-          <Link href='/scheduling/settings/add-due-dates'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link> 
-        </div>     
-        <div className="page-container flex justify-center w-full">
-          { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
-        </div>
-        <div className="page-container justify-items-center w-full">
-          { current_semester && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}
+        <div className=" mx-6">
+          <div className="w-full pt-2">
+            <Link href='/scheduling/settings/add-due-dates'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link> 
+          </div>     
+          <div className="page-container flex justify-center w-full">
+            { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
+          </div>
+          <div className="page-container justify-items-center w-full mt-6">
+            { current_semester && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}
+          </div>
         </div>
       </>
     </Layout>
