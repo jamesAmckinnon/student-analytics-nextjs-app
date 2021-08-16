@@ -13,13 +13,15 @@ function SemesterButton({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'bg-customGreen',
+        'bg-gray-400',
         'text-black',
-        'p-2',
-        'rounded',
+        'px-2',
+        'py-1',
+        'rounded-md',
         'uppercase',
         'text-sm',
         'font-bold',
+
         {
           [className]: Boolean(className),
         }

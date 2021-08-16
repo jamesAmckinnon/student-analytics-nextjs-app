@@ -68,12 +68,12 @@ function AddGrades( {current_courses} ) {
                 </div>
                 <form onSubmit={submitHandler} autoComplete="off">
                     <div className="flex flex-row my-4">
-                        <label htmlFor="course">
-                        <h3 className="font-bold">Course: </h3>
+                        <label className="flex items-center " htmlFor="course">
+                            <h3 className="font-bold">Course: </h3>
                         </label>
                         <select
                         id="course"
-                        className="shadow border rounded ml-2"
+                        className="select shadow border rounded ml-2"
                         name="course"
                         value={course}
                         onChange={(e) => {setCourse(e.target.value); getCourseId(e.target.value);}}
@@ -99,12 +99,12 @@ function AddGrades( {current_courses} ) {
                     </div>
                     { (gradeWeight.length != 0) &&
                         <div className="flex flex-row my-4">
-                            <label htmlFor="grade_type">
+                            <label className="flex items-center " htmlFor="grade_type">
                             <h3 className="font-bold">Grade Type:</h3>
                             </label>
                             <select
                             id="grade_type"
-                            className="ml-2 shadow border rounded"
+                            className="select ml-2 shadow border rounded"
                             name="grade_type"
                             value={grade_type}
                             onChange={(e) => setGradeWeight(e.target.value)}

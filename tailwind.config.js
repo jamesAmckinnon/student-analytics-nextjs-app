@@ -16,6 +16,7 @@ module.exports = {
         'selectGrey': '#ddddddff',
         'customRed': '#ff0000ff',
         'bgBlue': '#c9f3ffff',
+        'customOrange' : '#ff892bff',
       },
       width: {
         '50px': '50px',
@@ -44,7 +45,10 @@ module.exports = {
         '2px': '2px',
         '22px': '22px',
         '1px':'1px',
-      }
+      },
+      backgroundImage: theme => ({
+        'arrow': "url('public/arrow.svg')"
+      })
     },
     borderColor: theme => ({
       ...theme('colors'),

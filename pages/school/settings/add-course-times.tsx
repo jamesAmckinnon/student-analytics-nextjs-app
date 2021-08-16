@@ -62,11 +62,11 @@ function AddCourseTime( { router: { query } } ) {
               <h3 className="font-bold mb-5 text-xl">{object.course_name}</h3>
               <form onSubmit={submitHandler} autoComplete="off">
                   <div className="flex flex-col w-full mb-3">
-                      <div className="flex flex-row">
+                      <div className="flex flex-row items-center">
                           <h3 className="font-bold">Day: </h3>
                           <select
                               id="day"
-                              className="shadow border rounded ml-4"
+                              className="select2 shadow border rounded ml-4"
                               name="day"
                               value={day_of_week}
                               onChange={(e) => { setDay(e.target.value) }}
@@ -79,13 +79,13 @@ function AddCourseTime( { router: { query } } ) {
                               <option value="friday">Friday</option>
                           </select>
                       </div>
-                      <div className="flex flex-row ">
+                      <div className="flex flex-row items-center mt-4">
                           <h3 className="font-bold">Start: </h3>
                           <input
                               id="timeIn"
                               type="time"
                               defaultValue="07:30"
-                              className="ml-2"
+                              className="selectTime ml-2"
                               value={time_in}
                               onChange={ (e) => setTimeIn(e.target.value)}
                           />
@@ -94,7 +94,7 @@ function AddCourseTime( { router: { query } } ) {
                               id="timeOut"
                               type="time"
                               defaultValue="07:30"
-                              className="ml-2"
+                              className="selectTime ml-2"
                               value={time_out}
                               onChange={ (e) => setTimeOut(e.target.value)}
                           />

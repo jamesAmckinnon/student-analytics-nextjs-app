@@ -49,7 +49,7 @@ function AddClass( {router: { query }} ) {
         return (      
             <>
                 <div className="py-5 pr-0 w-full flex flex-row justify-between items-center">
-                    <div className="border-4 rounded-lg border-customBlue2 px-2 pb-3px">
+                    <div className="border-4 rounded-lg border-customYellow px-2 pb-3px">
                         <h3 className="font-bold text-3xl">Add Class</h3>
                     </div>
                 </div>

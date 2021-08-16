@@ -38,7 +38,7 @@ function GradeWeight( {object, course_id} ) {
     return (      
         <>
             <div className="py-5 pr-0 w-full flex flex-row justify-between items-center">
-                <div className="border-4 rounded-lg border-customBlue2 px-2 pb-3px">
+                <div className="border-4 rounded-lg border-customOrange px-2 pb-3px">
                     <h3 className="font-bold text-3xl">Add Grade Weight</h3>
                 </div>
             </div>
@@ -48,7 +48,7 @@ function GradeWeight( {object, course_id} ) {
                         <input 
                                 id="grade_weight_type" 
                                 type="text" 
-                                className="border-b-2 border-black mx-5 w-120px text-center" 
+                                className="border-b-2 border-black mr-5 w-120px text-center" 
                                 placeholder="WEIGHT TYPE"
                                 maxLength={30} 
                                 name="grade_weight_type"

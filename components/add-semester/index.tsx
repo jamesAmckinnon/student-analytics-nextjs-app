@@ -37,7 +37,7 @@ function AddSemester( {title, entries, user_id} ) {
         return (      
             <>
                 <div className="py-5 pr-0 w-full flex flex-row justify-between items-center">
-                    <div className="border-4 rounded-lg border-customBlue2 px-2 pb-3px">
+                    <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                         <h3 className="font-bold text-3xl">{title}</h3>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ function AddSemester( {title, entries, user_id} ) {
                         <div className="flex flex-row justify between">
                             {/* <label htmlFor="season"></label> */}
                             <select id="semester_season" 
-                                className="bg-gray-200 rounded px-2"
+                                className="select2 rounded px-2"
                                 name="semester_season" 
                                 value={semester_season}
                                 onChange={ (e) => setSeason(e.target.value)}

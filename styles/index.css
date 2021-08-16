@@ -167,6 +167,64 @@ input[type=number] {
     grid-template-rows: min-content 1fr;
   }
 
+  .select {
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 32px;
+    border-radius: 5px;
+    vertical-align: middle;
+    color:#4a4a4aff;
+    border: 1px solid #dadce0;
+    appearance:none;
+    background: url(../public/arrow.svg)  no-repeat 95% center;
+    background-size: 14px 8px;
+  }
+
+
+  .select2 {
+    min-width: 90px;
+    width: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 35px;
+    border-radius: 5px;
+    vertical-align: middle;
+    color:#4a4a4aff;
+    border: 1px solid #dadce0;
+    appearance:none;
+    background: url(../public/arrow.svg)  no-repeat 87% center;
+    background-size: 14px 8px;
+  }
+
+  .selectTime {
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    vertical-align: middle;
+    color:#4a4a4aff;
+    border: 1px solid #dadce0;
+    background:white;
+  }
+
+  .selectDate {
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    vertical-align: middle;
+    color:#4a4a4aff;
+    border: 1px solid #dadce0;
+    background:white;
+  }
+  
   .sideBar {
     display: none;
   }
