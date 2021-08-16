@@ -10,7 +10,9 @@ import { withRouter } from 'next/router';
 function AddCourseTime( { router: { query } } ) {
     const [time_in, setTimeIn] = useState("08:00")
     const [time_out, setTimeOut] = useState("08:50")
-    const [day_of_week, setDay] =useState("")
+    const [time_in_temp, setTimeInTemp] = useState('')
+    const [time_out_temp, setTimeOutTemp] = useState('')
+    const [day_of_week, setDay] =useState('')
     const [submitting, setSubmitting] = useState(false)
     const [addAnother, setAddAnother] = useState('Add')
     const object = JSON.parse(query.object);
@@ -21,30 +23,46 @@ function AddCourseTime( { router: { query } } ) {
         e.preventDefault()
         const semester_id = object.semester_id
         const course_id = object.course_id
+        if(day_of_week != '' && time_in_temp != '' && time_out_temp != ''){
+            try {
+                const res = await fetch('/api/add-course-time', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    semester_id,
+                    course_id,
+                    day_of_week,
+                    time_in,
+                    time_out
+                }),
+                })
+                setSubmitting(false)
+                setDay("")
+                setTimeIn("08:00")
+                setTimeOut("08:50")
+                setAddAnother('Add Another')
+                const json = await res.json()
+                if (!res.ok) throw Error(json.message)
+            } catch (e) {
+                throw Error(e.message)
+            }
+        } else {
 
-        try {
-            const res = await fetch('/api/add-course-time', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                semester_id,
-                course_id,
-                day_of_week,
-                time_in,
-                time_out
-            }),
-            })
+            if(day_of_week === ''){
+                document.getElementById("day").style.backgroundColor = "#FF9494";
+            }
+
+            if(time_in_temp === ''){
+                document.getElementById("timeIn").style.backgroundColor = "#FF9494";
+            } 
+
+            if(time_out_temp === ''){
+                document.getElementById("timeOut").style.backgroundColor = "#FF9494";
+            }
+            
             setSubmitting(false)
-            setDay("")
-            setTimeIn("08:00")
-            setTimeOut("08:50")
-            setAddAnother('Add Another')
-            const json = await res.json()
-            if (!res.ok) throw Error(json.message)
-        } catch (e) {
-            throw Error(e.message)
         }
     }
 
@@ -87,19 +105,21 @@ function AddCourseTime( { router: { query } } ) {
                               defaultValue="07:30"
                               className="selectTime ml-2"
                               value={time_in}
-                              onChange={ (e) => setTimeIn(e.target.value)}
+                              onChange={ (e) => {setTimeIn(e.target.value); setTimeInTemp(e.target.value);}}
                           />
-                          <h3 className="font-bold ml-4">End: </h3>
+                        </div>
+                        <div className="flex flex-row items-center mt-4">
+                          <h3 className="font-bold">End: </h3>
                           <input
                               id="timeOut"
                               type="time"
                               defaultValue="07:30"
                               className="selectTime ml-2"
                               value={time_out}
-                              onChange={ (e) => setTimeOut(e.target.value)}
+                              onChange={ (e) => { setTimeOut(e.target.value); setTimeOutTemp(e.target.value); }}
                           />
+                        </div>
                       </div>
-                  </div>
                   <SemesterButton disabled={submitting} type="submit">
                           {submitting ? 'Add ...' : addAnother}
                   </SemesterButton> 

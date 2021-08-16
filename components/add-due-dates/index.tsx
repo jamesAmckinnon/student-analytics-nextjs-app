@@ -4,14 +4,14 @@ import { useState } from 'react'
 import { useGradeWeights } from '@/lib/swr-hooks'
 
 function AddDates({ current_courses, current_semester, user_id }) {
-    const [due_date, setDueDate] = useState("")
+    const [due_date, setDueDate] = useState('')
     const [date, setDate] = useState('')
     const [course, setCourse] = useState('')
     const [course_id, setCourseId] = useState(0)
     const { grade_weights } = useGradeWeights( current_semester )
     const [grade_weight_id, setGradeType] = useState(0)
-    const [due_date_description, setDueDateDescription] = useState("")
-    const [course_name, setCourseName] = useState("")
+    const [due_date_description, setDueDateDescription] = useState('')
+    const [course_name, setCourseName] = useState('')
     const [submitting, setSubmitting] = useState(false)
     const [display_grade_type, setDisplayGradeType] = useState(false)
     const [addAnother, setAddAnother] = useState('Add')
@@ -20,30 +20,49 @@ function AddDates({ current_courses, current_semester, user_id }) {
     async function submitHandler(e) {
         setSubmitting(true)
         e.preventDefault()
-        try {
-            const res = await fetch('/api/add-due-date', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    current_semester,
-                    course_id,
-                    due_date_description,
-                    due_date,
-                    grade_weight_id,
-                }),
-            })
+        if(course_id != 0 && due_date_description != '' && due_date != '' && grade_weight_id !=0){
+            try {
+                const res = await fetch('/api/add-due-date', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        current_semester,
+                        course_id,
+                        due_date_description,
+                        due_date,
+                        grade_weight_id,
+                    }),
+                })
+                setSubmitting(false)
+                setDueDate('')
+                setDueDateDescription('')
+                setCourseName('')
+                setCourse('')
+                setDisplayGradeType(false)
+                const json = await res.json()
+                if (!res.ok) throw Error(json.message)
+            } catch (e) {
+                throw Error(e.message)
+            }
+        } else {
+
+            if(course_id === 0){
+                document.getElementById("course").style.backgroundColor = "#FF9494";
+            } else if(grade_weight_id === 0){
+                document.getElementById("grade_type").style.backgroundColor = "#FF9494";
+            } 
+  
+            if(due_date_description === ''){
+                document.getElementById("description").style.backgroundColor = "#FF9494";
+            } 
+
+            if(due_date === ''){
+                document.getElementById("due-date").style.backgroundColor = "#FF9494";
+            } 
+            
             setSubmitting(false)
-            setDueDate('')
-            setDueDateDescription('')
-            setCourseName('')
-            setCourse('')
-            setDisplayGradeType(false)
-            const json = await res.json()
-            if (!res.ok) throw Error(json.message)
-        } catch (e) {
-            throw Error(e.message)
         }
     }
 

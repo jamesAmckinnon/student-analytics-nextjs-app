@@ -12,24 +12,37 @@ function AddSemester( {title, entries, user_id} ) {
     async function submitHandler(e) {
         setSubmitting(true)
         e.preventDefault()
-        try {
-          const res = await fetch('/api/add-semester', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              semester_season,
-              semester_year,
-              user_id,
-            }),
-          })
-          setSubmitting(false)
-          const json = await res.json()
-          if (!res.ok) throw Error(json.message)
-          Router.push('/school/settings/choose-semester')
-        } catch (e) {
-          throw Error(e.message)
+        if(semester_season != '' && semester_year != ''){
+            try {
+            const res = await fetch('/api/add-semester', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                semester_season,
+                semester_year,
+                user_id,
+                }),
+            })
+            setSubmitting(false)
+            const json = await res.json()
+            if (!res.ok) throw Error(json.message)
+            Router.push('/school/settings/choose-semester')
+            } catch (e) {
+            throw Error(e.message)
+            }
+        } else {
+
+            if(semester_season === ''){
+                document.getElementById("semester_season").style.backgroundColor = "#FF9494";
+            }
+
+            if(semester_year === ''){
+                document.getElementById("semester_year").style.backgroundColor = "#FF9494";
+            }
+            
+            setSubmitting(false)
         }
     }
     
@@ -45,7 +58,8 @@ function AddSemester( {title, entries, user_id} ) {
                     <div className="py-2 flex flex-row justify-between">
                         <div className="flex flex-row justify between">
                             {/* <label htmlFor="season"></label> */}
-                            <select id="semester_season" 
+                            <select 
+                                id="semester_season" 
                                 className="select2 rounded px-2"
                                 name="semester_season" 
                                 value={semester_season}

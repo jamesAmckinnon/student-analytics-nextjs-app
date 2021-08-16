@@ -3,8 +3,8 @@ import SemesterButton from '@/components/semester-button'
 import { useState } from 'react'
 
 function GradeWeight( {object, course_id} ) {
-    const [grade_weight, setGradeWeight] = useState('')
     const [grade_weight_type, setGradeWeightType] = useState('')
+    const [grade_weight, setGradeWeight] = useState('')
     const [addAnother, setAddAnother] = useState('Add')
     const [submitting, setSubmitting] = useState(false)
 
@@ -12,27 +12,40 @@ function GradeWeight( {object, course_id} ) {
     async function submitHandler(e) {
         setSubmitting(true)
         e.preventDefault()
-        try {
-          const res = await fetch('/api/add-grade-weight', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              grade_weight_type,
-              grade_weight,
-              course_id,
-            }),
-          })
+        if(grade_weight_type != '' && grade_weight != '' ){
+          try {
+            const res = await fetch('/api/add-grade-weight', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                grade_weight_type,
+                grade_weight,
+                course_id,
+              }),
+            })
+            setSubmitting(false)
+            setGradeWeightType('')
+            setGradeWeight('') 
+            setAddAnother('Add Another')
+            const json = await res.json()
+            if (!res.ok) throw Error(json.message)   
+          } catch (e) {
+            throw Error(e.message)
+          }
+        } else {
+
+          if(grade_weight_type === ''){
+              document.getElementById("grade_weight_type").style.backgroundColor = "#FF9494";
+          }
+
+          if(grade_weight === ''){
+              document.getElementById("grade_weight").style.backgroundColor = "#FF9494";
+          } 
+          
           setSubmitting(false)
-          setGradeWeightType('')
-          setGradeWeight('') 
-          setAddAnother('Add Another')
-          const json = await res.json()
-          if (!res.ok) throw Error(json.message)   
-        } catch (e) {
-          throw Error(e.message)
-        }
+      }
     }
 
     return (      
@@ -48,7 +61,7 @@ function GradeWeight( {object, course_id} ) {
                         <input 
                                 id="grade_weight_type" 
                                 type="text" 
-                                className="border-b-2 border-black mr-5 w-120px text-center" 
+                                className="border-b-2 border-black mr-2 w-120px text-center" 
                                 placeholder="WEIGHT TYPE"
                                 maxLength={30} 
                                 name="grade_weight_type"

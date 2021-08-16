@@ -16,35 +16,54 @@ function AddGrades( {current_courses} ) {
   
     
     async function submitHandler(e) {
-      setSubmitting(true)
-      e.preventDefault()
-        try {
-            const res = await fetch('/api/add-grade', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                grade_type,
-                grade,
-                course_id,
-                description
-            }),
-            })
+        setSubmitting(true)
+        e.preventDefault()
+        if(grade_type != 0 && grade != '' && course_id != 0 && description != ''){
+            try {
+                const res = await fetch('/api/add-grade', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    grade_type,
+                    grade,
+                    course_id,
+                    description
+                }),
+                })
+                setSubmitting(false)
+                setCourse('')
+                setGradeType(0)
+                setGrade('')
+                setDescription('')
+                setAddAnother('Add Another')
+                const json = await res.json()
+                if (!res.ok) throw Error(json.message)
+                setCourse("")
+                Router.push('/school/settings/add')
+            } catch (e) {
+                throw Error(e.message)
+            }
+        } else {
+
+            if(grade === ''){
+                document.getElementById("grade").style.backgroundColor = "#FF9494";
+            }
+
+            if(course_id === 0){
+                document.getElementById("course").style.backgroundColor = "#FF9494";
+            } else if(grade_type === 0){
+                document.getElementById("grade_type").style.backgroundColor = "#FF9494";
+            }
+
+            if(description === ''){
+                document.getElementById("description").style.backgroundColor = "#FF9494";
+            }
+            
             setSubmitting(false)
-            setCourse('')
-            setGradeType(0)
-            setGrade('')
-            setDescription('')
-            setAddAnother('Add Another')
-            const json = await res.json()
-            if (!res.ok) throw Error(json.message)
-            setCourse("")
-            Router.push('/school/settings/add')
-        } catch (e) {
-            throw Error(e.message)
         }
-      }
+    }
 
     function getCourseId ( courseName ) {
         for(let i = 0; i < current_courses.length ; i++){
@@ -78,24 +97,11 @@ function AddGrades( {current_courses} ) {
                         value={course}
                         onChange={(e) => {setCourse(e.target.value); getCourseId(e.target.value);}}
                         >
-                            <option value="none">Select</option>
+                            <option value=''>Select</option>
                                 {current_courses.map((e) => (
                             <option value={e.course_name}>{e.course_name}</option>
                         ))}
                         </select>
-                    </div>
-                    <div className="flex flex-row font-bold my-4">
-                        <h3>Description: </h3>
-                        <input
-                            id="description"
-                            autoComplete="off"
-                            className="border-b border-black text-center pl-1 pr-1 w-230px mb-1 ml-2"
-                            name="description"
-                            type="text"
-                            placeholder="Assignment 4"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            />
                     </div>
                     { (gradeWeight.length != 0) &&
                         <div className="flex flex-row my-4">
@@ -116,6 +122,19 @@ function AddGrades( {current_courses} ) {
                             </select>
                         </div>
                     }
+                    <div className="flex flex-row font-bold my-4">
+                        <h3>Description: </h3>
+                        <input
+                            id="description"
+                            autoComplete="off"
+                            className="border-b border-black text-center pl-1 pr-1 w-230px mb-1 ml-2"
+                            name="description"
+                            type="text"
+                            placeholder="Assignment 4"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            />
+                    </div>
                     <div className="flex flex-row font-bold my-4">
                         <h3>Grade: </h3>
                         <input
