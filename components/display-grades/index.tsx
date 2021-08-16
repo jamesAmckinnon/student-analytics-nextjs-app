@@ -103,14 +103,14 @@ function DisplayGrades( { current_grades } ) {
               <div className="flex flex-row justify-between justify-center items-center">
                 <h3>{courseCodes[c]}</h3>
                 <div className="flex flex-row justify-center items-center">
-                  <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}%</h3>
+                  <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
                   <div className="ml-4" id="target">
                     {(
                       (Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[c]) >= 0 
-                      ? <h3 className="border-b-2 border-customGreen my-2px w-50px text-center">
+                      ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
                           {`+${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c])  * 10 + Number.EPSILON ) / 10) }`}
                         </h3> 
-                      : <h3 className="border-b-2 border-customRed my-2px w-50px text-center">
+                      : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
                           {`${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c]) * 10 + Number.EPSILON ) / 10) }`}
                         </h3>
                     }
@@ -129,14 +129,14 @@ function DisplayGrades( { current_grades } ) {
               <div className="flex flex-row justify-between justify-center items-center">
                 <h3>{courseNames[d]}</h3>
                 <div className="flex flex-row justify-center items-center">
-                  <h3 className="w-50px text-center">{Math.round( weightedGrades[d][0] * 10 + Number.EPSILON ) / 10}%</h3>
+                  <h3 className="w-50px text-center">{Math.round( weightedGrades[d][0] * 10 + Number.EPSILON ) / 10}</h3>
                   <div className="ml-4" id="target">
                     {(  
                       (Math.round( weightedGrades[d][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[d]) >= 0 
-                      ? <h3 className="border-b-2 border-customGreen my-2px w-50px text-center">
+                      ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
                           {`+${(Math.round( (weightedGrades[d][0] - targetCourseGrade[d])  * 10 + Number.EPSILON ) / 10) }`}
                         </h3> 
-                      : <h3 className="border-b-2 border-customRed my-2px w-50px text-center">
+                      : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
                           {`${(Math.round( (weightedGrades[d][0] - targetCourseGrade[d]) * 10 + Number.EPSILON ) / 10) }`}
                         </h3>
                     }
@@ -165,14 +165,14 @@ function DisplayGrades( { current_grades } ) {
         <div className="flex flex-row justify-between mt-4 mt-2justify-center items-center">
           <h3 className="">{current_grades[0].semester_season} {current_grades[0].semester_year} Total </h3>
           <div className="flex flex-row justify-center items-center">
-            <h3 className="w-50px text-center">{ Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10}%</h3>
+            <h3 className="w-50px text-center">{ Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10}</h3>
             <div className="ml-4" id="target">
               {(
                 (Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10) - targetGrade[0]) >= 0 
-                ? <h3 className="border-b-2 border-customGreen my-2px w-50px text-center">
+                ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
                     {`+${(Math.round( ( semester_total/(weightedGrades.length) - targetGrade[0] ) * 10 + Number.EPSILON ) / 10) }`}
                   </h3> 
-                : <h3 className="border-b-2 border-customRed my-2px w-50px text-center">
+                : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
                     {`${(Math.round( ( semester_total/(weightedGrades.length) - targetGrade[0] ) * 10 + Number.EPSILON ) / 10) }`}
                   </h3>
               }
