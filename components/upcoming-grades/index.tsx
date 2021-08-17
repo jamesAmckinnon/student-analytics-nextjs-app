@@ -25,7 +25,7 @@ function UpcomingGrades( { upcoming_grades } ) {
     }
 
 
-
+    console.log(upcoming_grades)
 
 
     function orderDueDates(dates, daysUntil){
@@ -75,7 +75,7 @@ function UpcomingGrades( { upcoming_grades } ) {
     
         if(width > 630){
           for (let dueDate of ordered) {
-            if(dueDate[3] >= 0 && dueDate[3] >=0) {
+            if(dueDate[5] >= 0 && dueDate[3] >=0) {
             htmlDiv.push(                             
                         <div className="flex flex-col justify-between mb-4">
                             <h3 className="text-sm">{dueDate[5]} &nbsp; {dueDate[5] === 1 ? 'Day' : 'Days'}</h3> 

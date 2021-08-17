@@ -85,12 +85,18 @@ export default function Nav( {users, beta_test} ) {
           </nav>
         </div>}
         {menu && <div className="flex flex-col items-center pt-6 h-screen w-full absolute bg-white">
-            <button onClick={ menuClose }>Menu</button>
-            <button onClick={() => { signOut() }}>Sign Out</button>
-            <Link href="/dashboard/home"><a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a></Link>
-            <Link href="/school/home"><a onClick={ menuClose } className="font-bold text-3xl">School</a></Link>
-            {beta_test[0].health_beta != 0 && <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>}
-            <Link href="/scheduling/home"><a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a></Link>
+            <div className="flex flex-row px-4 w-full justify-between">
+              <button className="border-2 border-customBlue font-bold text-customGrey2 px-2 rounded pb-1px" onClick={() => { signOut() }}>
+                Sign Out
+              </button>
+              <button onClick={ menuClose }>
+                <img src="/delete-icon.svg" style={{ height: 29, width: 24, cursor: 'pointer'}}></img>
+              </button>
+            </div>
+              <Link href="/dashboard/home"><a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a></Link>
+              <Link href="/school/home"><a onClick={ menuClose } className="font-bold text-3xl">School</a></Link>
+              {beta_test[0].health_beta != 0 && <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>}
+              <Link href="/scheduling/home"><a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a></Link>
         </div>}
       </>
     )

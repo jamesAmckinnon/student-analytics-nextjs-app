@@ -35,17 +35,18 @@ function DisplayGrades( { current_grades } ) {
       gradeWeightVals[i] = [[],[],[]];
     }
 
-    // add up weighted grades
+    // add up weighted grades ------------
     for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
       for ( var grade_item of current_grades ){
         if ( grade_item.course_id === coursesWithGrades[j] ){
+          
           gradeWeightVals[j][0].push(( grade_item.grade_received * (grade_item.grade_weight * .01) ))
           gradeWeightVals[j][2].push(grade_item.course_id)
         }
       }
     }
 
-    //add up grade percentages
+    //add up grade percentages -------
     for ( var k = 0 ; k < coursesWithGrades.length ; k++ ){
       for ( var grade_item2 of current_grades ){
         if ( grade_item2.course_id === coursesWithGrades[k] ){
@@ -53,17 +54,21 @@ function DisplayGrades( { current_grades } ) {
         }
       }
     }
-
+    console.log(gradeWeightVals)
+    
     var weightedGrades = new Array(gradeWeightVals.length)
-
+    console.log(weightedGrades)
     for ( var a = 0 ; a < gradeWeightVals.length ; a++){
       var weighted_grades = 0;
       var weight_percents = 0;
       for (var b = 0 ; b < gradeWeightVals[a][0].length ; b++){
         weighted_grades += gradeWeightVals[a][0][b]
         weight_percents += gradeWeightVals[a][1][b]
+        console.log("weighted grades: ", weighted_grades, "+", gradeWeightVals[a][0][b] , "weighted percents: ", weight_percents, weighted_grades, "+", gradeWeightVals[a][1][b])
       }
+      console.log(weighted_grades, "/", weight_percents, " * 100", "course: ", gradeWeightVals[a][2][0] )
       weightedGrades[a] = [(weighted_grades / weight_percents) * 100, gradeWeightVals[a][2][0]]
+      console.log("weighted grade: ", weightedGrades[a])
       updateGrades(weightedGrades[a][0], weightedGrades[a][1])
     }
 
@@ -127,17 +132,17 @@ function DisplayGrades( { current_grades } ) {
           <>
           <div className="flex flex-col">
               <div className="flex flex-row justify-between justify-center items-center">
-                <h3>{courseNames[d]}</h3>
+                <h3>{courseCodes[c]}</h3>
                 <div className="flex flex-row justify-center items-center">
-                  <h3 className="w-50px text-center">{Math.round( weightedGrades[d][0] * 10 + Number.EPSILON ) / 10}</h3>
+                  <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
                   <div className="ml-4" id="target">
-                    {(  
-                      (Math.round( weightedGrades[d][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[d]) >= 0 
+                    {(
+                      (Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[c]) >= 0 
                       ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
-                          {`+${(Math.round( (weightedGrades[d][0] - targetCourseGrade[d])  * 10 + Number.EPSILON ) / 10) }`}
+                          {`+${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c])  * 10 + Number.EPSILON ) / 10) }`}
                         </h3> 
                       : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
-                          {`${(Math.round( (weightedGrades[d][0] - targetCourseGrade[d]) * 10 + Number.EPSILON ) / 10) }`}
+                          {`${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c]) * 10 + Number.EPSILON ) / 10) }`}
                         </h3>
                     }
                   </div>

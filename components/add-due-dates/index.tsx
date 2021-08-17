@@ -17,9 +17,21 @@ function AddDates({ current_courses, current_semester, user_id }) {
     const [addAnother, setAddAnother] = useState('Add')
     var weights = []
 
+    console.log(
+        current_semester,
+        course_id,
+        due_date_description,
+        due_date,
+        grade_weight_id)
+
     async function submitHandler(e) {
         setSubmitting(true)
         e.preventDefault()
+        console.log(current_semester,
+            course_id,
+            due_date_description,
+            due_date,
+            grade_weight_id)
         if(course_id != 0 && due_date_description != '' && due_date != '' && grade_weight_id !=0){
             try {
                 const res = await fetch('/api/add-due-date', {
@@ -37,9 +49,12 @@ function AddDates({ current_courses, current_semester, user_id }) {
                 })
                 setSubmitting(false)
                 setDueDate('')
+                setDate('')
                 setDueDateDescription('')
                 setCourseName('')
                 setCourse('')
+                setCourseId(0)
+                setGradeType(0)
                 setDisplayGradeType(false)
                 const json = await res.json()
                 if (!res.ok) throw Error(json.message)
@@ -82,14 +97,12 @@ function AddDates({ current_courses, current_semester, user_id }) {
     function sortGradeWeights(){
         for(var i = 0 ; i < grade_weights.length ; i++){
             if(!weights.includes(grade_weights[i].grade_weight) && grade_weights[i].course_name === course){
-                weights[i] = [grade_weights[i].grade_weight,grade_weights[i].grade_weight_type ]
+                weights[i] = [grade_weights[i].grade_weight,grade_weights[i].grade_weight_type, grade_weights[i].grade_weight_id ]
             }
         }
     }
 
     function getCourseInfo ( courseName ) {
-        setDate('')
-        setDueDateDescription('')
         weights = []
         
 
@@ -162,7 +175,7 @@ function AddDates({ current_courses, current_semester, user_id }) {
                                     >
                                         <option value="none">Select</option>
                                         {weights.map((e) => (
-                                            <option value={e[0]}>({e[0]}%)&nbsp;&nbsp;{e[1]}</option>
+                                            <option value={e[2]}>({e[0]}%)&nbsp;&nbsp;{e[1]}</option>
                                         ))}
                                     </select>
                                 </div>
