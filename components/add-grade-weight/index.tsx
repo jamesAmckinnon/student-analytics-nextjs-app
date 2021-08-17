@@ -56,32 +56,38 @@ function GradeWeight( {object, course_id} ) {
                 </div>
             </div>
             <form onSubmit= {submitHandler}>
-                <div className="py-2 flex flex-row justify-between">
-                    <div className="flex flex-row justify between">
-                        <input 
-                                id="grade_weight_type" 
-                                type="text" 
-                                className="border-b-2 border-black mr-2 w-120px text-center" 
-                                placeholder="WEIGHT TYPE"
-                                maxLength={30} 
-                                name="grade_weight_type"
-                                value={grade_weight_type}
-                                onChange={ (e) => setGradeWeightType(e.target.value)}
-                            />
-                        <input 
-                            id="grade_weight" 
-                            type="number" 
-                            className="border-b-2 border-black mx-5 w-50px text-center" 
-                            placeholder="( % )"
-                            maxLength={3} 
-                            name="grade_weight"
-                            value={grade_weight}
-                            onChange={ (e) => setGradeWeight(e.target.value)}
-                        />
-                    </div>
+                <div className="py-2 flex flex-col justify-between">
+                  <div className="flex flex-row items-center">
+                      <h3 className="font-bold">Weight Type: </h3> 
+                      <input 
+                          id="grade_weight_type" 
+                          type="text" 
+                          className="border-b border-black ml-2 w-120px text-center" 
+                          placeholder="Assignments"
+                          maxLength={30} 
+                          name="grade_weight_type"
+                          value={grade_weight_type}
+                          onChange={ (e) => setGradeWeightType(e.target.value)}
+                      />
+                  </div>
+                  <div className="flex flex-row mt-4 items-center">
+                    <h3 className="font-bold">Weight: </h3>
+                    <input 
+                        id="grade_weight" 
+                        type="number" 
+                        className="border-b border-black ml-2 w-50px text-center" 
+                        placeholder="( % )"
+                        maxLength={3} 
+                        name="grade_weight"
+                        value={grade_weight}
+                        onChange={ (e) => setGradeWeight(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-full mt-4">
                     <SemesterButton disabled={submitting} type="submit">
                         {submitting ? 'Adding ...' : addAnother}
                     </SemesterButton>
+                  </div>
                 </div>
             </form>
         </>

@@ -167,12 +167,12 @@ function AddDates({ current_courses, current_semester, user_id }) {
                                     </select>
                                 </div>
                             }
-                            <div className="py-2  flex flex-row font-bold">
+                            <div className="py-2 items-center flex flex-row font-bold">
                                 <h3>Description: </h3>
                                 <input
                                     id="description"
                                     autoComplete="off"
-                                    className="border-b border-black text-center w-200px pl-1 pr-1 my-1 ml-2"
+                                    className="input border-b border-black text-center w-200px pl-1 pr-1 my-1 ml-2"
                                     name="description"
                                     type="text"
                                     placeholder="eg.  PMCOL 371 Midterm"

@@ -119,7 +119,7 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                         <input
                         id="current_grade"
                         autoComplete="off"
-                        className="ml-2 w-35px text-center shadow border rounded"
+                        className="ml-2 w-35px text-center border "
                         type="text"
                         placeholder="%"
                         name="current_grade"
@@ -135,7 +135,7 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                         <input
                         id="grade_type"
                         autoComplete="off"
-                        className="ml-2 w-35px text-center shadow border rounded"
+                        className="ml-2 w-35px text-center border"
                         type="text"
                         placeholder="%"
                         name="grade_type"
@@ -149,7 +149,7 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                         <input
                             id="desired"
                             autoComplete="off"
-                            className="border-b border-black text-center pl-1 pr-1 w-35px mb-1 ml-2"
+                            className=" text-center pl-1 pr-1 w-35px mb-1 ml-2"
                             name="description"
                             type="text"
                             placeholder="%"

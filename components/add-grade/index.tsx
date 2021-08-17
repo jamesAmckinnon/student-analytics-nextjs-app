@@ -122,12 +122,12 @@ function AddGrades( {current_courses} ) {
                             </select>
                         </div>
                     }
-                    <div className="flex flex-row font-bold my-4">
+                    <div className="flex flex-row font-bold my-4 items-center">
                         <h3>Description: </h3>
                         <input
                             id="description"
                             autoComplete="off"
-                            className="border-b border-black text-center pl-1 pr-1 w-230px mb-1 ml-2"
+                            className="border-b border-black text-center pl-1 pr-1 w-210px mb-1 ml-2"
                             name="description"
                             type="text"
                             placeholder="Assignment 4"
@@ -135,7 +135,7 @@ function AddGrades( {current_courses} ) {
                             onChange={(e) => setDescription(e.target.value)}
                             />
                     </div>
-                    <div className="flex flex-row font-bold my-4">
+                    <div className="flex flex-row font-bold my-4 items-center">
                         <h3>Grade: </h3>
                         <input
                             id="grade"

@@ -56,12 +56,12 @@ function AddClass( {router: { query }} ) {
                 <form onSubmit= {submitHandler}>
                     <div className="py-2 flex flex-row justify-between">
                         <div className="flex flex-col justify between">
-                            <div className="flex flex-row mt-4">
+                            <div className="flex flex-row mt-2">
                                 <h3 className="font-bold">Course Name: </h3> 
                                 <input 
                                     id="course_name" 
                                     type="text" 
-                                    className="border-b-2 border-black mx-5 w-130px pl-2" 
+                                    className="border-b border-black mx-5 w-130px pl-2" 
                                     placeholder="Linear Algebra II"
                                     maxLength={35} 
                                     name="course_name"
@@ -74,7 +74,7 @@ function AddClass( {router: { query }} ) {
                                 <input 
                                     id="course_code" 
                                     type="text" 
-                                    className="border-b-2 border-black mx-5 w-90px pl-2" 
+                                    className="border-b border-black mx-5 w-90px pl-2" 
                                     placeholder="MATH 225"
                                     maxLength={10} 
                                     name="course_name"

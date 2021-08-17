@@ -74,7 +74,7 @@ function AddSemester( {title, entries, user_id} ) {
                             <input 
                                 id="semester_year" 
                                 type="text" 
-                                className="border-b-2 border-black mx-5 w-50px text-center" 
+                                className="border-b border-black mx-5 w-50px text-center" 
                                 placeholder="YEAR"
                                 maxLength={4} 
                                 name="semester_year"
