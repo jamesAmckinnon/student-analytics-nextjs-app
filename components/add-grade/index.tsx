@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useGradeWeight } from '@/lib/swr-hooks'
 import Router from 'next/router'
 
-import Button from '@/components/button'
+import SemesterButton from '@/components/semester-button'
 
 function AddGrades( {current_courses} ) {
     const [course, setCourse] = useState('')
@@ -148,9 +148,9 @@ function AddGrades( {current_courses} ) {
                             onChange={(e) => setGrade(e.target.value)}
                             />
                     </div>
-                    <Button disabled={submitting} type="submit">
+                    <SemesterButton disabled={submitting} type="submit">
                         {submitting ? 'Adding ...' : addAnother}
-                    </Button>
+                    </SemesterButton>
                 </form>
             </>
         )
