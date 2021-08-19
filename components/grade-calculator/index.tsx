@@ -3,7 +3,7 @@ import { useDueDates, useGradeWeight, useGradeWeights } from '@/lib/swr-hooks';
 import { useState, useEffect } from 'react';
 import Button from '@/components/button'
 
-function GradeCalculator( { current_courses, gradeWeight, current_grades }) {
+function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
     const [width, setWidth] = useState(window.innerWidth)
     const [course, setCourse] = useState('')
     const [target_grade, setTargetGrade] = useState(0)
