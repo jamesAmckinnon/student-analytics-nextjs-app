@@ -24,10 +24,6 @@ function UpcomingGrades( { upcoming_grades } ) {
         return gradeNeeded
     }
 
-
-    console.log(upcoming_grades)
-
-
     function orderDueDates(dates, daysUntil){
         var ordered = [];
     

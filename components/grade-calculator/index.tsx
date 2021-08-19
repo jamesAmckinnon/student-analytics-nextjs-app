@@ -3,7 +3,7 @@ import { useDueDates, useGradeWeight, useGradeWeights } from '@/lib/swr-hooks';
 import { useState, useEffect } from 'react';
 import Button from '@/components/button'
 
-function GradeCalculator( { current_courses, gradeWeight }) {
+function GradeCalculator( { current_courses, gradeWeight, current_grades }) {
     const [width, setWidth] = useState(window.innerWidth)
     const [course, setCourse] = useState('')
     const [target_grade, setTargetGrade] = useState(0)
@@ -33,14 +33,52 @@ function GradeCalculator( { current_courses, gradeWeight }) {
 
 
     function gradeNeed(){
-        var target = parseInt(desired_grade);
-        var weight = grade_type * .01;
-        var current = course_grade;
-        var gradeNeeded = 0
 
-        gradeNeeded = (target - ( (1 - weight) * (current) )) / weight;
+        // will need to use values from the select inputs in the calculations.
+        // will only need to make the calculations with grade entries that 
+        // have the same course_id as the select input that the user pressed
+        // 
+        //   0: Array(2)
+        //     0: 93.0909090909091       weighted_grade of course 
+        //     1: 5                      course_id
 
-        return gradeNeeded
+
+
+
+        //for each course that has grade entries
+        var weighted_grades = 0;
+        var weight_percents = 0;
+        var weighted_course_grades = []
+        for ( var grade_item of current_grades ){
+            //for every grade entry in the course
+            if ( grade_item.course_id === course_id){
+                // console.log(grade_item.grade_weight)
+                weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+                weight_percents += grade_item.grade_weight
+                //create dictionary entry for weight
+            }
+            // console.log(grade_type, "<--- grade_type")        
+        }
+
+        weight_percents += grade_type//
+        console.log( parseFloat(desired_grade), " * ", weight_percents, " - ",  weighted_grades,  "/", grade_type)
+        var unknown_grade = ( (parseFloat(desired_grade) * weight_percents) -  weighted_grades) / grade_type;
+    
+
+        console.log(`${weighted_grades} / ${weight_percents}`)
+        console.log(unknown_grade, "<--- the grades")
+        
+
+
+
+
+
+
+
+
+        
+
+        return unknown_grade
     }
 
     function getCourseInfo ( courseName ) {
@@ -60,7 +98,7 @@ function GradeCalculator( { current_courses, gradeWeight }) {
     }
 
     function setGradeWeight( weightId ){
-        setGradeType(parseInt(weightId))
+        setGradeType(parseFloat(weightId))
     }
 
     return (
@@ -84,7 +122,6 @@ function GradeCalculator( { current_courses, gradeWeight }) {
                 onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
                 >
                     <option value=''>Select</option>
-                    <option value='custom'>Custom Calculation</option>
                         {current_courses.map((e) => (
                     <option value={e.course_name}>{e.course_name}</option>
                 ))}
@@ -112,60 +149,13 @@ function GradeCalculator( { current_courses, gradeWeight }) {
             }
             { (weights.length === 0) && course != '' &&
                 <>
-                    <div className="flex flex-row my-4">
-                        <label htmlFor="grade_type">
-                        <h3 className="font-bold">Current Course Grade:</h3>
-                        </label>
-                        <input
-                        id="current_grade"
-                        autoComplete="off"
-                        className="ml-2 w-35px text-center border "
-                        type="text"
-                        placeholder="%"
-                        name="current_grade"
-                        value={((course_grade === 0) || Number.isNaN(course_grade)) ? "" : course_grade}
-                        onChange={(e) => setCourseGrade(parseInt(e.target.value))}
-                        >
-                        </input>
+                    <div className="flex flex-row w-full my-4 items-center">
+                        <h3 className="font-bold">Grade Type:</h3>
+                        <select className="select shadow border rounded ml-2">
+                            <option>Select</option>
+                            <option>--- No Weights Added ---</option>
+                        </select>
                     </div>
-                    <div className="flex flex-row my-4">
-                        <label htmlFor="grade_type">
-                        <h3 className="font-bold">Grade Weight:</h3>
-                        </label>
-                        <input
-                        id="grade_type"
-                        autoComplete="off"
-                        className="ml-2 w-35px text-center border"
-                        type="text"
-                        placeholder="%"
-                        name="grade_type"
-                        value={((grade_type === 0) || Number.isNaN(grade_type)) ? "" : grade_type}
-                        onChange={(e) => setGradeType(parseInt(e.target.value))}
-                        >
-                        </input>
-                    </div>
-                    <div className="flex flex-row font-bold my-4">
-                        <h3>Desired Course Grade: </h3>
-                        <input
-                            id="desired"
-                            autoComplete="off"
-                            className=" text-center pl-1 pr-1 w-35px mb-1 ml-2"
-                            name="description"
-                            type="text"
-                            placeholder="%"
-                            value={desired_grade}
-                            onChange={(e) => setDesiredGrade(e.target.value)}
-                            />
-                    </div>
-                    {desired_grade != '' && (document.getElementById('current_grade') as HTMLInputElement).value != ''
-                                         && (document.getElementById('grade_type') as HTMLInputElement).value != '' 
-                                         && (document.getElementById('desired') as HTMLInputElement).value != '' &&
-                        <div className="flex flex-row my-4">
-                            <h3 className="font-bold">Grade Needed:</h3>
-                            <h3 className="ml-2">{Number.isNaN(Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)  ? '' :
-                                          (Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)}</h3>
-                        </div>
-                    }
                 </>
             }
             { (weights.length != 0) &&

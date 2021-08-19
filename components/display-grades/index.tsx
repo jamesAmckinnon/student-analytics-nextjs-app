@@ -35,42 +35,126 @@ function DisplayGrades( { current_grades } ) {
       gradeWeightVals[i] = [[],[],[]];
     }
 
-    // add up weighted grades ------------
-    for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
-      for ( var grade_item of current_grades ){
-        if ( grade_item.course_id === coursesWithGrades[j] ){
-          
-          gradeWeightVals[j][0].push(( grade_item.grade_received * (grade_item.grade_weight * .01) ))
-          gradeWeightVals[j][2].push(grade_item.course_id)
-        }
-      }
-    }
 
-    //add up grade percentages -------
-    for ( var k = 0 ; k < coursesWithGrades.length ; k++ ){
-      for ( var grade_item2 of current_grades ){
-        if ( grade_item2.course_id === coursesWithGrades[k] ){
-          gradeWeightVals[k][1].push( grade_item2.grade_weight )
-        }
-      }
-    }
-    console.log(gradeWeightVals)
+    // var dict = {};
+
+    // dict['key'] = "testing";
     
+    // console.log(dict);
+
+    //current_grades contains grade entries with grade weights and grade received for every entry
+    //this loop set calculates the weighted grades for all of the entries for each course
+    //need to calculate grade received * grade weight
+    //if there is more than one of the same grade weight then the grades received for that weight need to be averaged before the above calculation
+    // add up weighted grades ------------
+
+    //
+
+    
+    // //for each course that has grade entries
+    // for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
+    //   //for every grade entry in the course
+    //   var weights = [[], [], []]
+    //   var dict = {};
+    //   for ( var grade_item of current_grades ){
+    //     if ( grade_item.course_id === coursesWithGrades[j] && !weights[2].includes(grade_item.grade_weight_id) ){
+    //       //add weight to list
+    //       weights[0].push(grade_item.grade_weight)
+    //       weights[1].push(grade_item.grade_weight_type)
+    //       weights[2].push(grade_item.grade_weight_id)
+
+    //       //create dictionary entry for weight
+    //       dict[grade_item.grade_weight_id] = grade_item.grade_received;
+    //       gradeWeightVals[j][2].push(grade_item.course_id)
+    //     } else if ( grade_item.course_id === coursesWithGrades[j] && weights[2].includes(grade_item.grade_weight_id) ){
+    //       //get average of weight thats already in list and this new one
+    //       // console.log(grade_item.course_id, dict[grade_item.grade_weight_id]," + ", grade_item.grade_received, "/", 2, " = ", ( dict[grade_item.grade_weight_id] + grade_item.grade_received ) / 2)
+    //       dict[grade_item.grade_weight_id] = ( dict[grade_item.grade_weight_id] + grade_item.grade_received ) / 2;
+    //     }
+    //   }
+
+    //   for(var i = 0 ; i < weights[0].length ; i++){
+    //     // console.log( dict[weights[2][i]], " * ", weights[2][i], " * " , ".01" ) 
+    //     gradeWeightVals[j][0].push( ( dict[weights[2][i]] * (weights[0][i] * .01) ) )
+    //   }
+    // }
+
     var weightedGrades = new Array(gradeWeightVals.length)
-    console.log(weightedGrades)
-    for ( var a = 0 ; a < gradeWeightVals.length ; a++){
+
+    for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
+      //for each course that has grade entries
       var weighted_grades = 0;
       var weight_percents = 0;
-      for (var b = 0 ; b < gradeWeightVals[a][0].length ; b++){
-        weighted_grades += gradeWeightVals[a][0][b]
-        weight_percents += gradeWeightVals[a][1][b]
-        console.log("weighted grades: ", weighted_grades, "+", gradeWeightVals[a][0][b] , "weighted percents: ", weight_percents, weighted_grades, "+", gradeWeightVals[a][1][b])
+      var weighted_course_grades = []
+      for ( var grade_item of current_grades ){
+        //for every grade entry in the course
+        if ( grade_item.course_id === coursesWithGrades[j]){
+          weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+          weight_percents += grade_item.grade_weight
+          //create dictionary entry for weight
+        }
+        
       }
-      console.log(weighted_grades, "/", weight_percents, " * 100", "course: ", gradeWeightVals[a][2][0] )
-      weightedGrades[a] = [(weighted_grades / weight_percents) * 100, gradeWeightVals[a][2][0]]
-      console.log("weighted grade: ", weightedGrades[a])
-      updateGrades(weightedGrades[a][0], weightedGrades[a][1])
+
+      weightedGrades[j] = [(weighted_grades / weight_percents), coursesWithGrades[j]]
+      updateGrades(weightedGrades[j][0], weightedGrades[j][1])
     }
+
+    // for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
+    //   //use the newly calculated grade weights with the average grade entries
+    //   for ( var grade_item of current_grades ){
+    //     gradeWeightVals[j][0].push(( grade_item.grade_received * (grade_item.grade_weight * .01) ))
+        
+    //   }
+    // }
+    
+
+
+
+    // for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
+    //   for ( var grade_item of current_grades ){
+    //     if ( grade_item.course_id === coursesWithGrades[j]){
+    //       gradeWeightVals[j][0].push(( grade_item.grade_received * (grade_item.grade_weight * .01) ))
+    //       gradeWeightVals[j][2].push(grade_item.course_id)
+    //     }
+
+    //   }
+    // }
+
+    // //add up grade percentages -------
+    // for ( var k = 0 ; k < coursesWithGrades.length ; k++ ){
+    //   var weights = [[], [], []]
+    //   for ( var grade_item2 of current_grades ){
+    //     if ( grade_item2.course_id === coursesWithGrades[k] && !weights[2].includes(grade_item2.grade_weight_id) ){
+    //       // weights[0].push(grade_item2.grade_weight)
+    //       // weights[1].push(grade_item2.grade_weight_type)
+    //       weights[2].push(grade_item2.grade_weight_id)
+    //       gradeWeightVals[k][1].push( grade_item2.grade_weight )
+    //     }
+
+    //   }
+    //   // console.log(weights, "<--- weights")
+    // }
+
+
+    
+    // var weightedGrades = new Array(gradeWeightVals.length)
+    // // console.log(weightedGrades)
+    // for ( var a = 0 ; a < gradeWeightVals.length ; a++){
+    //   var weighted_grades = 0;
+    //   var weight_percents = 0;
+    //   for (var b = 0 ; b < gradeWeightVals[a][0].length ; b++){
+    //     weighted_grades += gradeWeightVals[a][0][b]
+    //     weight_percents += gradeWeightVals[a][1][b]
+    //     // console.log("weighted grades: ", weighted_grades, "+", gradeWeightVals[a][0][b] , "weighted percents: ", weight_percents, weighted_grades, "+", gradeWeightVals[a][1][b])
+    //   }
+    //   // console.log(weighted_grades, "/", weight_percents, " * 100", "course: ", gradeWeightVals[a][2][0] )
+    //   weightedGrades[a] = [(weighted_grades / weight_percents) * 100, gradeWeightVals[a][2][0]]
+    //   // console.log("weighted grade: ", weightedGrades[a])
+    //   updateGrades(weightedGrades[a][0], weightedGrades[a][1])
+    // }
+  
+
 
     async function updateGrades(grade, course_id) {
       try {
@@ -100,59 +184,61 @@ function DisplayGrades( { current_grades } ) {
 
     var htmlDiv = [];
 
-    if (width < 500) {
-      for (var c = 0 ; c < weightedGrades.length ; c++){   
-        htmlDiv.push(
-          <>
-          <div className="flex flex-col">
-              <div className="flex flex-row justify-between justify-center items-center">
-                <h3>{courseCodes[c]}</h3>
-                <div className="flex flex-row justify-center items-center">
-                  <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
-                  <div className="ml-4" id="target">
-                    {(
-                      (Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[c]) >= 0 
-                      ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
-                          {`+${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c])  * 10 + Number.EPSILON ) / 10) }`}
-                        </h3> 
-                      : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
-                          {`${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c]) * 10 + Number.EPSILON ) / 10) }`}
-                        </h3>
-                    }
+    if (current_grades.length != 0) {
+      if (width < 500) {
+        for (var c = 0 ; c < weightedGrades.length ; c++){   
+          htmlDiv.push(
+            <>
+            <div className="flex flex-col">
+                <div className="flex flex-row justify-between justify-center items-center">
+                  <h3>{courseCodes[c]}</h3>
+                  <div className="flex flex-row justify-center items-center">
+                    <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
+                    <div className="ml-4" id="target">
+                      {(
+                        (Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[c]) >= 0 
+                        ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
+                            {`+${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c])  * 10 + Number.EPSILON ) / 10) }`}
+                          </h3> 
+                        : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
+                            {`${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c]) * 10 + Number.EPSILON ) / 10) }`}
+                          </h3>
+                      }
+                    </div>
                   </div>
                 </div>
-              </div>
-          </div>
-        </>
-        )
-      }
-    } else {
-      for (var d = 0 ; d < weightedGrades.length ; d++){   
-        htmlDiv.push(
-          <>
-          <div className="flex flex-col">
-              <div className="flex flex-row justify-between justify-center items-center">
-                <h3>{courseCodes[c]}</h3>
-                <div className="flex flex-row justify-center items-center">
-                  <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
-                  <div className="ml-4" id="target">
-                    {(
-                      (Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[c]) >= 0 
-                      ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
-                          {`+${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c])  * 10 + Number.EPSILON ) / 10) }`}
-                        </h3> 
-                      : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
-                          {`${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c]) * 10 + Number.EPSILON ) / 10) }`}
-                        </h3>
-                    }
+            </div>
+          </>
+          )
+        }
+      } else {
+        for (var c = 0 ; c < weightedGrades.length ; c++){   
+          htmlDiv.push(
+            <>
+            <div className="flex flex-col">
+                <div className="flex flex-row justify-between justify-center items-center">
+                  <h3>{courseCodes[c]}</h3>
+                  <div className="flex flex-row justify-center items-center">
+                    <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
+                    <div className="ml-4" id="target">
+                      {(
+                        (Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10) - targetCourseGrade[c]) >= 0 
+                        ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
+                            {`+${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c])  * 10 + Number.EPSILON ) / 10) }`}
+                          </h3> 
+                        : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
+                            {`${(Math.round( (weightedGrades[c][0] - targetCourseGrade[c]) * 10 + Number.EPSILON ) / 10) }`}
+                          </h3>
+                      }
+                    </div>
                   </div>
                 </div>
-              </div>
-          </div>
-        </>
-        )
+            </div>
+          </>
+          )
+        }
       }
-    }
+    } 
     return (
       <div className="flex flex-col">
         <div className="flex flex-start w-full mb-4">
