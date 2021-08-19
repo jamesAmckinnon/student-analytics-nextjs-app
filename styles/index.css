@@ -66,6 +66,7 @@ input[type=number] {
   grid-column-end: 3;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow-y: scroll;
 }
 
 .mainContent::-webkit-scrollbar {
@@ -213,9 +214,22 @@ input {
     position: static;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    overflow-y: scroll;
   }
   
   html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  #root::-webkit-scrollbar {
+    display: none;
+  }
+
+  #__next::-webkit-scrollbar {
     display: none;
   }
 

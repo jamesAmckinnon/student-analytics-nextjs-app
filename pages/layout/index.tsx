@@ -43,7 +43,7 @@ export default function Layout ({children}) {
               <div className="topNav fixed w-full z-10 bg-white border-b-2 border-gray-600 ">
                 <Nav users = {users} beta_test={beta_test}/>
               </div>
-              <div className="h-full w-full pt-54px pb-10">
+              <div className="mainContent overflow-y-scroll h-full w-full pt-54px pb-10">
                 {children}
               </div>
             </>
