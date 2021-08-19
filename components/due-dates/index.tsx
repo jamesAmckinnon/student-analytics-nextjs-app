@@ -10,13 +10,13 @@ function DueDates( {user_id, current_semester} ) {
   function orderDueDates(dates, daysUntil){
     var ordered = [];
 
-
     for(let i = 0 ; i < dates.length; i++){
       ordered.push([
         dates[i].course_code, 
         dates[i].due_date_description, 
         new Date(dates[i].due_date).toLocaleDateString('en-us', {  weekday: 'short', month: 'short', day: 'numeric'}),
-        daysUntil[i]
+        daysUntil[i],
+        dates[i].course_name
       ])
     }
 
@@ -29,29 +29,44 @@ function DueDates( {user_id, current_semester} ) {
           var temp2 = ordered[i][1];
           var temp3 = ordered[i][2];
           var temp4 = ordered[i][3];
+          var temp5 = ordered[i][4];
           ordered[i][0] = ordered[i + 1][0];
           ordered[i][1] = ordered[i + 1][1];
           ordered[i][2] = ordered[i + 1][2];
           ordered[i][3] = ordered[i + 1][3];
+          ordered[i][4] = ordered[i + 1][4];
           ordered[i + 1][0] = temp1;
           ordered[i + 1][1] = temp2;
           ordered[i + 1][2] = temp3;
           ordered[i + 1][3] = temp4;
+          ordered[i + 1][4] = temp5;
         }
       }
     } while (count > 0)
 
     var htmlDiv = []
 
-    if(width > 630){
+    if(width > 500){
       for (let dueDate of ordered) {
         if(dueDate[3] >= 0) {
-        htmlDiv.push( <div className="dueDates">
-                        <div className="font-bold">{dueDate[0]}</div>
-                        <div className="ml-6">{dueDate[1]}</div>
-                        <div className="text-center">{dueDate[2]}</div>
-                        <div className="text-center">{dueDate[3] + " days"}</div>
-                      </div>
+          htmlDiv.push( <div className="flex flex-col mt-4">
+                          <div className="flex flex-row justify-between w-full items-center">
+                            <div className="py-1 px-2  bg-bgBlue text-sm ">
+                              {dueDate[4]}
+                            </div>
+                            <div className="text-center font-bold">{dueDate[3] + " days"}</div>
+                          </div>
+                          <div className="dueDates">
+                            <div className="ml-1">{dueDate[1]}</div>
+                            <div className="text-sm text-right">{dueDate[2]}</div>
+                          </div>
+                          <div className="dateGrid">
+                            <div></div>
+                            <div className="ml-2 text-sm">
+                              
+                            </div>
+                          </div>
+                        </div>
                     )
         }
       }

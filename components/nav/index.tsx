@@ -7,11 +7,13 @@ import { signOut, useSession } from "next-auth/client";
 import { useBetaTest } from '@/lib/swr-hooks'
 
 
+
 export default function Nav( {users, beta_test} ) {
   const [session] = useSession();
   const userEmail = session?.user?.email;
   const [width, setWidth] = useState(window.innerWidth);
   const [menu, setMenu] = useState(false)
+  const path = document.location.pathname
 
   useEffect(() => {
     function handleResize() {
@@ -25,7 +27,7 @@ export default function Nav( {users, beta_test} ) {
     width < 600;
   },[width]);
 
-  
+  console.log(path)
 
   if(users) { ////////////////////// bad. more users == slower
     var isNewUser = true;
@@ -96,15 +98,24 @@ export default function Nav( {users, beta_test} ) {
             <div className="flex flex-col mt-8">
               <div className="flex flex-row w-full  items-center justify-between">
                 <Link href="/dashboard/home"><a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a></Link>
+                { path.substring(1,10) === "dashboard" &&
+                  <span className="dot"></span>
+                }
               </div>
               <div className="flex flex-row items-center justify-between">
                 <Link href="/school/home"><a onClick={ menuClose } className="font-bold text-3xl">School</a></Link>
+                { path.substring(1,7) === "school" &&
+                  <span className="dot"></span>
+                }
               </div>
               <div className="flex flex-row items-center justify-between">
               {beta_test[0].health_beta != 0 && 
               <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>}              </div>
               <div className="flex flex-row items-center justify-between">
                 <Link href="/scheduling/home"><a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a></Link>
+                { path.substring(1,11) === "scheduling" &&
+                  <span className="dot"></span>
+                }
               </div>
             </div>
         </div>}
