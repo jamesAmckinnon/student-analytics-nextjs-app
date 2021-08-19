@@ -217,7 +217,7 @@ function DisplayGrades( { current_grades } ) {
             <>
             <div className="flex flex-col">
                 <div className="flex flex-row justify-between justify-center items-center">
-                  <h3>{courseCodes[c]}</h3>
+                  <h3 >{courseNames[c]}</h3>
                   <div className="flex flex-row justify-center items-center">
                     <h3 className="w-50px text-center">{Math.round( weightedGrades[c][0] * 10 + Number.EPSILON ) / 10}</h3>
                     <div className="ml-4" id="target">

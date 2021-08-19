@@ -91,8 +91,8 @@ input[type=number] {
   border-right: 2px dashed #35d4f4ff;
 }
 .contentCont {
-  max-width: 550px;
-  width: 100%;
+  max-width: 700px;
+  width: 95%;
 }
 
 .select1 {
@@ -121,6 +121,11 @@ input[type=number] {
 .dueDates {
   display: grid;
   grid-template-columns: 2fr 4.5fr 2fr 1.5fr;
+}
+
+.dueDateCont{
+  max-width: 700px;
+  width: 95%;
 }
 
 .select {
@@ -189,6 +194,10 @@ input {
   border-left: 0px;
   border-right: 0px;
   border-radius: 0px;
+}
+
+.calendar {
+  max-width: 700px;
 }
 
 /* .topBar {
@@ -285,6 +294,10 @@ input {
     display: grid;
     grid-template-columns: 9fr 3fr;
   }
+}
+
+.contentCont {
+  width: 100%;
 }
 
 @media (max-width: 400px) {

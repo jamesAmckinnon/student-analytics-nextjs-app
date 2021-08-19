@@ -78,7 +78,7 @@ export default function Nav( {users, beta_test} ) {
                 <button onClick={() => { signOut() }}>Sign Out</button>
               } {width < 870 && 
                   <div className="w-full flex justify-end">
-                    <button onClick={ menuOpen }>Menu</button>
+                    <button onClick={ menuOpen }><img src="/menu.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img></button>
                   </div>
               }
             </div>

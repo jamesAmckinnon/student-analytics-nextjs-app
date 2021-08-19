@@ -46,10 +46,10 @@ function DueDates( {user_id, current_semester} ) {
     if(width > 630){
       for (let dueDate of ordered) {
         if(dueDate[3] >= 0) {
-        htmlDiv.push( <div className="dueDates border-t">
-                        <div className="border-r border-black text-center">{dueDate[0]}</div>
-                        <div className="border-r border-black ml-6">{dueDate[1]}</div>
-                        <div className="text-center border-r border-black">{dueDate[2]}</div>
+        htmlDiv.push( <div className="dueDates">
+                        <div className="font-bold">{dueDate[0]}</div>
+                        <div className="ml-6">{dueDate[1]}</div>
+                        <div className="text-center">{dueDate[2]}</div>
                         <div className="text-center">{dueDate[3] + " days"}</div>
                       </div>
                     )
@@ -84,14 +84,14 @@ function DueDates( {user_id, current_semester} ) {
     return (
       <>
       { width > 630 && 
-        <div className="flex flex-col w-full max-w-3xl">
-          <div className="dueDates w-full border border-black">
+        <div className="flex flex-col w-full">
+          {/* <div className="dueDates w-full border border-black">
             <div className="font-bold border-r border-black text-center">Course</div>
             <div className="font-bold border-r border-black ml-6">Description</div>
             <div className="font-bold text-center border-r border-black">Due Date</div>
             <div className="font-bold text-center">Due In</div>
-          </div>
-          <div className="w-full max-w-3xl border border-black">
+          </div> */}
+          <div className="w-full max-w-3xl">
             {htmlDiv}
           </div>
         </div> }
@@ -117,7 +117,6 @@ function DueDates( {user_id, current_semester} ) {
 
 
   if(due_dates){
-    console.log(due_dates)
     daysUntil(due_dates);
   }
 

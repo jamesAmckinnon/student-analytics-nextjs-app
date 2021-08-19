@@ -16,7 +16,7 @@ function School() {
     return (
       <Layout>
         <>         
-          <SchoolMain current_semester = {current_semester[0].current_semester} user_id={userEmail}/>
+          {current_semester[0] && <SchoolMain current_semester = {current_semester[0].current_semester} user_id={userEmail}/>}
         </>
       </Layout>
     )
