@@ -9,7 +9,7 @@ function Class( { router: { query } } ) {
     return (
         <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
             <div className="small-container py-4 px-6">  
               <AddClass {...{router: { query }}} /> 
               <div className="w-full my-4 flex justify-end">

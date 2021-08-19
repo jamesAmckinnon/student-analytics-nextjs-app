@@ -16,7 +16,7 @@ function ChooseSemester() {
     return (
       <Layout>
         <>         
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
               <div className="small-container py-4 px-6">
                 <div className="">
                   <SemesterChoices semester = {semester} /> 

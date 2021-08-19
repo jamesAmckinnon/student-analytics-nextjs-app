@@ -70,7 +70,7 @@ function AddCourseTime( { router: { query } } ) {
     return (
       <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
             <div className="small-container py-4 px-6"> 
               <div className="py-5 pr-0 w-full flex flex-row justify-between items-center">
                 <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">

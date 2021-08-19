@@ -15,7 +15,7 @@ function MainDashboard() {
     return (
       <Layout>
         <>
-          <div className="page-container flex flex-col h-full w-full px-6 mt-8">
+          <div className="page-container flex flex-col w-full px-6 mt-8">
             <div className="page-container flex justify-center w-full">
               { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>

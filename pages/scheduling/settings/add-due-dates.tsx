@@ -16,7 +16,7 @@ function AddDueDates() {
     return (
         <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container  w-full grid justify-items-center">
             <div className="small-container py-4 px-6">  
             {current_courses && current_semester &&
               <AddDates current_courses={current_courses} current_semester={current_semester[0].current_semester} user_id={session.user.email}  /> 

@@ -105,7 +105,7 @@ function Semester( { router: { query } } ) {
     return (
       <Layout>
         <>         
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
               <div className="small-container">
                   <div className="py-4 px-6 w-full">
                     <h3 className="font-bold text-4xl">{object.season} {object.year}</h3> 

@@ -12,7 +12,7 @@ function Add() {
     return (
       <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
             <div className="small-container py-4 px-6">  
               <AddGrade current_courses={current_courses}/>
               <div className="w-full flex justify-end">

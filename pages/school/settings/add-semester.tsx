@@ -12,7 +12,7 @@ function Semester() {
     return (
         <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
             <div className="small-container py-4 px-6">  
               <AddSemester title="Add Semester" entries={entries} user_id= {user_id}/>
               <div className="w-full my-4 flex justify-end">

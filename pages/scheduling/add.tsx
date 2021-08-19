@@ -4,7 +4,7 @@ function Add() {
     return (
       <Layout>
         <>         
-          <div className="page-container flex flex-row h-full">
+          <div className="page-container flex flex-row">
               <div className="w-full">
                   Add Schedule Data
               </div>

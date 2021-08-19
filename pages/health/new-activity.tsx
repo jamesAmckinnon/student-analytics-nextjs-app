@@ -9,7 +9,7 @@ function Activity() {
     return (
       <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
             <div className="small-container">  
               <div className="flex flex-row justify-between px-5 py-3">
                 <h3 className="font-bold text-2xl">New Activity</h3>

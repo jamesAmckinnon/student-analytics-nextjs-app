@@ -14,7 +14,7 @@ function Add() {
     return (
       <Layout>
         <>
-          <div className="page-container h-full w-full grid justify-items-center">
+          <div className="page-container w-full grid justify-items-center">
             <div className="small-container py-4 px-6">  
               <div className="flex flex-row items-center justify-between pt-2">
                 <h3 className="font-bold text-2xl">Activity</h3>
