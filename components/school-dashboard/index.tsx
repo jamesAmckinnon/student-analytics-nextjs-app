@@ -18,7 +18,7 @@ function SchoolDashboard( { current_semester, user_id } ) {
             <div className="flex flex-col items-center w-full">
                 <div className="contentCont">
                     <DisplayGrades current_grades = {current_grades}/>
-                    <GradeCalculator current_courses={current_courses} gradeWeight={grade_weights}/>
+                    <GradeCalculator current_courses={current_courses} gradeWeight={grade_weights} current_grades = {current_grades}/>
                 </div>
             </div>
         </div>
