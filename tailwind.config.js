@@ -42,6 +42,7 @@ module.exports = {
         '3px': '3px',
         '4px':'4px',
         '5px':'5px',
+        '12px': '12px',
         '16px': '16px',
         '54px': '54px'
       },
@@ -50,6 +51,7 @@ module.exports = {
       },
       margin: {
         '2px': '2px',
+        '12px': '12px',
         '22px': '22px',
         '1px':'1px',
       },

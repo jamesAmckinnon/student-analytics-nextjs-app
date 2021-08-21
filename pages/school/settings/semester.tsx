@@ -28,7 +28,9 @@ function Semester( { router: { query } } ) {
     semester_id: object.semester_id,
     current_semester: current_semester,
     target_gpa: object.target_gpa,
+    user_id: userEmail
   }
+
 
   function setTheSemester(semesterNum) {
     setCurSemester(semesterNum)
@@ -53,6 +55,7 @@ function Semester( { router: { query } } ) {
         })
         const json = await res.json()
         if (!res.ok) throw Error(json.message)
+        Router.push({ pathname: '/school/settings/semester',  query: { object: JSON.stringify(object) }})
       } catch (e) {
         throw Error(e.message)
       }
@@ -72,6 +75,7 @@ function Semester( { router: { query } } ) {
         })
         const json = await res.json()
         if (!res.ok) throw Error(json.message)
+        Router.push({ pathname: '/school/settings/semester',  query: { object: JSON.stringify(object2) }})
       } catch (e) {
         throw Error(e.message)
       }

@@ -26,12 +26,12 @@ function SideBar( {beta_test} ) {
             </Link>
             <Link href='/school/home'>
               <div className="school border-b border-black cursor-pointer">
-                {path.substring(1,7) != "school" && 
-                  <div className="p-6">
-                    School
-                  </div>
+                { path.substring(1,7) != "school" && 
+                    <div className="p-6">
+                      School
+                    </div>
                   } 
-                  {path.substring(1,7) === "school" && 
+                  { path.substring(1,7) === "school" && 
                     <div className="border-r-9px p-6 border-customBlue">
                       School
                     </div>

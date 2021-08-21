@@ -251,6 +251,10 @@ input {
     display: none;
   }
 
+  .addDashboard{
+    justify-content: space-between;
+  }
+
   .childCont{
     overflow-y: scroll;
     -ms-overflow-style: none;

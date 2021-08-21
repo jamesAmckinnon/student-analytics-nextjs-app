@@ -62,7 +62,6 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
                         target_course_gpa: e.target_course_gpa,
                         target_gpa: object2.target_gpa,
                       };
-                      console.log(object3, "object 3")
                       return (
                       <>
                         <div id={e.course_id} className="flex flex-row justify-between">

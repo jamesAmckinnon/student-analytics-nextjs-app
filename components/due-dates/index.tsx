@@ -6,17 +6,34 @@ import { useDueDates } from "@/lib/swr-hooks";
 function DueDates( {user_id, current_semester} ) {
   const { due_dates } = useDueDates(user_id, current_semester)
   const [width, setWidth] = useState(window.innerWidth)
+  const [deleteBool, setDelete] = useState(false)
+
+  async function deleteHandler(due_date_id) {
+    document.getElementById(`${due_date_id}`).style.display = "none";
+    let res = await fetch(`/api/delete-due-date?due_date_id=${due_date_id}`, { method: 'DELETE' })
+    let json = await res.json()
+    if (!res.ok) throw Error(json.message)
+  }
+
+  function toggleDelete(toggle_delete) {
+    if(!toggle_delete){
+        setDelete(true)
+    } else {
+        setDelete(false)
+    }
+  }
 
   function orderDueDates(dates, daysUntil){
     var ordered = [];
 
-    for(let i = 0 ; i < dates.length; i++){
+    for(let i = 0 ; i < dates.length; i++){              
       ordered.push([
         dates[i].course_code, 
         dates[i].due_date_description, 
         new Date(dates[i].due_date).toLocaleDateString('en-us', {  weekday: 'short', month: 'short', day: 'numeric'}),
         daysUntil[i],
-        dates[i].course_name
+        dates[i].course_name,
+        dates[i].due_date_id
       ])
     }
 
@@ -49,21 +66,28 @@ function DueDates( {user_id, current_semester} ) {
     if(width > 500){
       for (let dueDate of ordered) {
         if(dueDate[3] >= 0) {
-          htmlDiv.push( <div className="flex flex-col mt-4">
-                          <div className="flex flex-row justify-between w-full items-center">
+          htmlDiv.push( 
+                        <div id={dueDate[5]} className="flex flex-row justify-between mt-4">
+
+                          <div className="flex flex-col">
                             <div className="py-1 px-2  bg-bgBlue text-sm ">
                               {dueDate[4]}
                             </div>
-                            <div className="text-center font-bold">{dueDate[3] + " days"}</div>
-                          </div>
-                          <div className="dueDates">
                             <div className="ml-1">{dueDate[1]}</div>
-                            <div className="text-sm text-right">{dueDate[2]}</div>
                           </div>
-                          <div className="dateGrid">
-                            <div></div>
-                            <div className="ml-2 text-sm">
-                              
+
+
+                          <div className="flex flex-row">
+                            <div className="flex flex-col justify-between">
+                              <div className="text-right font-bold">{dueDate[3] + " days"}</div>
+                              <div className="text-sm text-right">{dueDate[2]}</div>
+                            </div>
+                            <div className="">
+                              { deleteBool &&
+                                <a onClick={() => deleteHandler(dueDate[5])} className="deleteEntry flex flex-col mt-4 ml-4 justify-center">
+                                  <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                                </a> 
+                              }
                             </div>
                           </div>
                         </div>
@@ -73,7 +97,7 @@ function DueDates( {user_id, current_semester} ) {
     } else {
       for (let dueDate of ordered) {
         if(dueDate[3] >= 0) {
-        htmlDiv.push( <div className="flex flex-col mt-4">
+        htmlDiv.push( <div id={dueDate[5]} className="flex flex-col mt-4">
                         <div className="flex flex-row justify-between w-full items-center">
                           <div className="py-1 px-2  bg-bgBlue text-sm ">
                             {dueDate[0]}
@@ -90,6 +114,11 @@ function DueDates( {user_id, current_semester} ) {
                             
                           </div>
                         </div>
+                        { deleteBool &&
+                            <a onClick={() => deleteHandler(dueDate[5])} className="deleteEntry">
+                                <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                            </a> 
+                          }
                       </div>
                     )
         }
@@ -100,12 +129,9 @@ function DueDates( {user_id, current_semester} ) {
       <>
       { width > 630 && 
         <div className="flex flex-col w-full">
-          {/* <div className="dueDates w-full border border-black">
-            <div className="font-bold border-r border-black text-center">Course</div>
-            <div className="font-bold border-r border-black ml-6">Description</div>
-            <div className="font-bold text-center border-r border-black">Due Date</div>
-            <div className="font-bold text-center">Due In</div>
-          </div> */}
+          <a className="flex w-full justify-end items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
+            <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+          </a>
           <div className="w-full max-w-3xl">
             {htmlDiv}
           </div>
@@ -113,6 +139,9 @@ function DueDates( {user_id, current_semester} ) {
 
         { width < 630 && 
           <div className="flex flex-col w-full max-w-3xl">
+            <a className="flex w-full justify-end items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
+              <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+            </a>
             <div className="w-full">
               {htmlDiv}
             </div>

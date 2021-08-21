@@ -254,7 +254,7 @@ function DisplayGrades( { current_grades } ) {
         </div>
         {htmlDiv}
         <div className="flex flex-row justify-between mt-4 mt-2justify-center items-center">
-          <h3 className="">{current_grades[0].semester_season} {current_grades[0].semester_year} Total </h3>
+          <h3 className="">{current_grades[0] && current_grades[0].semester_season} {current_grades[0] && current_grades[0].semester_year} Total </h3>
           <div className="flex flex-row justify-center items-center">
             <h3 className="w-50px text-center">{ Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10}</h3>
             <div className="ml-4" id="target">
