@@ -48,16 +48,21 @@ function SemesterChoices( {semester} ) {
                                     user_id: e.user_id,
                                 };
                                 return (
-                                <div id={e.semester_id} className="flex flex-row justify-between h-24px">
-                                    <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
-                                        <a>{e.semester_season} {e.semester_year}</a>
-                                    </Link>
-                                    { deleteBool &&
-                                        <a onClick={() => deleteHandler(e.semester_id)} className="deleteEntry mr-1">
+                                    <div className="flex flex-row">
+                                        <Link href={{ pathname: '/school/settings/semester', query: { object: JSON.stringify(object) } }}>
+                                            <div id={e.semester_id} className="semesterSelectCont flex flex-row w-full items-center  justify-between cursor-pointer">
+                                                <a className="">{e.semester_season} {e.semester_year}</a>
+                                                {!deleteBool && 
+                                                    <h3 id="" className="classArrow text-customGrey font-bold text-xl mr-2"> {">"} </h3>
+                                                }
+                                            </div>
+                                        </Link>
+                                        { deleteBool &&
+                                            <a onClick={() => deleteHandler(e.semester_id)} className="deleteEntry mr-1">
                                             <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
-                                        </a> 
-                                    }
-                                </div>
+                                            </a> 
+                                        }
+                                    </div>
                                 )
                             }
                         })}

@@ -113,7 +113,7 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
                 <label className="flex items-center " htmlFor="course">
                 <h3 className="font-bold">Course: </h3>
                 </label>
-                { current_courses && 
+                { current_courses && current_courses.length != 0 && 
                 <select
                 id="course"
                 className="select shadow border rounded ml-2"
@@ -125,6 +125,17 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
                         {current_courses.map((e) => (
                     <option value={e.course_name}>{e.course_name}</option>
                 ))}
+                </select>}
+                { current_courses && current_courses.length === 0 && 
+                <select
+                id="course"
+                className="select shadow border text-center rounded ml-2"
+                name="course"
+                value={course}
+                onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
+                >
+                    <option value=''>Select</option>
+                    <option className="" value=''>--- No Courses Added ---</option>
                 </select>}
             </div>
             { gradeWeight && sortGradeWeights()}

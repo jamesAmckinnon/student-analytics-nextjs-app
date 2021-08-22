@@ -1,7 +1,7 @@
 import { useGrades } from "@/lib/swr-hooks";
 import { useState } from "react";
 
-function Grades( {object } ) {
+function Grades( {object, title } ) {
   const { grades } = useGrades(object.course_id);
   const [deleteBool, setDelete] = useState(false)
 
@@ -25,7 +25,7 @@ function Grades( {object } ) {
       <div>
         <div className="pt-4 pb-2 pr-0 mt-3 w-full flex flex-row justify-between items-center">
             <div className="border-4 rounded-lg border-customGreen px-2 pb-3px">
-                <h3 className="font-bold text-2xl">Grades</h3>
+                <h3 className="font-bold text-2xl">{title}</h3>
             </div>
             <a className="" onClick={() => toggleDelete(deleteBool)}>
               <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>

@@ -114,7 +114,6 @@ function UpcomingGrades( { upcoming_grades } ) {
                 }
             }
         }
-    
         return (
           <>
           { width > 630 && 
@@ -129,6 +128,11 @@ function UpcomingGrades( { upcoming_grades } ) {
                 </div>
                 <div className="flex flex-col">
                 {htmlDiv}
+                { upcoming_grades.length === 0 &&
+                    <div className="flex w-full shadow h-50px rounded-xl mt-2 items-center justify-center">
+                        <h3>No schedule information added</h3>
+                    </div>
+                }
               </div>
             </div> } 
     
@@ -144,6 +148,11 @@ function UpcomingGrades( { upcoming_grades } ) {
                 </div>
                 <div className="flex flex-col">
                 {htmlDiv}
+                { upcoming_grades.length === 0 &&
+                    <div className="flex w-full shadow h-50px rounded-xl mt-2 items-center justify-center">
+                        <h3>No schedule information added</h3>
+                    </div>
+                }
                 </div>
             </div> 
             }

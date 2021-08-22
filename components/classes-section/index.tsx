@@ -33,6 +33,8 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
       user_id: user_id,
     };
 
+
+
     console.log(object)
     return (
       <div>
@@ -63,10 +65,15 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
                         target_gpa: object2.target_gpa,
                       };
                       return (
-                      <>
-                        <div id={e.course_id} className="flex flex-row justify-between">
+                        <>
+                        <div className="flex flex-row">
                           <Link href={{ pathname: '/school/settings/class', query: { object: JSON.stringify(object3) } }}>
-                              <a>{e.course_name}</a>
+                            <div id={e.course_id} className="courseSelectCont flex flex-row justify-between cursor-pointer w-full">
+                                  <a className="flex items-center">{e.course_name}</a>
+                              {!deleteBool && 
+                                <h3 id="" className="classArrow text-customGrey font-bold text-xl mr-2"> {">"} </h3>
+                              }
+                            </div>
                           </Link>
                           { deleteBool &&
                             <a onClick={() => deleteHandler(e.course_id)} className="deleteEntry">

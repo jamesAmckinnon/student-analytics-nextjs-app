@@ -253,28 +253,35 @@ function DisplayGrades( { current_grades } ) {
           </div>
         </div>
         {htmlDiv}
-        <div className="flex flex-row justify-between mt-4 mt-2justify-center items-center">
-          <h3 className="">{current_grades[0] && current_grades[0].semester_season} {current_grades[0] && current_grades[0].semester_year} Total </h3>
-          <div className="flex flex-row justify-center items-center">
-            <h3 className="w-50px text-center">{ Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10}</h3>
-            <div className="ml-4" id="target">
-              {(
-                (Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10) - targetGrade[0]) >= 0 
-                ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
-                    {`+${(Math.round( ( semester_total/(weightedGrades.length) - targetGrade[0] ) * 10 + Number.EPSILON ) / 10) }`}
-                  </h3> 
-                : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
-                    {`${(Math.round( ( semester_total/(weightedGrades.length) - targetGrade[0] ) * 10 + Number.EPSILON ) / 10) }`}
-                  </h3>
-              }
+        { current_grades.length != 0 &&
+          <div className="flex flex-row justify-between mt-4 mt-2justify-center items-center">
+            <h3 className="">{current_grades[0] && current_grades[0].semester_season} {current_grades[0] && current_grades[0].semester_year} Total </h3>
+            <div className="flex flex-row justify-center items-center">
+              <h3 className="w-50px text-center">{ Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10}</h3>
+              <div className="ml-4" id="target">
+                {(
+                  (Math.round( ( semester_total/(weightedGrades.length) ) * 10 + Number.EPSILON ) / 10) - targetGrade[0]) >= 0 
+                  ? <h3 className="border-b font-bold text-customGreen my-2px w-50px text-center">
+                      {`+${(Math.round( ( semester_total/(weightedGrades.length) - targetGrade[0] ) * 10 + Number.EPSILON ) / 10) }`}
+                    </h3> 
+                  : <h3 className="border-b font-bold text-customRed my-2px w-50px text-center">
+                      {`${(Math.round( ( semester_total/(weightedGrades.length) - targetGrade[0] ) * 10 + Number.EPSILON ) / 10) }`}
+                    </h3>
+                }
+              </div>
             </div>
           </div>
-        </div>
+        }
+        { current_grades.length === 0 &&
+          <div className="flex w-full shadow h-50px rounded-xl mt-2 items-center justify-center">
+            <h3>No course information added</h3>
+          </div>
+        }
       </div>
     ) 
   }
 
-  if(current_grades){
+  if(current_grades ){
     return (
       <>
       {grades()}

@@ -21,11 +21,11 @@ function ChooseSemester() {
                 <div className="">
                   <SemesterChoices semester = {semester} /> 
                 </div>
-                  <div className="w-full flex justify-end">
-                    <Link href='/school/home'>
-                      <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
-                    </Link>
-                  </div>
+                <div className="w-full flex justify-end mt-4">
+                  <Link href='/school/home'>
+                    <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
+                  </Link>
+                </div>
               </div>
           </div>
         </>

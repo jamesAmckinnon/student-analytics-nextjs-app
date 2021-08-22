@@ -97,7 +97,7 @@ export default function Nav( {users, beta_test} ) {
             </div>
             <div className="flex flex-col mt-8">
               <Link href="/dashboard/home">
-                <div className="flex flex-row w-full  items-center justify-between">
+                <div className="flex flex-row w-full  items-center justify-between cursor-pointer">
                   <a onClick={ menuClose } className="font-bold text-3xl">Dashboard</a>
                   { path.substring(1,10) === "dashboard" &&
                     <span className="dot"></span>
@@ -105,7 +105,7 @@ export default function Nav( {users, beta_test} ) {
                 </div>
               </Link>
               <Link href="/school/home">
-                <div className="flex flex-row items-center justify-between">
+                <div className="flex flex-row items-center justify-between cursor-pointer">
                   <a onClick={ menuClose } className="font-bold text-3xl">School</a>
                   { path.substring(1,7) === "school" &&
                     <span className="dot"></span>
@@ -116,7 +116,7 @@ export default function Nav( {users, beta_test} ) {
               {beta_test[0].health_beta != 0 && 
               <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>}              </div>
               <Link href="/scheduling/home">
-                <div className="flex flex-row items-center justify-between">
+                <div className="flex flex-row items-center justify-between cursor-pointer">
                   <a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a>
                   { path.substring(1,11) === "scheduling" &&
                     <span className="dot"></span>
