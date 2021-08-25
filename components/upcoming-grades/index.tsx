@@ -129,7 +129,7 @@ function UpcomingGrades( { upcoming_grades } ) {
                 <div className="flex flex-col">
                 {htmlDiv}
                 { upcoming_grades.length === 0 &&
-                    <div className="flex w-full shadow h-50px rounded-xl mt-2 items-center justify-center">
+                    <div className="flex w-full shadow h-100px text-lg rounded-xl mt-2 items-center justify-center">
                         <h3>No schedule information added</h3>
                     </div>
                 }
@@ -149,7 +149,7 @@ function UpcomingGrades( { upcoming_grades } ) {
                 <div className="flex flex-col">
                 {htmlDiv}
                 { upcoming_grades.length === 0 &&
-                    <div className="flex w-full shadow h-50px rounded-xl mt-2 items-center justify-center">
+                    <div className="flex w-full shadow h-100px rounded-xl mt-2 items-center justify-center">
                         <h3>No schedule information added</h3>
                     </div>
                 }

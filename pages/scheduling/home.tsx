@@ -11,15 +11,14 @@ function Scheduling() {
   const userEmail = session?.user?.email
   const { current_semester } = useCurrentSem(userEmail)
 
-
-  return (
+return (
     <Layout>
       <>
         <div className=" mx-6">
-          <div className="w-full pt-2">
+          <div className="w-full mt-6">
             <Link href='/scheduling/settings/add-due-dates'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link> 
           </div>     
-          <div className="page-container flex justify-center w-full">
+          <div className="flex justify-center w-full">
             { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
           </div>
           <div className="page-container flex justify-center items-center w-full mt-6">

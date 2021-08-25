@@ -127,7 +127,8 @@ function DueDates( {user_id, current_semester} ) {
 
     return (
       <>
-      { width > 630 && 
+      {/* { width > 630 &&  */}
+      { due_dates && due_dates.length != 0 &&
         <div className="flex flex-col w-full">
           <a className="flex w-full justify-end items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
             <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
@@ -135,9 +136,23 @@ function DueDates( {user_id, current_semester} ) {
           <div className="w-full max-w-3xl">
             {htmlDiv}
           </div>
-        </div> }
+        </div> 
+      }
+      { due_dates && due_dates.length === 0 &&
+        <div className="flex flex-col w-full items-center p-1px">
+          <div className="flex justify-start w-full mb-2">
+            <div className="border-4 rounded-lg border-customBlue mt-6 px-2 pb-3px">
+                <h3 className="font-bold text-2xl">Due Dates</h3>
+            </div>
+          </div>
+          <div className="flex w-full shadow h-100px rounded-xl mt-2 items-center justify-center">
+            <h3 className="text-lg">No course times added</h3>
+          </div>
+        </div>
+      }
+        {/* } */}
 
-        { width < 630 && 
+        {/* { width < 630 && 
           <div className="flex flex-col w-full max-w-3xl">
             <a className="flex w-full justify-end items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
               <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
@@ -146,7 +161,7 @@ function DueDates( {user_id, current_semester} ) {
               {htmlDiv}
             </div>
           </div>
-        }
+        } */}
       </>
     )
   }

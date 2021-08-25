@@ -141,7 +141,7 @@ function Calendar( {user_id, current_semester} ) {
             {schedule && orderDays("thursday")}
             {schedule && orderDays("friday")}
           </div>} 
-        { width < 630 &&
+        { width < 630 && schedule && schedule.length != 0 &&
           <div className="flex flex-row">
               <button onClick={ () => { cycleDays("left") }}> {"<"} </button>
                 <div className="flex flex-col w-full">
@@ -149,6 +149,18 @@ function Calendar( {user_id, current_semester} ) {
                   {schedule && orderDays(day)}
                 </div>
               <button onClick={() => {  cycleDays("right") }}>{">"}</button>
+          </div>
+        } 
+        { schedule && schedule.length === 0 &&
+          <div className="flex flex-col w-full items-center ">
+            <div className="contentCont flex flex-start w-full mb-4">
+              <div className="border-4 rounded-lg border-customOrange mt-6 px-2 pb-3px">
+                  <h3 className="font-bold text-2xl">Schedule</h3>
+              </div>
+            </div>
+            <div className="contentCont items-center flex justify-center w-full shadow h-100px rounded-xl mt-2">
+              <h3 className="flex text-lg justify-center">No course times entered</h3> 
+            </div>
           </div>
         }
         </>

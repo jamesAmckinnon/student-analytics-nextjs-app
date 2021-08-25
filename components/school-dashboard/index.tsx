@@ -14,7 +14,7 @@ function SchoolDashboard( { current_semester, user_id } ) {
 
   return (
       <>         
-        <div className="page-container flex flex-col h-full w-full">
+        <div className="flex flex-col w-full">
             <div className="flex flex-col items-center w-full">
                 <div className="contentCont">
                     <DisplayGrades current_grades = {current_grades}/>

@@ -227,6 +227,10 @@ input[type=number] {
   background:white;
 }
 
+.contentCont {
+  width: 100%;
+}
+
 input {
   padding: 3px 0px 0px 3px;
   letter-spacing: .2px;
@@ -341,9 +345,32 @@ input {
   }
 }
 
-.contentCont {
-  width: 100%;
+
+@media (hover: none) {
+  .courseSelectCont:hover{
+    background-color: white;
+    padding-left: 0px;
+    font-weight: 400;
+    color: inherit;
+  }
+
+  .courseSelectCont:hover .classArrow {
+    color: inherit;
+  }
+
+  .semesterSelectCont:hover {
+    border-bottom: 1px solid #e9e9e9ff;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: white;
+    color: inherit;
+  }
+
+  .semesterSelectCont:hover .classArrow {
+    color: inherit;
+  }
 }
+
 
 @media (max-width: 400px) {
   .select1 {

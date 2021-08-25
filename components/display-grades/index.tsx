@@ -273,7 +273,7 @@ function DisplayGrades( { current_grades } ) {
           </div>
         }
         { current_grades.length === 0 &&
-          <div className="flex w-full shadow h-50px rounded-xl mt-2 items-center justify-center">
+          <div className="flex w-full shadow text-lg h-100px rounded-xl mt-2 items-center justify-center">
             <h3>No course information added</h3>
           </div>
         }
