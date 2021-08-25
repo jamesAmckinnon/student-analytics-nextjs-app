@@ -146,7 +146,7 @@ function DueDates( {user_id, current_semester} ) {
             </div>
           </div>
           <div className="flex w-full shadow h-100px rounded-xl mt-2 items-center justify-center">
-            <h3 className="text-lg">No course times added</h3>
+            <h3 className="text-lg">No due dates added</h3>
           </div>
         </div>
       }
