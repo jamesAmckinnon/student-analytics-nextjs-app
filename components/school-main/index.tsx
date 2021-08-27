@@ -14,7 +14,7 @@ function SchoolMain( { current_semester, user_id } ) {
 
   return (
       <>         
-        <div className="page-container flex flex-col w-full p-4">
+        <div className="flex flex-col w-full p-4">
             <div className="topBar w-full h-20 flex flex-row justify-items-start space-x-4 ">
                 <Link href='/school/settings/choose-semester' ><img src="/gear-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer' }}/></Link>
                 <Link href='/school/settings/add'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link>
