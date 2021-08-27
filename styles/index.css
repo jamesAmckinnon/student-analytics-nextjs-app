@@ -48,7 +48,6 @@ body {
 
 .page-container{
   height: 100%;
-  padding-bottom: 50px;
 }
 
 input::-webkit-outer-spin-button,
@@ -68,7 +67,6 @@ input[type=number] {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
-  padding-bottom: 50px;
 }
 
 .mainContent::-webkit-scrollbar {
