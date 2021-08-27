@@ -158,6 +158,7 @@ input[type=number] {
 .dueDateCont{
   max-width: 700px;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .dot {
@@ -314,6 +315,7 @@ input {
     max-width: 650px;
     width: 100%;
     border: none;
+    margin-top: 25px;
   }
 
   .wrapper{
@@ -330,6 +332,10 @@ input {
   .mainContent {
     grid-column-start: 1;
     grid-column-end: 2;
+  }
+
+  .dueDateCont{
+    margin-bottom: 0px;
   }
 }
 

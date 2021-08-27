@@ -97,7 +97,9 @@ function DueDates( {user_id, current_semester} ) {
     } else {
       for (let dueDate of ordered) {
         if(dueDate[3] >= 0) {
-        htmlDiv.push( <div id={dueDate[5]} className="flex flex-col mt-4">
+        htmlDiv.push( 
+                    <div id={dueDate[5]} className="flex flex-row">
+                      <div className="flex flex-col mt-4 w-full">
                         <div className="flex flex-row justify-between w-full items-center">
                           <div className="py-1 px-2  bg-bgBlue text-sm ">
                             {dueDate[0]}
@@ -114,12 +116,13 @@ function DueDates( {user_id, current_semester} ) {
                             
                           </div>
                         </div>
-                        { deleteBool &&
-                            <a onClick={() => deleteHandler(dueDate[5])} className="deleteEntry">
-                                <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
-                            </a> 
-                          }
                       </div>
+                      { deleteBool &&
+                        <a onClick={() => deleteHandler(dueDate[5])} className="deleteEntry flex items-center mt-4 ml-2">
+                            <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                        </a> 
+                      }
+                    </div>
                     )
         }
       }
@@ -130,6 +133,11 @@ function DueDates( {user_id, current_semester} ) {
       {/* { width > 630 &&  */}
       { due_dates && due_dates.length != 0 &&
         <div className="flex flex-col w-full">
+          <div className="flex justify-start w-full mb-2">
+            <div className="border-4 rounded-lg border-customBlue mt-6 px-2 pb-3px">
+                <h3 className="font-bold text-2xl">Due Dates</h3>
+            </div>
+          </div>
           <a className="flex w-full justify-end items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
             <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
           </a>
