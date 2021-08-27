@@ -67,6 +67,7 @@ input[type=number] {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
+  padding-bottom: 50px;
 }
 
 .mainContent::-webkit-scrollbar {
