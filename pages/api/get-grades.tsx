@@ -6,7 +6,7 @@ const handler: NextApiHandler = async (req, res) => {
 
   try {
     const results = await query(`
-      SELECT grade_description, grade_weight_type, grade_received
+      SELECT grade_description, grade_weight_type, grade_received, grade_id
       FROM grade
       INNER JOIN weight
       ON grade.grade_weight_id = weight.grade_weight_id

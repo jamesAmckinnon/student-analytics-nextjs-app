@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useDueDates } from '@/lib/swr-hooks';
 import { useState, useEffect } from 'react';
 
-function UpcomingGrades( { upcoming_grades } ) {
+function UpcomingGrades( { upcoming_grades, current_grades } ) {
     const [width, setWidth] = useState(window.innerWidth)
     
     useEffect(() => {
@@ -13,32 +13,52 @@ function UpcomingGrades( { upcoming_grades } ) {
         return () => window.removeEventListener("resize", handleResize);
     }, [width]);
   
-    function gradeNeeded(targ, weigh, cur){
-        var target = targ
-        var weight = weigh
-        var current = cur
-        var gradeNeeded = 0
+    function gradeNeeded(target, weight, course_id){
 
-        gradeNeeded = (target - ( (1 - weight) * (current) )) / weight;
+        //for each course that has grade entries
+        var weighted_grades = 0;
+        var weight_percents = 0;
+        var weighted_course_grades = []
 
-        return gradeNeeded
+        for ( var grade_item of current_grades ){
+            //for every grade entry in the course
+            console.log(course_id, "<--- course_id")
+            if ( grade_item.course_id === course_id){
+                // console.log(grade_item.grade_weight)
+                weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+                weight_percents += grade_item.grade_weight
+                //create dictionary entry for weight
+            }
+            // console.log(grade_type, "<--- grade_type")        
+        }
+
+        weight_percents += weight//
+        // console.log( parseFloat(target), " * ", weight_percents, " - ",  weighted_grades,  "/", weight)
+        var unknown_grade = ( (parseFloat(target) * weight_percents) -  weighted_grades) / weight;
+    
+
+        // console.log(`${weighted_grades} / ${weight_percents}`)
+        // console.log(unknown_grade, "<--- the grades")
+        
+        return unknown_grade
     }
 
     function orderDueDates(dates, daysUntil){
         var ordered = [];
     
-        console.log(dates)
+        // console.log(dates)
         for(let i = 0 ; i < dates.length; i++){
           ordered.push([
             dates[i].course_code, 
             dates[i].due_date_description, 
             dates[i].target_course_gpa,
-            dates[i].grade_weight * .01,
+            dates[i].grade_weight,
             dates[i].grade_total,
             
 
             daysUntil[i],
             dates[i].course_name,
+            dates[i].course_id,
           ])
         }
     
@@ -53,18 +73,24 @@ function UpcomingGrades( { upcoming_grades } ) {
               var temp4 = ordered[i][3];
               var temp5 = ordered[i][4];
               var temp6 = ordered[i][5];
+              var temp7 = ordered[i][6];
+              var temp8 = ordered[i][7];
               ordered[i][0] = ordered[i + 1][0];
               ordered[i][1] = ordered[i + 1][1];
               ordered[i][2] = ordered[i + 1][2];
               ordered[i][3] = ordered[i + 1][3];
               ordered[i][4] = ordered[i + 1][4];
               ordered[i][5] = ordered[i + 1][5];
+              ordered[i][6] = ordered[i + 1][6];
+              ordered[i][7] = ordered[i + 1][7];
               ordered[i + 1][0] = temp1;
               ordered[i + 1][1] = temp2;
               ordered[i + 1][2] = temp3;
               ordered[i + 1][3] = temp4;
               ordered[i + 1][4] = temp5;
               ordered[i + 1][5] = temp6;
+              ordered[i + 1][6] = temp7;
+              ordered[i + 1][7] = temp8;
             }
           }
         } while (count > 0)
@@ -85,7 +111,7 @@ function UpcomingGrades( { upcoming_grades } ) {
                                         <h3 className="py-1 px-2 text-sm">{dueDate[1]}</h3>
                                     </div>
                                     <div className="flex items-center justify-center w-107px text-center">
-                                        {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[4]) ) * 100 + Number.EPSILON ) / 100)}%
+                                        {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[7]) ) * 100 + Number.EPSILON ) / 100)}%
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +132,7 @@ function UpcomingGrades( { upcoming_grades } ) {
                                         <h3 className="py-1 px-2 text-sm">{dueDate[1]}</h3>
                                     </div>
                                     <div className="flex items-center justify-center w-107px text-center">
-                                        {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[4]) ) * 100 + Number.EPSILON ) / 100)}%
+                                        {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[7]) ) * 100 + Number.EPSILON ) / 100)}%
                                     </div>
                                 </div>
                             </div>

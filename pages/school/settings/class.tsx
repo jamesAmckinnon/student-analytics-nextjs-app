@@ -57,7 +57,6 @@ function Class( { router: { query } } ) {
                               name="gpa"
                               type="text"
                               placeholder={gpa === 0 ? "%" : gpa}
-                              value={gpa === 0 ? "%" : gpa}
                               onChange={(e) => setGpa(e.target.value)}
                             />
                           } 
@@ -66,9 +65,9 @@ function Class( { router: { query } } ) {
                               <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/> 
                             } 
                           </a>
-                          <a className="" onClick={() => gpaTargetHandler()}>
+                          <a className="mt-2" onClick={() => gpaTargetHandler()}>
                             { targetGpa &&
-                              <img src="/add-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                              <img src="/check.svg" style={{ height: 29, width: 24, cursor: 'pointer'}}/>
                             }
                           </a>
                         </div>

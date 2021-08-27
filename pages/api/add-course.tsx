@@ -5,7 +5,7 @@ import { query } from '../../lib/db'
 const filter = new Filter()
 
 const handler: NextApiHandler = async (req, res) => {
-  const { semester_id, course_name} = req.body
+  const { semester_id, course_name, course_code} = req.body
   try {
     if (!semester_id || !course_name) {
       return res
@@ -15,10 +15,10 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      INSERT INTO course (semester_id, course_name)
-      VALUES (?, ?)
+      INSERT INTO course (semester_id, course_name, course_code)
+      VALUES (?, ?, ?)
       `,
-      [semester_id, filter.clean(course_name)]
+      [semester_id, course_name, course_code]
     )
 
     return res.json(results)

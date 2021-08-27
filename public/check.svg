@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="125.0191mm"
-   height="125.01909mm"
-   viewBox="0 0 125.01911 125.01909"
+   width="137.47702mm"
+   height="137.47702mm"
+   viewBox="0 0 137.47704 137.47702"
    version="1.1"
    id="svg1150"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="add-icon-simple.svg">
+   sodipodi:docname="check.svg">
   <defs
      id="defs1144" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="-147.1546"
-     inkscape:cy="251.70782"
+     inkscape:zoom="0.7"
+     inkscape:cx="-193.82275"
+     inkscape:cy="33.716089"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,18 +59,25 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-47.338228,-85.959463)">
+     transform="translate(-43.979315,-81.920164)"
+     style="opacity:0.98999999">
     <path
-       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00c3f4;stroke-width:20.261;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="M 109.84778,96.234246 V 200.70377"
-       id="path1117"
+       style="opacity:1;fill:#008000;fill-opacity:1;fill-rule:evenodd;stroke:#32b324;stroke-width:10.41728306;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 82.944336,160.49851 c -0.427513,0.27883 9.730726,9.71841 15.48198,22.91076"
+       id="path3720"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00c3f4;stroke-width:20.261;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="M 162.08255,148.46901 H 57.613011"
-       id="path1117-3"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#32b324;stroke-width:10.41728306;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 98.426316,183.40927 c 1.026385,-4.2135 17.347744,-40.12249 38.232984,-64.28245"
+       id="path3722"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <circle
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#caceca;stroke-width:10.85499954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       id="path3726"
+       cx="112.71783"
+       cy="150.65868"
+       r="63.311012" />
   </g>
 </svg>

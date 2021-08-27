@@ -76,7 +76,7 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
                             </div>
                           </Link>
                           { deleteBool &&
-                            <a onClick={() => deleteHandler(e.course_id)} className="deleteEntry">
+                            <a onClick={() => deleteHandler(e.course_id)} className="deleteEntry h-31px flex items-center ml-2">
                                 <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                             </a> 
                           }

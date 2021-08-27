@@ -19,13 +19,13 @@ function MainDashboard() {
           <div className="page-container flex flex-col w-full px-6 mt-8">
             <div className="addDashboard flex flex-row">
               <Link href='/school/settings/add'>
-                <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey rounded-md">
+                <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey rounded-md cursor-pointer">
                   <img src="/add-icon-simple.svg" style={{ height: 28, width: 17, cursor: 'pointer'}}/>
                   <h3 className="ml-12px text-lg font-bold">Grades</h3>
                 </div>
               </Link>
               <Link href='/scheduling/settings/add-due-dates'>
-                <div className="flex flex-row items-center ml-4 px-12px py-3px border-2 border-customGrey rounded-md">
+                <div className="flex flex-row items-center ml-4 px-12px py-3px border-2 border-customGrey rounded-md cursor-pointer">
                   <img src="/add-icon-simple.svg" style={{ height: 28, width: 17, cursor: 'pointer'}}/>
                   <h3 className="ml-12px text-lg font-bold">Schedule</h3>
                 </div>

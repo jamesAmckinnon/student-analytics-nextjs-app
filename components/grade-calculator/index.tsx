@@ -67,16 +67,6 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
 
         console.log(`${weighted_grades} / ${weight_percents}`)
         console.log(unknown_grade, "<--- the grades")
-        
-
-
-
-
-
-
-
-
-        
 
         return unknown_grade
     }

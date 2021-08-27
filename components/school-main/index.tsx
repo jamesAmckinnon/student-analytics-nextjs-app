@@ -23,7 +23,7 @@ function SchoolMain( { current_semester, user_id } ) {
                 <div className="contentCont">
                     <DisplayGrades current_grades = {current_grades}/>
                     <GradeCalculator current_courses={current_courses} gradeWeight={grade_weights} current_grades = {current_grades}/>
-                    {upcoming_grades && <UpcomingGrades upcoming_grades={upcoming_grades}/>}
+                    {upcoming_grades && <UpcomingGrades upcoming_grades={upcoming_grades} current_grades={current_grades}/>}
                 </div>
             </div>
         </div>

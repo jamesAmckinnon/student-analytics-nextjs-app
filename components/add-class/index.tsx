@@ -27,6 +27,7 @@ function AddClass( {router: { query }} ) {
                 body: JSON.stringify({
                 semester_id,
                 course_name,
+                course_code
                 }),
             })
             setSubmitting(false)

@@ -58,7 +58,7 @@ function SemesterChoices( {semester} ) {
                                             </div>
                                         </Link>
                                         { deleteBool &&
-                                            <a onClick={() => deleteHandler(e.semester_id)} className="deleteEntry mr-1">
+                                            <a onClick={() => deleteHandler(e.semester_id)} className="deleteEntry h-31px flex items-center ml-2">
                                             <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                                             </a> 
                                         }
