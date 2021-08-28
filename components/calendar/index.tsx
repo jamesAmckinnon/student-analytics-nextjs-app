@@ -131,67 +131,70 @@ function Calendar( {user_id, current_semester} ) {
       return time.join (''); 
     }
 
-    return (
-        <>    
-        { width > 630 && 
-          <div className="flex flex-row"> 
-            <div className="flex flex-col ">
-              <div className="w-full border-customGrey  text-lg bg-customGrey4 text-center">Monday</div>  
-              <div className="flex flex-col w-full h-full border-r">
-                {schedule && orderDays("monday")}
-              </div> 
-            </div>
-            <div className="flex flex-col">
-              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Tuesday</div>
-              <div className="flex flex-col w-full h-full border-r"> 
-                {schedule && orderDays("tuesday")}
+    if(schedule && schedule.length != 0) {
+      return (
+          <>    
+          { width > 630 && 
+            <div className="flex flex-row"> 
+              <div className="flex flex-col ">
+                <div className="w-full border-customGrey  text-lg bg-customGrey4 text-center">Monday</div>  
+                <div className="flex flex-col w-full h-full border-r">
+                  {schedule && orderDays("monday")}
+                </div> 
               </div>
-            </div>
-            <div className="flex flex-col">
-              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Wednesday</div>
-              <div className="flex flex-col w-full h-full border-r"> 
-                {schedule && orderDays("wednesday")}
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Thursday</div>
-              <div className="flex flex-col w-full h-full border-r"> 
-                {schedule && orderDays("thursday")}
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Friday</div>
-              <div className="flex flex-col w-full h-full "> 
-                {schedule && orderDays("friday")}
-              </div>
-            </div>
-          </div>} 
-        { width < 630 && schedule && schedule.length != 0 &&
-          <div className="flex flex-row">
-              <button className="mr-4" onClick={ () => { cycleDays("left") }}> <img src="/leftArrow.svg" style={{ height: 21, width: 13, cursor: 'pointer'}}/> </button>
-                <div className="flex flex-col w-full">
-                  <div className="w-full border-customGrey  text-lg bg-customGrey4 text-center">{day.charAt(0).toUpperCase() + day.slice(1)}</div> 
-                  <div className="text-center">
-                    {schedule && orderDays(day)}
-                  </div>
+              <div className="flex flex-col">
+                <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Tuesday</div>
+                <div className="flex flex-col w-full h-full border-r"> 
+                  {schedule && orderDays("tuesday")}
                 </div>
-              <button className="ml-4" onClick={() => {  cycleDays("right") }}><img src="/rightArrow.svg" style={{ height: 21, width: 13, cursor: 'pointer'}}/></button>
-          </div>
-        } 
-        { schedule && schedule.length === 0 &&
-          <div className="flex flex-col w-full items-center ">
-            <div className="contentCont flex flex-start w-full mb-4">
-              <div className="border-4 rounded-lg border-customOrange mt-6 px-2 pb-3px">
-                  <h3 className="font-bold text-2xl">Schedule</h3>
               </div>
+              <div className="flex flex-col">
+                <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Wednesday</div>
+                <div className="flex flex-col w-full h-full border-r"> 
+                  {schedule && orderDays("wednesday")}
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Thursday</div>
+                <div className="flex flex-col w-full h-full border-r"> 
+                  {schedule && orderDays("thursday")}
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Friday</div>
+                <div className="flex flex-col w-full h-full "> 
+                  {schedule && orderDays("friday")}
+                </div>
+              </div>
+            </div>} 
+          { width < 630 && schedule && schedule.length != 0 &&
+            <div className="flex flex-row">
+                <button className="mr-4" onClick={ () => { cycleDays("left") }}> <img src="/leftArrow.svg" style={{ height: 21, width: 13, cursor: 'pointer'}}/> </button>
+                  <div className="flex flex-col w-full">
+                    <div className="w-full border-customGrey  text-lg bg-customGrey4 text-center">{day.charAt(0).toUpperCase() + day.slice(1)}</div> 
+                    <div className="text-center">
+                      {schedule && orderDays(day)}
+                    </div>
+                  </div>
+                <button className="ml-4" onClick={() => {  cycleDays("right") }}><img src="/rightArrow.svg" style={{ height: 21, width: 13, cursor: 'pointer'}}/></button>
             </div>
-            <div className="contentCont items-center flex justify-center w-full shadow h-100px rounded-xl mt-2">
-              <h3 className="flex text-lg justify-center">No course times entered</h3> 
+          } 
+          </>
+      )
+    } else {
+      return (
+        <div className="flex flex-col w-full items-center ">
+          <div className="contentCont flex flex-start w-full mb-4">
+            <div className="border-4 rounded-lg border-customOrange mt-6 px-2 pb-3px">
+                <h3 className="font-bold text-2xl">Schedule</h3>
             </div>
           </div>
-        }
-        </>
-    )
+          <div className="contentCont items-center flex justify-center w-full shadow h-100px rounded-xl mt-2">
+            <h3 className="flex text-lg justify-center">No course times entered</h3> 
+          </div>
+        </div>
+      )
+    }
   } 
 
 export default Calendar
