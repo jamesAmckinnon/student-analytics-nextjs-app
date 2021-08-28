@@ -24,7 +24,7 @@ function SemesterChoices( {semester} ) {
     }
 
     function userConfirmation(season, year) {
-        return confirm(`All semester information for ${season} ${year} will be permanently deleted`)
+        return confirm(`All semester and course information for ${season} ${year} will be permanently deleted`)
     }
 
     if (semester) {

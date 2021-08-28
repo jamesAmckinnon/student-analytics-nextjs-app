@@ -13,11 +13,20 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
     }
   }
 
-  async function deleteHandler(course_id) {
-    document.getElementById(`${course_id}`).style.display = "none";
-    let res = await fetch(`/api/delete-course?course_id=${course_id}`, { method: 'DELETE' })
-    let json = await res.json()
-    if (!res.ok) throw Error(json.message)
+  async function deleteHandler(course_id, course_name) {
+
+    if(userConfirmation(course_name)){
+      document.getElementById(`${course_id}`).style.display = "none";
+      let res = await fetch(`/api/delete-course?course_id=${course_id}`, { method: 'DELETE' })
+      let json = await res.json()
+      if (!res.ok) throw Error(json.message)
+    } else {
+      return
+    }
+  }
+
+  function userConfirmation(course_name) {
+    return confirm(`All course information for ${course_name} will be permanently deleted`)
   }
 
   if (course) {
@@ -76,7 +85,7 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
                             </div>
                           </Link>
                           { deleteBool &&
-                            <a onClick={() => deleteHandler(e.course_id)} className="deleteEntry h-31px flex items-center ml-2">
+                            <a onClick={() => deleteHandler(e.course_id, e.course_name)} className="deleteEntry h-31px flex items-center ml-2">
                                 <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                             </a> 
                           }

@@ -6,12 +6,15 @@ import { withRouter } from 'next/router';
 import { useDayTime } from '@/lib/swr-hooks';
 import Link from 'next/link';
 import { useState } from 'react';
+import Router from 'next/router'
+
 
 function Class( { router: { query } } ) {
   const object = JSON.parse(query.object);
   const { course_day_time } = useDayTime(object.semester_id, object.course_id )
   const [targetGpa, setTargetGpa] = useState(false)
   const [gpa, setGpa] = useState(object.target_course_gpa)
+
 
   function toggleSetGpa(toggle_delete) {
     if(!toggle_delete){
@@ -29,9 +32,11 @@ function Class( { router: { query } } ) {
     if(isNumeric(gpa)){
       document.getElementById('gpa').style.backgroundColor = 'white';
       setTargetGpa(false)
+      object.target_course_gpa = gpa
       let res = await fetch(`/api/add-target-course-gpa?course_id=${object.course_id}&gpa=${gpa}`, { method: 'POST' })
       let json = await res.json()
       if (!res.ok) throw Error(json.message)
+      Router.push({ pathname: '/school/settings/class',  query: { object: JSON.stringify(object) }})
     } else {
       document.getElementById('gpa').style.backgroundColor = '#FF9494';
     }

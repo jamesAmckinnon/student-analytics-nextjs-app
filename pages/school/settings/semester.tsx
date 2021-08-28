@@ -27,7 +27,7 @@ function Semester( { router: { query } } ) {
     year: object.year,
     semester_id: object.semester_id,
     current_semester: current_semester,
-    target_gpa: object.target_gpa,
+    target_gpa: gpa,
     user_id: userEmail
   }
 
