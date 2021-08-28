@@ -323,7 +323,9 @@ input {
     grid-template-rows: min-content 1fr;
   }
 
-
+  .scheduleCont{
+    margin-top: 20px !important;
+  }
   
   .sideBar {
     display: none;

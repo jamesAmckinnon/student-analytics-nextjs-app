@@ -15,10 +15,10 @@ return (
     <Layout>
       <>
         <div className=" mx-6">
-          <div className="w-full mt-2">
+          <div className="scheduleCont w-full mt-2">
             <Link href='/scheduling/settings/add-due-dates'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link> 
           </div>     
-          <div className="flex justify-center w-full my-12">
+          <div className="flex justify-center w-full my-8">
             { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
           </div>
           <div className="page-container flex justify-center items-center w-full mt-6">

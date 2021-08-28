@@ -16,16 +16,16 @@ function MainDashboard() {
     return (
       <Layout>
         <>
-          <div className="flex flex-col w-full px-6 mt-8 pb-12">
+          <div className="flex flex-col w-full px-6 mt-8">
             <div className="addDashboard flex flex-row">
               <Link href='/school/settings/add'>
-                <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey5 rounded-md cursor-pointer">
+                <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey5 rounded cursor-pointer">
                   <img src="/add-icon-simple.svg" style={{ height: 28, width: 17, cursor: 'pointer'}}/>
                   <h3 className="ml-12px text-lg text-customGrey3 font-bold">Grades</h3>
                 </div>
               </Link>
               <Link href='/scheduling/settings/add-due-dates'>
-                <div className="flex flex-row items-center ml-4 px-12px py-3px border-2 border-customGrey5 rounded-md cursor-pointer">
+                <div className="flex flex-row items-center ml-4 px-12px py-3px border-2 border-customGrey5 rounded cursor-pointer">
                   <img src="/add-icon-simple.svg" style={{ height: 28, width: 17, cursor: 'pointer'}}/>
                   <h3 className="ml-12px text-lg text-customGrey3 font-bold">Schedule</h3>
                 </div>
