@@ -16,7 +16,7 @@ function MainDashboard() {
     return (
       <Layout>
         <>
-          <div className="page-container flex flex-col w-full px-6 mt-8">
+          <div className="flex flex-col w-full px-6 mt-8 pb-12">
             <div className="addDashboard flex flex-row">
               <Link href='/school/settings/add'>
                 <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey rounded-md cursor-pointer">
