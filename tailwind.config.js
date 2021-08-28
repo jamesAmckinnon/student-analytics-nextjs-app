@@ -15,6 +15,8 @@ module.exports = {
         'customGrey': '#d0d0d0ff',
         'customGrey2': '#7e7e7eff',
         'customGrey3': '#292929ff',
+        'customGrey4' : '#f8f9faff',
+        'customGrey5' : '#edeff2ff',
         'selectGrey': '#ddddddff',
         'customRed': '#ff0000ff',
         'bgBlue': '#c9f3ffff',
@@ -56,6 +58,7 @@ module.exports = {
       },
       margin: {
         '2px': '2px',
+        '5px': '5px',
         '12px': '12px',
         '22px': '22px',
         '1px':'1px',

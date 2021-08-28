@@ -242,7 +242,7 @@ function DisplayGrades( { current_grades } ) {
     return (
       <div className="flex flex-col">
         <div className="flex flex-start w-full mb-4">
-          <div className="border-4 rounded-lg border-customGreen mt-6 px-2 pb-3px">
+          <div className="border-4 rounded-lg border-customGreen px-2 pb-3px">
               <h3 className="font-bold text-2xl">Weighted Grades</h3>
           </div>
         </div>

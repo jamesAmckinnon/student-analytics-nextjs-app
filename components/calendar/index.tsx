@@ -134,21 +134,48 @@ function Calendar( {user_id, current_semester} ) {
     return (
         <>    
         { width > 630 && 
-          <div className="flex flex-row mt-6">  
-            {schedule && orderDays("monday")}
-            {schedule && orderDays("tuesday")}
-            {schedule && orderDays("wednesday")}
-            {schedule && orderDays("thursday")}
-            {schedule && orderDays("friday")}
+          <div className="flex flex-row"> 
+            <div className="flex flex-col ">
+              <div className="w-full border-customGrey  text-lg bg-customGrey4 text-center">Monday</div>  
+              <div className="flex flex-col w-full h-full border-r">
+                {schedule && orderDays("monday")}
+              </div> 
+            </div>
+            <div className="flex flex-col">
+              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Tuesday</div>
+              <div className="flex flex-col w-full h-full border-r"> 
+                {schedule && orderDays("tuesday")}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Wednesday</div>
+              <div className="flex flex-col w-full h-full border-r"> 
+                {schedule && orderDays("wednesday")}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Thursday</div>
+              <div className="flex flex-col w-full h-full border-r"> 
+                {schedule && orderDays("thursday")}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div className="w-full border-customGrey bg-customGrey4 text-lg text-center">Friday</div>
+              <div className="flex flex-col w-full h-full "> 
+                {schedule && orderDays("friday")}
+              </div>
+            </div>
           </div>} 
         { width < 630 && schedule && schedule.length != 0 &&
           <div className="flex flex-row">
-              <button onClick={ () => { cycleDays("left") }}> {"<"} </button>
+              <button className="mr-4" onClick={ () => { cycleDays("left") }}> <img src="/leftArrow.svg" style={{ height: 21, width: 13, cursor: 'pointer'}}/> </button>
                 <div className="flex flex-col w-full">
-                  <div className="text-center">{day}</div> 
-                  {schedule && orderDays(day)}
+                  <div className="w-full border-customGrey  text-lg bg-customGrey4 text-center">{day.charAt(0).toUpperCase() + day.slice(1)}</div> 
+                  <div className="text-center">
+                    {schedule && orderDays(day)}
+                  </div>
                 </div>
-              <button onClick={() => {  cycleDays("right") }}>{">"}</button>
+              <button className="ml-4" onClick={() => {  cycleDays("right") }}><img src="/rightArrow.svg" style={{ height: 21, width: 13, cursor: 'pointer'}}/></button>
           </div>
         } 
         { schedule && schedule.length === 0 &&

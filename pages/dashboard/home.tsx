@@ -19,19 +19,19 @@ function MainDashboard() {
           <div className="flex flex-col w-full px-6 mt-8 pb-12">
             <div className="addDashboard flex flex-row">
               <Link href='/school/settings/add'>
-                <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey rounded-md cursor-pointer">
+                <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey5 rounded-md cursor-pointer">
                   <img src="/add-icon-simple.svg" style={{ height: 28, width: 17, cursor: 'pointer'}}/>
-                  <h3 className="ml-12px text-lg font-bold">Grades</h3>
+                  <h3 className="ml-12px text-lg text-customGrey3 font-bold">Grades</h3>
                 </div>
               </Link>
               <Link href='/scheduling/settings/add-due-dates'>
-                <div className="flex flex-row items-center ml-4 px-12px py-3px border-2 border-customGrey rounded-md cursor-pointer">
+                <div className="flex flex-row items-center ml-4 px-12px py-3px border-2 border-customGrey5 rounded-md cursor-pointer">
                   <img src="/add-icon-simple.svg" style={{ height: 28, width: 17, cursor: 'pointer'}}/>
-                  <h3 className="ml-12px text-lg font-bold">Schedule</h3>
+                  <h3 className="ml-12px text-lg text-customGrey3 font-bold">Schedule</h3>
                 </div>
               </Link> 
             </div>
-            <div className="mt-8 mb-2 flex justify-center w-full">
+            <div className="my-16 flex justify-center w-full">
               { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>
             <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail}/>
