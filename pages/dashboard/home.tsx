@@ -35,7 +35,7 @@ function MainDashboard() {
               { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>
             <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail}/>
-            <div className="flex flex-col w-full items-center">
+            <div className="flex flex-col w-full items-center mb-12">
               <div className="dueDateCont">
                 <div className="page-container justify-items-center w-full">
                   { current_semester && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}

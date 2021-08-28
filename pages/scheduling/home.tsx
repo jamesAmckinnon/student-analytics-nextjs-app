@@ -21,7 +21,7 @@ return (
           <div className="flex justify-center w-full my-8">
             { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
           </div>
-          <div className="page-container flex justify-center items-center w-full mt-6">
+          <div className="page-container flex justify-center items-center w-full my-6">
             <div className="dueDateCont">
               { current_semester && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>
