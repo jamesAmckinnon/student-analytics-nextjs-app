@@ -16,7 +16,7 @@ function MainDashboard() {
     return (
       <Layout>
         <>
-          <div className="flex flex-col w-full px-6 mt-8">
+          <div className="flex flex-col w-full px-6 mt-8 pb-12">
             <div className="addDashboard flex flex-row">
               <Link href='/dashboard/add-grade'>
                 <div className="flex flex-row items-center px-12px py-3px border-2 border-customGrey5 rounded cursor-pointer">
@@ -35,7 +35,7 @@ function MainDashboard() {
               { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>
             <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail}/>
-            <div className="flex flex-col w-full items-center mb-12">
+            <div className="flex flex-col w-full items-center">
               <div className="dueDateCont">
                 <div className="page-container justify-items-center w-full">
                   { current_semester && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}

@@ -72,16 +72,21 @@ export default function Nav( {users, beta_test} ) {
       <>
         {!menu && <div className="mainNav py-4 px-6">
           <nav>
-            <div className="flex justify-between items-center">
-              <Link href="/">
-                <a className="font-bold text-3xl"></a>
-              </Link>
+            <div className="flex w-full justify-between items-center">
               {width > 870 &&
-                <button onClick={() => { signOut() }}>Sign Out</button>
+                <div className="flex flex-row w-full justify-between">
+                  <h3 className="text-2xl text-customGrey3 font-bold">Student Dashboard</h3>
+
+                  <button onClick={() => { signOut() }}>Sign Out</button>
+                </div>
               } {width < 870 && 
-                  <div className="w-full flex justify-end">
+                <div className="flex flex-row w-full justify-between items-center">
+                  <h3 className="text-2xl text-customGrey3 font-bold">Student Dashboard</h3>
+
+                  <div className="flex items-center">
                     <button onClick={ menuOpen }><img src="/menu.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img></button>
                   </div>
+                </div>
               }
             </div>
           </nav>

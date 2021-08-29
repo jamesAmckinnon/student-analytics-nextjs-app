@@ -14,7 +14,7 @@ function Scheduling() {
 return (
     <Layout>
       <>
-        <div className=" mx-6">
+        <div className=" mx-6 pb-12">
           <div className="scheduleCont w-full mt-2">
             <Link href='/scheduling/settings/add-due-dates'><img src="/add-icon.svg" style={{ height: 80, width: 50, cursor: 'pointer'}}/></Link> 
           </div>     
