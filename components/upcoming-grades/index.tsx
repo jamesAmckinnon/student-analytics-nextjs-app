@@ -123,8 +123,9 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
             for (let dueDate of ordered) {
                 if(dueDate[5] >= 0 && dueDate[3] >=0 && count < 5) {
                 count ++
+                var marginTop = `flex flex-col justify-between ${count === 1 ? "" : "mt-4"}`
                 htmlDiv.push(
-                            <div className="flex flex-col justify-between mb-4">
+                            <div className= {marginTop}>
                                 <h3 className="text-sm">{dueDate[5]} {dueDate[5] === 1 ? 'Day' : 'Days'}</h3> 
                                 <div className="flex flex-row w-full justify-between">
                                     <div className="flex flex-row center-items">
@@ -146,8 +147,8 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
           <>
           { width > 630 && 
             <div className="flex flex-col">
-                <div className="flex flex-start w-full mt-2">
-                    <div className="border-4 rounded-lg mt-6 border-customBlue px-2 pb-3px">
+                <div className="flex flex-start w-full">
+                    <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                         <h3 className="font-bold text-2xl">Upcoming</h3>
                     </div>
                 </div>
@@ -166,8 +167,8 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
     
             { width < 630 && 
             <div className="flex flex-col">
-                <div className="flex flex-start w-full mt-2">
-                    <div className="border-4 rounded-lg mt-6 border-customBlue px-2 pb-3px">
+                <div className="flex flex-start w-full">
+                    <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                         <h3 className="font-bold text-2xl">Upcoming</h3>
                     </div>
                 </div>
@@ -212,7 +213,7 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
     if(upcoming_grades){
         return (
         <>
-        <div className="pb-10">  
+        <div className="mt-12">  
           {upcoming_grades && orderDueDates(upcoming_grades, daysUntil(upcoming_grades))}
         </div>
             {/* { width < 500 &&

@@ -1,29 +1,34 @@
 import Link from 'next/link'
-import Layout from "pages/layout"
-import DisplayGrades from '@/components/display-grades'
-import UpcomingGrades from '@/components/upcoming-grades'
-import GradeCalculator from '@/components/grade-calculator'
-import { useCurrentGrades, useCurrentSem } from '@/lib/swr-hooks'
+import Layout from 'pages/layout'
+import SemesterChoices from '@/components/semester-choices'
+import { useSemester } from '@/lib/swr-hooks'
 import { useSession } from 'next-auth/client'
-import SchoolMain from '@/components/school-main'
+import { useCurrentSem } from '@/lib/swr-hooks'
+import { useState } from 'react'
 
-function School() {
+function ChooseSemester() {
   const [session] = useSession();
   const userEmail = session?.user?.email;
+  const { semester } = useSemester(userEmail);
   const { current_semester } = useCurrentSem(userEmail)
-
-  if(current_semester) {
+  
+  if(current_semester){
     return (
       <Layout>
         <>         
-          {current_semester[0] && <SchoolMain current_semester = {current_semester[0].current_semester} user_id={userEmail}/>}
+          <div className="page-container w-full grid justify-items-center">
+              <div className="small-container py-4 px-6">
+                <div className="">
+                  <SemesterChoices semester = {semester} /> 
+                </div>
+              </div>
+          </div>
         </>
       </Layout>
     )
   } else {
     return null
   }
-
   } 
 
-export default School
+export default ChooseSemester

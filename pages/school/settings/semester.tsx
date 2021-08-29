@@ -153,12 +153,12 @@ function Semester( { router: { query } } ) {
                     </div>
                     {current_semester && <ClassesSection season={object.season} year={object.year} semester_id={object.semester_id} course={course} object2={object2} current_semester={current_semester[0].current_semester} user_id={userEmail}/>}
                     <div className="py-6">
-                    <div className="w-full flex justify-between">
-                      <Link href='/school/settings/choose-semester'>
+                    <div className="w-full flex justify-end">
+                      {/* <Link href='/school/settings/choose-semester'>
                             <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
-                      </Link> 
+                      </Link>  */}
                       <Link href='/school/home'>
-                        <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
+                        <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
                       </Link>
                     </div>
                      

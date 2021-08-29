@@ -16,7 +16,7 @@ function Semester() {
             <div className="small-container py-4 px-6">  
               <AddSemester title="Add Semester" entries={entries} user_id= {user_id}/>
               <div className="w-full my-4 flex justify-end">
-                <Link href='/school/settings/choose-semester'>
+                <Link href='/school/home'>
                   <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
                 </Link>
               </div>

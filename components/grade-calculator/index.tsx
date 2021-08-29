@@ -93,95 +93,97 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
 
     return (
     <>
-        <div className="flex flex-start w-full my-4">
-            <div className="border-4 rounded-lg border-customYellow mt-6 px-2 pb-3px">
-                <h3 className="font-bold text-2xl">Grade Calculator</h3>
-            </div>
-        </div>
-        <form onSubmit={gradeNeed} autoComplete="off">
-            <div className="flex flex-row w-full my-4">
-                <label className="flex items-center " htmlFor="course">
-                <h3 className="font-bold">Course: </h3>
-                </label>
-                { current_courses && current_courses.length != 0 && 
-                <select
-                id="course"
-                className="select shadow border rounded ml-2"
-                name="course"
-                value={course}
-                onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
-                >
-                    <option value=''>Select</option>
-                        {current_courses.map((e) => (
-                    <option value={e.course_name}>{e.course_name}</option>
-                ))}
-                </select>}
-                { current_courses && current_courses.length === 0 && 
-                <select
-                id="course"
-                className="select shadow border text-center rounded ml-2"
-                name="course"
-                value={course}
-                onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
-                >
-                    <option value=''>Select</option>
-                    <option className="" value=''>--- No Courses Added ---</option>
-                </select>}
-            </div>
-            { gradeWeight && sortGradeWeights()}
-            { (weights.length != 0) &&
-                <div className="flex flex-row w-full my-4">
-                    <label  className="flex items-center "  htmlFor="grade_type">
-                    <h3 className="font-bold">Grade Type:</h3>
-                    </label>
-                    <select
-                    id="grade_type"
-                    className="select ml-2 shadow border rounded"
-                    name="grade_type"
-                    // value={grade_type}
-                    onChange={(e) => setGradeWeight(e.target.value)}
-                    >
-                        <option value="none">Select</option>
-                        {weights.map((e) => (
-                            <option value={e[0]}>({e[0]}%)&nbsp;&nbsp;{e[1]}</option>
-                        ))}
-                    </select>
+        <div className="mt-12">
+            <div className="flex flex-start w-full mb-4">
+                <div className="border-4 rounded-lg border-customYellow px-2 pb-3px">
+                    <h3 className="font-bold text-2xl">Grade Calculator</h3>
                 </div>
-            }
-            { (weights.length === 0) && course != '' &&
-                <>
-                    <div className="flex flex-row w-full my-4 items-center">
+            </div>
+            <form onSubmit={gradeNeed} autoComplete="off">
+                <div className="flex flex-row w-full mt-4">
+                    <label className="flex items-center " htmlFor="course">
+                    <h3 className="font-bold">Course: </h3>
+                    </label>
+                    { current_courses && current_courses.length != 0 && 
+                    <select
+                    id="course"
+                    className="select shadow border rounded ml-2"
+                    name="course"
+                    value={course}
+                    onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
+                    >
+                        <option value=''>Select</option>
+                            {current_courses.map((e) => (
+                        <option value={e.course_name}>{e.course_name}</option>
+                    ))}
+                    </select>}
+                    { current_courses && current_courses.length === 0 && 
+                    <select
+                    id="course"
+                    className="select shadow border text-center rounded ml-2"
+                    name="course"
+                    value={course}
+                    onChange={(e) => {setCourse(e.target.value); getCourseInfo(e.target.value);}}
+                    >
+                        <option value=''>Select</option>
+                        <option className="" value=''>--- No Courses Added ---</option>
+                    </select>}
+                </div>
+                { gradeWeight && sortGradeWeights()}
+                { (weights.length != 0) &&
+                    <div className="flex flex-row w-full mt-4">
+                        <label  className="flex items-center "  htmlFor="grade_type">
                         <h3 className="font-bold">Grade Type:</h3>
-                        <select className="select shadow border rounded ml-2">
-                            <option>Select</option>
-                            <option>--- No Weights Added ---</option>
+                        </label>
+                        <select
+                        id="grade_type"
+                        className="select ml-2 shadow border rounded"
+                        name="grade_type"
+                        // value={grade_type}
+                        onChange={(e) => setGradeWeight(e.target.value)}
+                        >
+                            <option value="none">Select</option>
+                            {weights.map((e) => (
+                                <option value={e[0]}>({e[0]}%)&nbsp;&nbsp;{e[1]}</option>
+                            ))}
                         </select>
                     </div>
-                </>
-            }
-            { (weights.length != 0) &&
-                <div className="flex flex-row font-bold my-4">
-                    <h3>Desired Course Grade: </h3>
-                    <input
-                        id="desired"
-                        autoComplete="off"
-                        className="border-b border-black text-center pl-1 pr-1 w-35px mb-1 ml-2"
-                        name="description"
-                        type="text"
-                        placeholder="%"
-                        value={desired_grade}
-                        onChange={(e) => setDesiredGrade(e.target.value)}
-                        />
-                </div>
-            }
-            {desired_grade != '' && grade_type != 0 && course != '' && course_grade != 0 &&(weights.length != 0) &&
-                <div className="flex flex-row my-4">
-                    <h3 className="font-bold">Grade Needed:</h3>
-                    <h3 className="ml-2">{Number.isNaN(Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)  ? '' :
-                                          (Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)}</h3>
-                </div>
-            }
-        </form>
+                }
+                { (weights.length === 0) && course != '' &&
+                    <>
+                        <div className="flex flex-row w-full my-4 items-center">
+                            <h3 className="font-bold">Grade Type:</h3>
+                            <select className="select shadow border rounded ml-2">
+                                <option>Select</option>
+                                <option>--- No Weights Added ---</option>
+                            </select>
+                        </div>
+                    </>
+                }
+                { (weights.length != 0) &&
+                    <div className="flex flex-row font-bold mt-4">
+                        <h3>Desired Course Grade: </h3>
+                        <input
+                            id="desired"
+                            autoComplete="off"
+                            className="border-b border-black text-center pl-1 pr-1 w-35px mb-1 ml-2"
+                            name="description"
+                            type="text"
+                            placeholder="%"
+                            value={desired_grade}
+                            onChange={(e) => setDesiredGrade(e.target.value)}
+                            />
+                    </div>
+                }
+                {desired_grade != '' && grade_type != 0 && course != '' && course_grade != 0 &&(weights.length != 0) &&
+                    <div className="flex flex-row mt-4">
+                        <h3 className="font-bold">Grade Needed:</h3>
+                        <h3 className="ml-2">{Number.isNaN(Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)  ? '' :
+                                            (Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)}</h3>
+                    </div>
+                }
+            </form>
+        </div>
     </>
 )
 }
