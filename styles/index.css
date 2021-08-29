@@ -173,6 +173,7 @@ input[type=number] {
 
 .select {
   width: auto;
+  max-width: 250px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
