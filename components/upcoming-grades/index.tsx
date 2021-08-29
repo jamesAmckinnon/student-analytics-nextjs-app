@@ -210,7 +210,7 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
     if(upcoming_grades){
         return (
         <>
-        <div className="pb-12">  
+        <div className="">  
           {upcoming_grades && orderDueDates(upcoming_grades, daysUntil(upcoming_grades))}
         </div>
             {/* { width < 500 &&
