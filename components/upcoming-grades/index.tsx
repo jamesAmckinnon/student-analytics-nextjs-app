@@ -127,8 +127,10 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
                             <div className="flex flex-col justify-between mb-4">
                                 <h3 className="text-sm">{dueDate[5]} {dueDate[5] === 1 ? 'Day' : 'Days'}</h3> 
                                 <div className="flex flex-row w-full justify-between">
-                                    <div className="flex flex-row">
-                                        <h3 className="py-1 px-2 bg-bgBlue text-sm">{dueDate[0]}</h3>
+                                    <div className="flex flex-row center-items">
+                                        <div className="w-min whitespace-nowrap">
+                                            <h3 className="py-1 px-2 h- bg-bgBlue text-sm inline-block">{dueDate[0]}</h3>
+                                        </div>
                                         <h3 className="py-1 px-2 text-sm">{dueDate[1]}</h3>
                                     </div>
                                     <div className="flex items-center justify-center w-107px text-center">
@@ -210,7 +212,7 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
     if(upcoming_grades){
         return (
         <>
-        <div className="pb-12">  
+        <div className="pb-10">  
           {upcoming_grades && orderDueDates(upcoming_grades, daysUntil(upcoming_grades))}
         </div>
             {/* { width < 500 &&

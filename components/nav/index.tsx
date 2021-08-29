@@ -75,18 +75,13 @@ export default function Nav( {users, beta_test} ) {
             <div className="flex w-full justify-between items-center">
               {width > 870 &&
                 <div className="flex flex-row w-full justify-between">
-                  <h3 className="text-2xl text-customGrey3 font-bold">Student Dashboard</h3>
+                  <h3 className="text-4xl text-customGrey3 font-bold">Student Dashboard</h3>
 
                   <button onClick={() => { signOut() }}>Sign Out</button>
                 </div>
               } {width < 870 && 
-                <div className="flex flex-row w-full justify-between items-center">
-                  <h3 className="text-2xl text-customGrey3 font-bold">Student Dashboard</h3>
-
-                  <div className="flex items-center">
-                    <button onClick={ menuOpen }><img src="/menu.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img></button>
-                  </div>
-                </div>
+                <div className="flex flex-row w-full justify-end items-center">
+                  <button onClick={ menuOpen }><img src="/menu.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img></button>                </div>
               }
             </div>
           </nav>

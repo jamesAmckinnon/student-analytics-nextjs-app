@@ -106,7 +106,7 @@ function DueDates( {user_id, current_semester} ) {
                           </div>
                           <div className="text-center font-bold">{dueDate[3] + " days"}</div>
                         </div>
-                        <div className="dueDates">
+                        <div className="flex flex-row justify-between">
                           <div className="ml-1">{dueDate[1]}</div>
                           <div className="text-sm text-right">{dueDate[2]}</div>
                         </div>
@@ -202,7 +202,7 @@ function DueDates( {user_id, current_semester} ) {
 
   return (
       <>    
-        <div className="flex flex-row justify-center pb-12">  
+        <div className="flex flex-row justify-center pb-10">  
           {due_dates && orderDueDates(due_dates, daysUntil(due_dates))}
         </div>
       </>
