@@ -17,6 +17,7 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
 
     if(userConfirmation(course_name)){
       document.getElementById(`${course_id}`).style.display = "none";
+      document.getElementById(`${(course_id * -1).toString()}`).style.display = "none";
       let res = await fetch(`/api/delete-course?course_id=${course_id}`, { method: 'DELETE' })
       let json = await res.json()
       if (!res.ok) throw Error(json.message)
@@ -86,7 +87,7 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
                           </Link>
                           { deleteBool &&
                             <a onClick={() => deleteHandler(e.course_id, e.course_name)} className="deleteEntry h-31px flex items-center ml-2">
-                                <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                                <img id={(e.course_id * -1).toString()} src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                             </a> 
                           }
                         </div>

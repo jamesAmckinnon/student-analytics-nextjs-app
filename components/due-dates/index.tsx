@@ -133,7 +133,7 @@ function DueDates( {user_id, current_semester} ) {
       {/* { width > 630 &&  */}
       { due_dates && due_dates.length != 0 &&
         <div className="flex flex-col w-full">
-          <div className="flex justify-start w-full mb-2">
+          <div className="flex justify-start w-full">
             <div className="border-4 rounded-lg border-customOrange px-2 pb-3px">
                 <h3 className="font-bold text-2xl">Due Dates</h3>
             </div>
@@ -148,7 +148,7 @@ function DueDates( {user_id, current_semester} ) {
       }
       { due_dates && due_dates.length === 0 &&
         <div className="flex flex-col w-full items-center p-1px">
-          <div className="flex justify-start w-full mb-2">
+          <div className="flex justify-start w-full">
             <div className="border-4 rounded-lg border-customOrange px-2 pb-3px">
                 <h3 className="font-bold text-2xl">Due Dates</h3>
             </div>

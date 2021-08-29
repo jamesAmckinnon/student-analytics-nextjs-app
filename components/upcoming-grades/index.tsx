@@ -102,17 +102,22 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
             for (let dueDate of ordered) {
                 if(dueDate[5] >= 0 && dueDate[3] >=0 && count < 5) {
                 count ++
+                var marginTop = `flex flex-row justify-between ${count === 1 ? "" : "mt-4"}`
                 htmlDiv.push(                             
-                            <div className="flex flex-col justify-between mb-4">
-                                <h3 className="text-sm">{dueDate[5]} &nbsp; {dueDate[5] === 1 ? 'Day' : 'Days'}</h3> 
-                                <div className="flex flex-row w-full justify-between">
-                                    <div className="flex flex-row">
-                                        <h3 className="py-1 px-2 bg-bgBlue text-sm">{dueDate[6]}</h3>
-                                        <h3 className="py-1 px-2 text-sm">{dueDate[1]}</h3>
+                            <div className= {marginTop}>
+                                <div className="flex flex-col w-full justify-between">
+                                    <div className="flex flex-row center-items">
+                                        <div className="w-min whitespace-nowrap">
+                                            <h3 className="py-1 px-2 h- bg-bgBlue text-sm inline-block">{dueDate[6]}</h3>
+                                        </div>
+                                        <h3 className="flex items-center ml-2 text-sm">&nbsp; ({dueDate[5]} {dueDate[5] === 1 ? 'Day' : 'Days'})</h3> 
                                     </div>
-                                    <div className="flex items-center justify-center w-107px text-center">
-                                        {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[7]) ) * 100 + Number.EPSILON ) / 100)}%
+                                    <div className="flex flex-row justify-between">
+                                        <h3 className="py-1 text-sm">{dueDate[1]}</h3>
                                     </div>
+                                </div>
+                                <div className="flex items-center justify-center w-107px text-center">
+                                    {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[7]) ) * 100 + Number.EPSILON ) / 100)}%
                                 </div>
                             </div>
                             )
@@ -123,20 +128,22 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
             for (let dueDate of ordered) {
                 if(dueDate[5] >= 0 && dueDate[3] >=0 && count < 5) {
                 count ++
-                var marginTop = `flex flex-col justify-between ${count === 1 ? "" : "mt-4"}`
+                var marginTop = `flex flex-row justify-between ${count === 1 ? "" : "mt-4"}`
                 htmlDiv.push(
                             <div className= {marginTop}>
-                                <h3 className="text-sm">{dueDate[5]} {dueDate[5] === 1 ? 'Day' : 'Days'}</h3> 
-                                <div className="flex flex-row w-full justify-between">
+                                <div className="flex flex-col w-full justify-between">
                                     <div className="flex flex-row center-items">
                                         <div className="w-min whitespace-nowrap">
                                             <h3 className="py-1 px-2 h- bg-bgBlue text-sm inline-block">{dueDate[0]}</h3>
                                         </div>
-                                        <h3 className="py-1 px-2 text-sm">{dueDate[1]}</h3>
+                                        <h3 className="flex items-center ml-2 text-xs">&nbsp; ({dueDate[5]} {dueDate[5] === 1 ? 'Day' : 'Days'})</h3> 
                                     </div>
-                                    <div className="flex items-center justify-center w-107px text-center">
-                                        {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[7]) ) * 100 + Number.EPSILON ) / 100)}%
+                                    <div className="flex flex-row justify-between">
+                                        <h3 className="py-1 text-sm">{dueDate[1]}</h3>
                                     </div>
+                                </div>
+                                <div className="flex items-center justify-center w-107px text-center">
+                                    {(Math.round( ( gradeNeeded(dueDate[2], dueDate[3], dueDate[7]) ) * 100 + Number.EPSILON ) / 100)}%
                                 </div>
                             </div>
                             )
@@ -146,7 +153,7 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
         return (
           <>
           { width > 630 && 
-            <div className="flex flex-col">
+            <div className="upcomingCont flex flex-col">
                 <div className="flex flex-start w-full">
                     <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                         <h3 className="font-bold text-2xl">Upcoming</h3>
@@ -166,7 +173,7 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
             </div> } 
     
             { width < 630 && 
-            <div className="flex flex-col">
+            <div className="upcomingCont flex flex-col">
                 <div className="flex flex-start w-full">
                     <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                         <h3 className="font-bold text-2xl">Upcoming</h3>
@@ -213,7 +220,7 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
     if(upcoming_grades){
         return (
         <>
-        <div className="mt-12">  
+        <div className="flex items-center justify-center mt-12">  
           {upcoming_grades && orderDueDates(upcoming_grades, daysUntil(upcoming_grades))}
         </div>
             {/* { width < 500 &&

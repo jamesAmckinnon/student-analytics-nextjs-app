@@ -96,6 +96,11 @@ input[type=number] {
   width: 95%;
 }
 
+.upcomingCont {
+  width: 100%;
+  max-width: 700px;
+}
+
 .select1 {
   width: 220px;
 }

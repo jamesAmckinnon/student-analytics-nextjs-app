@@ -15,6 +15,7 @@ function SemesterChoices( {semester} ) {
     async function deleteHandler(semester_id, season, year) {
         if(userConfirmation(season, year)){
             document.getElementById(`${semester_id}`).style.display = "none";
+            document.getElementById(`${(semester_id * -1).toString()}`).style.display = "none";
             let res = await fetch(`/api/delete-semester?semester_id=${semester_id}`, { method: 'DELETE' })
             let json = await res.json()
             if (!res.ok) throw Error(json.message)
@@ -67,7 +68,7 @@ function SemesterChoices( {semester} ) {
                                         </Link>
                                         { deleteBool &&
                                             <a onClick={() => deleteHandler(e.semester_id, e.semester_season, e.semester_year)} className="deleteEntry h-31px flex items-center ml-2">
-                                                <img src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
+                                                <img id={(e.semester_id * -1).toString()} src="/delete-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                                             </a> 
                                         }
                                     </div>
