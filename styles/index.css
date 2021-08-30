@@ -220,8 +220,6 @@ input[type=number] {
   color:#4a4a4aff;
   border: 1px solid #dadce0;
   background:white;
-  appearance:none;
-
 }
 
 .selectDate {
@@ -235,8 +233,6 @@ input[type=number] {
   color:#4a4a4aff;
   border: 1px solid #dadce0;
   background:white;
-  appearance:none;
-
 }
 
 .contentCont {
