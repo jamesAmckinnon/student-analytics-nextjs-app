@@ -3,6 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/client";
 export default function Logic ({children}) {
     const [session, loading] = useSession();
 
+
     return (
         <>     
             {session && (
@@ -26,6 +27,7 @@ export default function Logic ({children}) {
                     </div>
                 </div>
             )}
+
         </>
     )
 }

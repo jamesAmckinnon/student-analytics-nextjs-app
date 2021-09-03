@@ -42,7 +42,7 @@ export default function Nav( {users, beta_test} ) {
   }
 
     async function newUser() {
-      
+
 
       try {
         const res = await fetch('/api/new-user', {
@@ -78,8 +78,11 @@ export default function Nav( {users, beta_test} ) {
               {width > 870 &&
                 <div className="flex flex-row w-full justify-between">
                   <h3 className="text-4xl text-customGrey3 font-bold">Student Dashboard</h3>
-
-                  <button onClick={() => { signOut() }}>Sign Out</button>
+                  <div className="px-2 flex items-center">
+                    <button className="px-2 py-5px" onClick={() => { signOut() }}>
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
               } {width < 870 && 
                 <div className="flex flex-row w-full justify-end items-center">
@@ -91,7 +94,9 @@ export default function Nav( {users, beta_test} ) {
         {menu && <div className="flex flex-col p-6 h-screen w-full absolute bg-white">
             <div className="flex flex-row w-full justify-between">
               <button className="border-2 border-customBlue font-bold text-customGrey2 px-2 rounded pb-1px" onClick={() => { signOut() }}>
-                Sign Out
+                <div className="">
+                  Sign Out
+                </div>
               </button>
               <button onClick={ menuClose }>
                 <img src="/delete-icon.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img>
