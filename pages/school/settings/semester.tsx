@@ -31,7 +31,7 @@ function Semester( { router: { query } } ) {
     user_id: userEmail
   }
 
-
+  /////////////////////////////////////////////// need to set the semester as current semester if it is the only semester that has been created
   function setTheSemester(semesterNum) {
     setCurSemester(semesterNum)
   }

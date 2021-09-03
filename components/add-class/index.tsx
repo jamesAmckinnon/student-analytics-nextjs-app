@@ -77,7 +77,7 @@ function AddClass( {router: { query }} ) {
                                     type="text" 
                                     className="border-b border-black mx-5 w-90px pl-2" 
                                     placeholder="MATH 225"
-                                    maxLength={10} 
+                                    maxLength={14} 
                                     name="course_name"
                                     value={course_code}
                                     onChange={ (e) => {setCourseCode(e.target.value)}}

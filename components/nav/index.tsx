@@ -29,7 +29,7 @@ export default function Nav( {users, beta_test} ) {
 
   console.log(path)
 
-  if(users) { ////////////////////// bad. more users == slower
+  if(users) { 
     var isNewUser = true;
     users.map((u) => {
       if(u.user_id === userEmail){
@@ -42,6 +42,8 @@ export default function Nav( {users, beta_test} ) {
   }
 
     async function newUser() {
+      
+
       try {
         const res = await fetch('/api/new-user', {
           method: 'POST',

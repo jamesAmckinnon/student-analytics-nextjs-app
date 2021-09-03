@@ -47,7 +47,6 @@ function SemesterChoices( {semester} ) {
                     <div className="flex flex-col">
                         {semester.map((e) => {
                             if(e.semester_season != null){
-                                console.log(e.current_semester)
                                 const object = {
                                     season: e.semester_season,
                                     year: e.semester_year,
