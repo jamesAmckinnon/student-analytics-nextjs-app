@@ -36,20 +36,23 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
         //for each course that has grade entries
         var weighted_grades = 0;
         var weight_percents = 0;
-        var weighted_course_grades = []
-        for ( var grade_item of current_grades ){
-            //for every grade entry in the course
-            if ( grade_item.course_id === course_id){
-                // console.log(grade_item.grade_weight)
-                weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
-                weight_percents += grade_item.grade_weight
-                //create dictionary entry for weight
+        var unknown_grade;
+
+        if(current_grades.length != 0){
+            for ( var grade_item of current_grades ){
+                //for every grade entry in the course
+                if ( grade_item.course_id === course_id){
+                    weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+                    weight_percents += grade_item.grade_weight
+                }       
             }
-            // console.log(grade_type, "<--- grade_type")        
+            weight_percents += grade_type//
+            unknown_grade = ( (parseFloat(desired_grade) * weight_percents) -  weighted_grades) / grade_type;
+
+        } else {
+            unknown_grade = ( (parseFloat(desired_grade) * grade_type) -  0) / grade_type;
         }
 
-        weight_percents += grade_type//
-        var unknown_grade = ( (parseFloat(desired_grade) * weight_percents) -  weighted_grades) / grade_type;
 
 
         return unknown_grade
@@ -70,7 +73,7 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
             }
         }
     }
-
+    
     function setGradeWeight( weightId ){
         setGradeType(parseFloat(weightId))
     }
@@ -123,7 +126,6 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
                         id="grade_type"
                         className="select ml-2 shadow border rounded"
                         name="grade_type"
-                        // value={grade_type}
                         onChange={(e) => setGradeWeight(e.target.value)}
                         >
                             <option value="none">Select</option>
@@ -159,7 +161,7 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
                             />
                     </div>
                 }
-                {desired_grade != '' && grade_type != 0 && course != '' && course_grade != 0 &&(weights.length != 0) &&
+                {desired_grade != '' && grade_type != 0 && course != '' && (weights.length != 0) &&
                     <div className="flex flex-row mt-4">
                         <h3 className="font-bold">Grade Needed:</h3>
                         <h3 className="ml-2">{Number.isNaN(Math.round( gradeNeed() * 100 + Number.EPSILON ) / 100)  ? '' :
