@@ -18,27 +18,24 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
         //for each course that has grade entries
         var weighted_grades = 0;
         var weight_percents = 0;
-        var weighted_course_grades = []
+        var unknown_grade;
 
-        for ( var grade_item of current_grades ){
-            //for every grade entry in the course
-            console.log(course_id, "<--- course_id")
-            if ( grade_item.course_id === course_id){
-                // console.log(grade_item.grade_weight)
-                weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
-                weight_percents += grade_item.grade_weight
-                //create dictionary entry for weight
+        if(current_grades.length != 0){
+            for ( var grade_item of current_grades ){
+                //for every grade entry in the course
+                if ( grade_item.course_id === course_id){
+                    weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+                    weight_percents += grade_item.grade_weight
+                    //create dictionary entry for weight
+                }
+        
             }
-            // console.log(grade_type, "<--- grade_type")        
+            weight_percents += weight
+            unknown_grade = ( (parseFloat(target) * weight_percents) -  weighted_grades) / weight;
+        } else {
+            unknown_grade = ( (parseFloat(target) * weight) -  0) / weight;
         }
 
-        weight_percents += weight//
-        // console.log( parseFloat(target), " * ", weight_percents, " - ",  weighted_grades,  "/", weight)
-        var unknown_grade = ( (parseFloat(target) * weight_percents) -  weighted_grades) / weight;
-    
-
-        // console.log(`${weighted_grades} / ${weight_percents}`)
-        // console.log(unknown_grade, "<--- the grades")
         
         return unknown_grade
     }
@@ -46,7 +43,6 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
     function orderDueDates(dates, daysUntil){
         var ordered = [];
     
-        // console.log(dates)
         for(let i = 0 ; i < dates.length; i++){
           ordered.push([
             dates[i].course_code, 
@@ -54,8 +50,6 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
             dates[i].target_course_gpa,
             dates[i].grade_weight,
             dates[i].grade_total,
-            
-
             daysUntil[i],
             dates[i].course_name,
             dates[i].course_id,
@@ -195,14 +189,6 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
           </>
         )
       }
-
-
-
-
-
-
-
-
 
     function daysUntil(dates){ 
         var days_until = [] 

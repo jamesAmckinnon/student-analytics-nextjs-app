@@ -10,7 +10,6 @@ function DueDates( {user_id, current_semester} ) {
 
   async function deleteHandler(due_date_id) {
     document.getElementById(`${due_date_id}`).style.display = "none";
-    console.log(due_date_id)
     let res = await fetch(`/api/delete-due-date?due_date_id=${due_date_id}`, { method: 'DELETE' })
     let json = await res.json()
     if (!res.ok) throw Error(json.message)

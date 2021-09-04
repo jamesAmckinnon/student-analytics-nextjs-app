@@ -49,12 +49,8 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
         }
 
         weight_percents += grade_type//
-        console.log( parseFloat(desired_grade), " * ", weight_percents, " - ",  weighted_grades,  "/", grade_type)
         var unknown_grade = ( (parseFloat(desired_grade) * weight_percents) -  weighted_grades) / grade_type;
-    
 
-        console.log(`${weighted_grades} / ${weight_percents}`)
-        console.log(unknown_grade, "<--- the grades")
 
         return unknown_grade
     }

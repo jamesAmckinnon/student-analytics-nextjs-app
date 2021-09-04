@@ -26,14 +26,11 @@ function AddScheduleSlots({ current_courses, current_semester, user_id }) {
     const [time10, setTime10] = useState("")
     const [day, setDay] = useState("")
     const [submitting, setSubmitting] = useState(false)
-    console.log(current_semester)
 
     async function submitHandler(e) {
         setSubmitting(true)
-        console.log(course1, "hi")
         e.preventDefault()
         try {
-            console.log(course1, "hi")
             const res = await fetch('/api/add-schedule-slots', {
                 method: 'POST',
                 headers: {

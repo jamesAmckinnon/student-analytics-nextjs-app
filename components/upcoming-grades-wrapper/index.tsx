@@ -9,12 +9,10 @@ import { useSession } from 'next-auth/client'
 function UpcomingGradesWrapper( { current_semester, user_id } ) {
   const { current_grades } = useCurrentGrades( current_semester )
   const { upcoming_grades } = useUpcomingGrades( current_semester )
-  const { current_courses } = useCurrentCourse( user_id )
-  const { grade_weights } = useGradeWeights( current_semester )
 
   return (
       <>         
-        {upcoming_grades && <UpcomingGrades upcoming_grades={upcoming_grades} current_grades={current_grades}/>}
+        {upcoming_grades && current_grades && <UpcomingGrades upcoming_grades={upcoming_grades} current_grades={current_grades}/>}
       </>
 
   )

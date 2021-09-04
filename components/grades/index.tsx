@@ -21,7 +21,6 @@ function Grades( {object, title } ) {
   }
 
   if (grades) {
-    console.log(grades)
     return (
       <div>
         <div className="pt-4 pb-2 pr-0 mt-3 w-full flex flex-row justify-between items-center">

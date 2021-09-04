@@ -27,8 +27,6 @@ export default function Nav( {users, beta_test} ) {
     width < 600;
   },[width]);
 
-  console.log(path)
-
   if(users) { 
     var isNewUser = true;
     users.map((u) => {

@@ -155,9 +155,6 @@ function Semester( { router: { query } } ) {
                     {current_semester && <ClassesSection season={object.season} year={object.year} semester_id={object.semester_id} course={course} object2={object2} current_semester={current_semester[0].current_semester} user_id={userEmail}/>}
                     <div className="py-6">
                     <div className="w-full flex justify-end">
-                      {/* <Link href='/school/settings/choose-semester'>
-                            <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
-                      </Link>  */}
                       <Link href='/school/home'>
                         <button className="border-2 border-black font-bold py-1 px-2 rounded">Back</button>
                       </Link>
@@ -173,10 +170,3 @@ function Semester( { router: { query } } ) {
   } 
 
 export default withRouter(Semester);
-
-//semester
-//semester?object=%7B%22season%22%3A%22Fall%22%2C%22year%22%3A2021%2C%22semester_id%22%3A45%2C%22current_semester%22%3A55%2C%22target_gpa%22%3A3.7%2C%22user_id%22%3A%22james.mckinnon95%40gmail.com%22%7D
-//add class
-//add-class?object=%7B%22season%22%3A%22Fall%22%2C%22year%22%3A2021%2C%22semester_id%22%3A45%2C%22current_semester%22%3A55%2C%22target_gpa%22%3A3.7%2C%22user_id%22%3A%22james.mckinnon95%40gmail.com%22%7D
-//back to semester
-//semester?object=%7B%22season%22%3A%22Fall%22%2C%22year%22%3A2021%2C%22semester_id%22%3A45%2C%22current_semester%22%3A55%2C%22target_gpa%22%3A3.7%7D

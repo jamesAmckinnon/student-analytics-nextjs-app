@@ -43,9 +43,6 @@ function ClassesSection( {season, year, semester_id, course, object2, current_se
       user_id: user_id,
     };
 
-
-
-    console.log(object)
     return (
       <div>
         <div className="py-4 my-3 w-full h-80px flex flex-row justify-between">

@@ -13,8 +13,6 @@ function MainDashboard() {
   const [session] = useSession();
   const userEmail = session?.user?.email;
   const { current_semester } = useCurrentSem(userEmail)
-  const { upcoming_grades } = useUpcomingGrades( current_semester )
-  const { current_grades } = useCurrentGrades( current_semester )
   const { semester } = useSemester(userEmail)
 
   
@@ -38,14 +36,14 @@ function MainDashboard() {
               </Link> 
             </div>
             <div className="my-16 flex justify-center w-full">
-              { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
+              { current_semester.length != 0 && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>
-            <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail} semester={semester}/>
-            { current_semester[0] && <UpcomingGradesWrapper  current_semester = {current_semester[0].current_semester} user_id={userEmail}/>}
+            { current_semester.length != 0 && <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail} semester={semester}/>}
+            { current_semester.length != 0 && <UpcomingGradesWrapper  current_semester = {current_semester[0].current_semester} user_id={userEmail}/>}
             <div className="flex flex-col w-full items-center mt-12">
               <div className="dueDateCont">
                 <div className="page-container justify-items-center w-full">
-                  { current_semester && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}
+                  { current_semester.length != 0 && <DueDates user_id={userEmail} current_semester={current_semester[0].current_semester} />}
                 </div>
               </div>
             </div>

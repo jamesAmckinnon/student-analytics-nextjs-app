@@ -8,23 +8,22 @@ function Add() {
   const [ session ] = useSession()
   const { current_courses } = useCurrentCourse(session.user.email)
   
-  console.log(current_courses)
-    return (
-      <Layout>
-        <>
-          <div className="page-container w-full grid justify-items-center">
-            <div className="small-container py-4 px-6">  
-              <AddGrade current_courses={current_courses}/>
-              <div className="w-full flex justify-end">
-                <Link href='/dashboard/home'>
-                  <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
-                </Link>
-              </div>
+  return (
+    <Layout>
+      <>
+        <div className="page-container w-full grid justify-items-center">
+          <div className="small-container py-4 px-6">  
+            <AddGrade current_courses={current_courses}/>
+            <div className="w-full flex justify-end">
+              <Link href='/dashboard/home'>
+                <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
+              </Link>
             </div>
           </div>
-        </>
-      </Layout>
-    )
+        </div>
+      </>
+    </Layout>
+  )
 } 
  
 export default Add

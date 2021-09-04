@@ -17,21 +17,10 @@ function AddDates({ current_courses, current_semester, user_id }) {
     const [addAnother, setAddAnother] = useState('Add')
     var weights = []
 
-    console.log(
-        current_semester,
-        course_id,
-        due_date_description,
-        due_date,
-        grade_weight_id)
 
     async function submitHandler(e) {
         setSubmitting(true)
         e.preventDefault()
-        console.log(current_semester,
-            course_id,
-            due_date_description,
-            due_date,
-            grade_weight_id)
         if(course_id != 0 && due_date_description != '' && due_date != '' && grade_weight_id !=0){
             try {
                 const res = await fetch('/api/add-due-date', {
@@ -113,17 +102,7 @@ function AddDates({ current_courses, current_semester, user_id }) {
             }
         }
     }
-
-    // function setDisplayType (){
-
-
-    //     if(grade_weights.length != 0){
-    //         setDisplayGradeType(true)
-    //     } else {
-    //         setDisplayGradeType(false)
-    //     }
-    // }
-
+    
     if (current_courses && grade_weights) {
         
         return (
