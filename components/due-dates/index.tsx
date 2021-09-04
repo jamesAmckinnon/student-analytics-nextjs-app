@@ -10,6 +10,7 @@ function DueDates( {user_id, current_semester} ) {
 
   async function deleteHandler(due_date_id) {
     document.getElementById(`${due_date_id}`).style.display = "none";
+    console.log(due_date_id)
     let res = await fetch(`/api/delete-due-date?due_date_id=${due_date_id}`, { method: 'DELETE' })
     let json = await res.json()
     if (!res.ok) throw Error(json.message)
@@ -47,16 +48,19 @@ function DueDates( {user_id, current_semester} ) {
           var temp3 = ordered[i][2];
           var temp4 = ordered[i][3];
           var temp5 = ordered[i][4];
+          var temp6 = ordered[i][5];
           ordered[i][0] = ordered[i + 1][0];
           ordered[i][1] = ordered[i + 1][1];
           ordered[i][2] = ordered[i + 1][2];
           ordered[i][3] = ordered[i + 1][3];
           ordered[i][4] = ordered[i + 1][4];
+          ordered[i][5] = ordered[i + 1][5];
           ordered[i + 1][0] = temp1;
           ordered[i + 1][1] = temp2;
           ordered[i + 1][2] = temp3;
           ordered[i + 1][3] = temp4;
           ordered[i + 1][4] = temp5;
+          ordered[i + 1][5] = temp6;
         }
       }
     } while (count > 0)
@@ -130,7 +134,6 @@ function DueDates( {user_id, current_semester} ) {
 
     return (
       <>
-      {/* { width > 630 &&  */}
       { due_dates && due_dates.length != 0 &&
         <div className="flex flex-col w-full">
           <div className="flex justify-start w-full">
@@ -158,18 +161,6 @@ function DueDates( {user_id, current_semester} ) {
           </div>
         </div>
       }
-        {/* } */}
-
-        {/* { width < 630 && 
-          <div className="flex flex-col w-full max-w-3xl">
-            <a className="flex w-full justify-end items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
-              <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
-            </a>
-            <div className="w-full">
-              {htmlDiv}
-            </div>
-          </div>
-        } */}
       </>
     )
   }

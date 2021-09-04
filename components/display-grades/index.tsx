@@ -36,49 +36,6 @@ function DisplayGrades( { current_grades } ) {
     }
 
 
-    // var dict = {};
-
-    // dict['key'] = "testing";
-    
-    // console.log(dict);
-
-    //current_grades contains grade entries with grade weights and grade received for every entry
-    //this loop set calculates the weighted grades for all of the entries for each course
-    //need to calculate grade received * grade weight
-    //if there is more than one of the same grade weight then the grades received for that weight need to be averaged before the above calculation
-    // add up weighted grades ------------
-
-    //
-
-    
-    // //for each course that has grade entries
-    // for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
-    //   //for every grade entry in the course
-    //   var weights = [[], [], []]
-    //   var dict = {};
-    //   for ( var grade_item of current_grades ){
-    //     if ( grade_item.course_id === coursesWithGrades[j] && !weights[2].includes(grade_item.grade_weight_id) ){
-    //       //add weight to list
-    //       weights[0].push(grade_item.grade_weight)
-    //       weights[1].push(grade_item.grade_weight_type)
-    //       weights[2].push(grade_item.grade_weight_id)
-
-    //       //create dictionary entry for weight
-    //       dict[grade_item.grade_weight_id] = grade_item.grade_received;
-    //       gradeWeightVals[j][2].push(grade_item.course_id)
-    //     } else if ( grade_item.course_id === coursesWithGrades[j] && weights[2].includes(grade_item.grade_weight_id) ){
-    //       //get average of weight thats already in list and this new one
-    //       // console.log(grade_item.course_id, dict[grade_item.grade_weight_id]," + ", grade_item.grade_received, "/", 2, " = ", ( dict[grade_item.grade_weight_id] + grade_item.grade_received ) / 2)
-    //       dict[grade_item.grade_weight_id] = ( dict[grade_item.grade_weight_id] + grade_item.grade_received ) / 2;
-    //     }
-    //   }
-
-    //   for(var i = 0 ; i < weights[0].length ; i++){
-    //     // console.log( dict[weights[2][i]], " * ", weights[2][i], " * " , ".01" ) 
-    //     gradeWeightVals[j][0].push( ( dict[weights[2][i]] * (weights[0][i] * .01) ) )
-    //   }
-    // }
-
     var weightedGrades = new Array(gradeWeightVals.length)
 
     for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
@@ -99,62 +56,6 @@ function DisplayGrades( { current_grades } ) {
       weightedGrades[j] = [(weighted_grades / weight_percents), coursesWithGrades[j]]
       updateGrades(weightedGrades[j][0], weightedGrades[j][1])
     }
-
-    // for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
-    //   //use the newly calculated grade weights with the average grade entries
-    //   for ( var grade_item of current_grades ){
-    //     gradeWeightVals[j][0].push(( grade_item.grade_received * (grade_item.grade_weight * .01) ))
-        
-    //   }
-    // }
-    
-
-
-
-    // for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
-    //   for ( var grade_item of current_grades ){
-    //     if ( grade_item.course_id === coursesWithGrades[j]){
-    //       gradeWeightVals[j][0].push(( grade_item.grade_received * (grade_item.grade_weight * .01) ))
-    //       gradeWeightVals[j][2].push(grade_item.course_id)
-    //     }
-
-    //   }
-    // }
-
-    // //add up grade percentages -------
-    // for ( var k = 0 ; k < coursesWithGrades.length ; k++ ){
-    //   var weights = [[], [], []]
-    //   for ( var grade_item2 of current_grades ){
-    //     if ( grade_item2.course_id === coursesWithGrades[k] && !weights[2].includes(grade_item2.grade_weight_id) ){
-    //       // weights[0].push(grade_item2.grade_weight)
-    //       // weights[1].push(grade_item2.grade_weight_type)
-    //       weights[2].push(grade_item2.grade_weight_id)
-    //       gradeWeightVals[k][1].push( grade_item2.grade_weight )
-    //     }
-
-    //   }
-    //   // console.log(weights, "<--- weights")
-    // }
-
-
-    
-    // var weightedGrades = new Array(gradeWeightVals.length)
-    // // console.log(weightedGrades)
-    // for ( var a = 0 ; a < gradeWeightVals.length ; a++){
-    //   var weighted_grades = 0;
-    //   var weight_percents = 0;
-    //   for (var b = 0 ; b < gradeWeightVals[a][0].length ; b++){
-    //     weighted_grades += gradeWeightVals[a][0][b]
-    //     weight_percents += gradeWeightVals[a][1][b]
-    //     // console.log("weighted grades: ", weighted_grades, "+", gradeWeightVals[a][0][b] , "weighted percents: ", weight_percents, weighted_grades, "+", gradeWeightVals[a][1][b])
-    //   }
-    //   // console.log(weighted_grades, "/", weight_percents, " * 100", "course: ", gradeWeightVals[a][2][0] )
-    //   weightedGrades[a] = [(weighted_grades / weight_percents) * 100, gradeWeightVals[a][2][0]]
-    //   // console.log("weighted grade: ", weightedGrades[a])
-    //   updateGrades(weightedGrades[a][0], weightedGrades[a][1])
-    // }
-  
-
 
     async function updateGrades(grade, course_id) {
       try {
@@ -178,8 +79,10 @@ function DisplayGrades( { current_grades } ) {
 
     var semester_total = 0;
 
-    for(var grade_value of weightedGrades){
-      semester_total = semester_total + grade_value[0]
+    if(current_grades.length != 0) {
+      for(var grade_value of weightedGrades){
+        semester_total = semester_total + grade_value[0]
+      }
     }
 
     var htmlDiv = [];
@@ -272,24 +175,26 @@ function DisplayGrades( { current_grades } ) {
             </div>
           </div>
         }
-        { current_grades.length === 0 &&
-          <div className="flex w-full shadow text-lg h-100px rounded-xl mt-2 items-center justify-center">
-            <h3>No course information added</h3>
-          </div>
-        }
+
       </div>
     ) 
   }
-
-  if(current_grades ){
     return (
       <>
-      {grades()}
+      {current_grades && current_grades.length != 0 ? grades() : 
+          <>
+            <div className="flex flex-start w-full mb-4">
+              <div className="border-4 rounded-lg border-customGreen px-2 pb-3px">
+                  <h3 className="font-bold text-2xl">Weighted Grades</h3>
+              </div>
+            </div>
+            <div className="flex w-full shadow text-lg h-100px rounded-xl mt-2 items-center justify-center">
+              <h3>No course information added</h3>
+            </div>
+          </>
+      }
       </>
     )
-  } else {
-    return null
-  }
 }
 
 export default DisplayGrades

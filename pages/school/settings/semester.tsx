@@ -31,7 +31,8 @@ function Semester( { router: { query } } ) {
     user_id: userEmail
   }
 
-  /////////////////////////////////////////////// need to set the semester as current semester if it is the only semester that has been created
+
+
   function setTheSemester(semesterNum) {
     setCurSemester(semesterNum)
   }
@@ -61,7 +62,7 @@ function Semester( { router: { query } } ) {
       }
     } else {
       setChecked(false)
-      current_semester_id = 125 ///////// for home screen, if current semester === 125, display message saying choose current semester in settings
+      current_semester_id = 125 
       try {
         const res = await fetch('/api/add-current-semester', {
           method: 'POST',

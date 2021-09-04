@@ -3,7 +3,7 @@ import DueDates from "@/components/due-dates";
 import SchoolDashboard from "@/components/school-dashboard";
 import UpcomingGrades from "@/components/upcoming-grades";
 import UpcomingGradesWrapper from "@/components/upcoming-grades-wrapper";
-import { useCurrentGrades, useCurrentSem, useUpcomingGrades } from "@/lib/swr-hooks";
+import { useCurrentGrades, useCurrentSem, useSemester, useUpcomingGrades } from "@/lib/swr-hooks";
 import { useSession } from "next-auth/client";
 import Link from "next/link";
 import Layout from "pages/layout"
@@ -15,6 +15,7 @@ function MainDashboard() {
   const { current_semester } = useCurrentSem(userEmail)
   const { upcoming_grades } = useUpcomingGrades( current_semester )
   const { current_grades } = useCurrentGrades( current_semester )
+  const { semester } = useSemester(userEmail)
 
   
   if(current_semester) {
@@ -39,7 +40,7 @@ function MainDashboard() {
             <div className="my-16 flex justify-center w-full">
               { current_semester && <Calendar user_id={userEmail} current_semester={current_semester[0].current_semester} />}
             </div>
-            <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail}/>
+            <SchoolDashboard current_semester = {current_semester[0].current_semester} user_id={userEmail} semester={semester}/>
             { current_semester[0] && <UpcomingGradesWrapper  current_semester = {current_semester[0].current_semester} user_id={userEmail}/>}
             <div className="flex flex-col w-full items-center mt-12">
               <div className="dueDateCont">

@@ -221,63 +221,8 @@ function UpcomingGrades( { upcoming_grades, current_grades } ) {
         return (
         <>
         <div className="flex items-center justify-center mt-12">  
-          {upcoming_grades && orderDueDates(upcoming_grades, daysUntil(upcoming_grades))}
+          {upcoming_grades.length != 0 && orderDueDates(upcoming_grades, daysUntil(upcoming_grades))}
         </div>
-            {/* { width < 500 &&
-                <div className="flex flex-col">
-                    <div className="flex flex-start w-full mt-2">
-                        <div className="border-4 rounded-lg mt-6 border-customBlue px-2 pb-3px">
-                            <h3 className="font-bold text-2xl">Upcoming</h3>
-                        </div>
-                    </div>
-                    <div className="flex justify-end">
-                        <h2 className="font-bold">Grade Needed</h2>
-                    </div>
-                    <div className="flex flex-col">
-                        { upcoming_grades.map( (e) => (
-                            <div className="flex flex-row justify-between my-2">
-                                <div className="flex flex-col">
-                                    <div className="flex w-full justify-start">
-                                        <h3 className="py-1 px-2 bg-bgBlue text-sm">{e.course_code}</h3>
-                                    </div>
-                                    <h3>{e.due_date_description}</h3> 
-                                </div>
-                                <div className="flex items-center justify-center w-107px text-center">
-                                    {(Math.round( ( gradeNeeded(e) ) * 100 + Number.EPSILON ) / 100)}%
-                                </div>
-                            </div>
-                        ))}   
-                    </div>
-                </div>
-            } 
-            
-            { width > 500 && 
-                <div className="flex flex-col">
-                    <div className="flex flex-start w-full mt-2">
-                        <div className="border-4 rounded-lg mt-6 border-customBlue px-2 pb-3px">
-                            <h3 className="font-bold text-2xl">Upcoming</h3>
-                        </div>
-                    </div>
-                    <div className="flex justify-end">
-                        <h2 className="font-bold">Grade Needed</h2>
-                    </div>
-                    <div className="flex flex-col">
-                        { upcoming_grades.map( (e) => (
-                            <div className="flex flex-row justify-between my-2">
-                                <div className="flex flex-col">
-                                    <div className="flex w-full justify-start">
-                                        <h3 className="py-1 px-2 bg-bgBlue text-sm">{e.course_name}</h3>
-                                    </div>
-                                    <h3>{e.due_date_description}</h3> 
-                                </div>
-                                <div className="flex items-center justify-center w-107px text-center">
-                                    {(Math.round( ( gradeNeeded(e) ) * 100 + Number.EPSILON ) / 100)}%
-                                </div>
-                            </div>
-                        ))}   
-                    </div>
-                </div>
-            } */}
         </>
         )
     } else {

@@ -41,7 +41,6 @@ function AddGrades( {current_courses} ) {
                 const json = await res.json()
                 if (!res.ok) throw Error(json.message)
                 setCourse("")
-                Router.push('/school/settings/add')
             } catch (e) {
                 throw Error(e.message)
             }

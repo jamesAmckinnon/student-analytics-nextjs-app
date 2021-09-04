@@ -6,11 +6,14 @@ import GradeCalculator from '@/components/grade-calculator'
 import { useCurrentCourse, useCurrentGrades, useDueDates, useUpcomingGrades, useGradeWeights } from '@/lib/swr-hooks'
 import { useSession } from 'next-auth/client'
 
-function SchoolDashboard( { current_semester, user_id } ) {
+function SchoolDashboard( { current_semester, user_id, semester } ) {
   const { current_grades } = useCurrentGrades( current_semester )
   const { upcoming_grades } = useUpcomingGrades( current_semester )
   const { current_courses } = useCurrentCourse( user_id )
   const { grade_weights } = useGradeWeights( current_semester )
+
+ 
+
 
   return (
       <>         

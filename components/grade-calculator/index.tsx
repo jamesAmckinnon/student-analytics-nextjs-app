@@ -33,18 +33,6 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
 
 
     function gradeNeed(){
-
-        // will need to use values from the select inputs in the calculations.
-        // will only need to make the calculations with grade entries that 
-        // have the same course_id as the select input that the user pressed
-        // 
-        //   0: Array(2)
-        //     0: 93.0909090909091       weighted_grade of course 
-        //     1: 5                      course_id
-
-
-
-
         //for each course that has grade entries
         var weighted_grades = 0;
         var weight_percents = 0;
