@@ -85,6 +85,7 @@ function AddGrades( {current_courses} ) {
                     </div>
                 </div>
                 <form onSubmit={submitHandler} autoComplete="off">
+                    { current_courses != 0 &&
                     <div className="flex flex-row my-4">
                         <label className="flex items-center " htmlFor="course">
                             <h3 className="font-bold">Course: </h3>
@@ -102,6 +103,25 @@ function AddGrades( {current_courses} ) {
                         ))}
                         </select>
                     </div>
+                    }
+
+                    { current_courses.length === 0 && 
+                        <div className="flex flex-row my-4">
+                            <label className="flex items-center " htmlFor="course">
+                                <h3 className="font-bold">Course: </h3>
+                            </label>
+                            <select
+                            id="course"
+                            className="select shadow border rounded ml-2"
+                            name="course"
+                            value={course}
+                            >
+                                <option value=''>Select</option>
+                                <option className="" value=''>--- No Courses Added ---</option>
+                            </select>
+                        </div>
+                    }
+
                     { (gradeWeight.length != 0) &&
                         <div className="flex flex-row my-4">
                             <label className="flex items-center " htmlFor="grade_type">

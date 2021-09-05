@@ -125,21 +125,39 @@ function AddDates({ current_courses, current_semester, user_id }) {
                                 id="due-date" 
                                 name="due-date"/>
                             </div>
-                            <div className="py-2 flex flex-row items-center">
-                                <h3 className="font-bold">Course: </h3>
-                                <select
+                            { current_courses.length != 0 &&
+                                <div className="py-2 flex flex-row items-center">
+                                    <h3 className="font-bold">Course: </h3>
+                                    <select
+                                        id="course"
+                                        className="select shadow border rounded ml-4"
+                                        name="course"
+                                        value={course}
+                                        onChange={(e) => { setCourse(e.target.value);  getCourseInfo(e.target.value); }}
+                                    >
+                                        <option value="115">Select</option> 
+                                        {current_courses.map((e) => (
+                                            <option value={e.course_name}>{e.course_name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            }
+                            
+                            { current_courses.length === 0 && 
+                                <div className="py-2 flex flex-row items-center">
+                                    <h3 className="font-bold">Course: </h3>
+                                    <select
                                     id="course"
                                     className="select shadow border rounded ml-4"
                                     name="course"
                                     value={course}
-                                    onChange={(e) => { setCourse(e.target.value);  getCourseInfo(e.target.value); }}
-                                >
-                                    <option value="115">Select</option> 
-                                    {current_courses.map((e) => (
-                                        <option value={e.course_name}>{e.course_name}</option>
-                                    ))}
-                                </select>
-                            </div>
+                                    >
+                                        <option value=''>Select</option>
+                                        <option className="" value=''>--- No Courses Added ---</option>
+                                    </select>
+                                </div>
+                            }
+
                             { grade_weights && sortGradeWeights()}
                             { (weights.length != 0) &&
                                 <div className="flex flex-row my-2 items-center">

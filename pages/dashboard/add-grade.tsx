@@ -13,7 +13,7 @@ function Add() {
       <>
         <div className="page-container w-full grid justify-items-center">
           <div className="small-container py-4 px-6">  
-            <AddGrade current_courses={current_courses}/>
+            {current_courses && <AddGrade current_courses={current_courses}/>}
             <div className="w-full flex justify-end">
               <Link href='/dashboard/home'>
                 <button className="border-2 border-black font-bold py-1 px-2 rounded">Done</button>
