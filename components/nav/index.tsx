@@ -8,7 +8,7 @@ import { useBetaTest } from '@/lib/swr-hooks'
 
 
 
-export default function Nav( {users, beta_test} ) {
+export default function Nav( {users} ) {
   const [session] = useSession();
   const userEmail = session?.user?.email;
   const [width, setWidth] = useState(window.innerWidth);
@@ -40,8 +40,6 @@ export default function Nav( {users, beta_test} ) {
   }
 
     async function newUser() {
-
-
       try {
         const res = await fetch('/api/new-user', {
           method: 'POST',
@@ -67,7 +65,6 @@ export default function Nav( {users, beta_test} ) {
       setMenu(false)
     }
   
-  if(beta_test) {
     return (
       <>
         {!menu && <div className="mainNav py-4 px-6">
@@ -84,7 +81,8 @@ export default function Nav( {users, beta_test} ) {
                 </div>
               } {width < 870 && 
                 <div className="flex flex-row w-full justify-end items-center">
-                  <button onClick={ menuOpen }><img src="/menu.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img></button>                </div>
+                  <button onClick={ menuOpen }><img src="/menu.svg" style={{ height: 35, width: 29, cursor: 'pointer'}}></img></button>                
+                </div>
               }
             </div>
           </nav>
@@ -117,9 +115,6 @@ export default function Nav( {users, beta_test} ) {
                   }
                 </div>
               </Link>
-              <div className="flex flex-row items-center justify-between">
-              {beta_test[0].health_beta != 0 && 
-              <Link href="/health/home"><a onClick={ menuClose } className="font-bold text-3xl">Health</a></Link>}              </div>
               <Link href="/scheduling/home">
                 <div className="flex flex-row items-center justify-between cursor-pointer">
                   <a onClick={ menuClose } className="font-bold text-3xl">Scheduling</a>
@@ -132,7 +127,4 @@ export default function Nav( {users, beta_test} ) {
         </div>}
       </>
     )
-  } else {
-    return null
-  }
-}
+  } 
