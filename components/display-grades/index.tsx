@@ -189,7 +189,7 @@ function DisplayGrades( { current_grades } ) {
               </div>
             </div>
             <div className="flex w-full shadow text-lg h-100px rounded-xl mt-2 items-center justify-center">
-              <h3>No grades added</h3>
+              <h3>No grades entered</h3>
             </div>
           </>
       }
