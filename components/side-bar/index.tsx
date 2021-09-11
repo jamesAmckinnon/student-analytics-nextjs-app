@@ -52,6 +52,20 @@ function SideBar( ) {
               } 
             </div>
           </Link>
+          <Link href='/feedback/home'>
+            <div className="feedback border-b border-black cursor-pointer">
+              {path.substring(1,9) != "feedback" && 
+              <div className="p-6">
+                  Feedback
+              </div>
+              } 
+              {path.substring(1,9) === "feedback" && 
+                <div className="border-r-9px p-6 border-customBlue">
+                  Feedback
+                </div>
+              } 
+            </div>
+          </Link>
       </div>
     </>
   )

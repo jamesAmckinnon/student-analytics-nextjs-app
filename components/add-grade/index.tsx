@@ -81,7 +81,7 @@ function AddGrades( {current_courses} ) {
             <>
                 <div className="py-2 pr-0 w-full flex flex-row justify-between items-center">
                     <div className="border-4 rounded-lg border-green-500 px-2 pb-3px">
-                       <h3 className="font-bold text-3xl">Grades</h3>
+                       <h3 className="font-bold text-3xl">Add Grade</h3>
                     </div>
                 </div>
                 <form onSubmit={submitHandler} autoComplete="off">

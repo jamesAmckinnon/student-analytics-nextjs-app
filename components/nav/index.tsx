@@ -123,6 +123,14 @@ export default function Nav( {users} ) {
                   }
                 </div>
               </Link>
+              <Link href="/feedback/home">
+                <div className="flex flex-row items-center justify-between cursor-pointer">
+                  <a onClick={ menuClose } className="font-bold text-3xl">Feedback</a>
+                  { path.substring(1,9) === "feedback" &&
+                    <span className="dot"></span>
+                  }
+                </div>
+              </Link>
             </div>
         </div>}
       </>

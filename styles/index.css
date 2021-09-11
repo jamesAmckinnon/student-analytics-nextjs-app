@@ -251,6 +251,37 @@ input {
   border-radius: 0px;
 }
 
+textarea:focus {
+  outline: none !important;
+}
+
+/* Works on Firefox */
+textarea {
+  scrollbar-width: thin;
+  scrollbar-color: grey white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+textarea::-webkit-scrollbar {
+  width: 12px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: none;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: lightgrey;
+  border-radius: 20px;
+  border: 3px solid white;
+}
+
+textarea {
+  padding: 5px;
+  min-height: 230px;
+  height: fit-content;
+}
+
 .calendar {
   max-width: 700px;
 }
