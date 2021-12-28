@@ -34,25 +34,110 @@ function GradeCalculator( { current_courses, gradeWeight, current_grades  }) {
 
     function gradeNeed(){
         //for each course that has grade entries
-        var weighted_grades = 0;
-        var weight_percents = 0;
+        // var weighted_grades = 0;
+        // var weight_percents = 0;
+        // var unknown_grade;
+
+        // if(current_grades.length != 0){
+        //     for ( var grade_item of current_grades ){
+        //         //for every grade entry in the course
+        //         if ( grade_item.course_id === course_id){
+        //             weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+        //             weight_percents += grade_item.grade_weight
+        //         }       
+        //     }
+        //     weight_percents += grade_type//
+        //     unknown_grade = ( (parseFloat(desired_grade) * weight_percents) -  weighted_grades) / grade_type;
+
+        // } else {
+        //     unknown_grade = ( (parseFloat(desired_grade) * grade_type) -  0) / grade_type;
+        // }
+
+        
+            // for ( var grade_item of current_grades ){
+            //     //for every grade entry in the course
+            //     if ( grade_item.course_id === course_id){
+            //         weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
+            //         weight_percents += grade_item.grade_weight
+            //     }       
+            // }
+            // weight_sum += grade_type//
+            // unknown_grade = ( (parseFloat(desired_grade) * weight_sum) -  weighted_av_sum) / grade_type;
+
+      
+
+        var coursesWithGrades = []
+        var modified_current_grades = current_grades
+        var courseNames = []
+        var courseCodes = []
+        var targetCourseGrade = []
+        var targetGrade = []
         var unknown_grade;
+    
+        // modified_current_grades.push({"course_id": course_id, })
 
         if(current_grades.length != 0){
-            for ( var grade_item of current_grades ){
-                //for every grade entry in the course
-                if ( grade_item.course_id === course_id){
-                    weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
-                    weight_percents += grade_item.grade_weight
-                }       
+            for ( var grade of current_grades ){
+                if(!coursesWithGrades.includes(grade.course_id)){
+                    coursesWithGrades.push(grade.course_id)
+                    courseNames.push(grade.course_name)
+                    targetCourseGrade.push(grade.target_course_gpa)
+                    targetGrade.push(grade.target_gpa)
+                    courseCodes.push(grade.course_code)
+                }
             }
-            weight_percents += grade_type//
-            unknown_grade = ( (parseFloat(desired_grade) * weight_percents) -  weighted_grades) / grade_type;
+        
+            var gradeWeightVals = new Array(coursesWithGrades.length)
+            for (var i = 0; i < gradeWeightVals.length; i++) {
+            gradeWeightVals[i] = [[],[],[]];
+            }
+        
+        
+        
+            var weightedGrade = 0
+            
 
+            //for each course that has grade entries
+            var weight_sum = 0;
+            var weighted_av_sum = 0;
+            var grade_type_average = []
+            var grade_types = [[],[]]
+
+            for ( var k = 0 ; k < current_grades.length ; k++  ){
+                if (grade_types[0].includes(current_grades[k].grade_weight_id) === false && current_grades[k].course_id === course_id){
+                    console.log("here")
+                    grade_types[0].push(current_grades[k].grade_weight_id)
+                    grade_types[1].push(current_grades[k].grade_weight)
+                } 
+            }
+
+            var sums_of_grades = new Array(grade_types[0].length).fill(0)
+            var number_of_grades = new Array(grade_types[0].length).fill(0)
+
+            for (var l = 0 ; l < current_grades.length ; l++  ){
+                if(current_grades[l].course_id ===  course_id && grade_types[0].includes(current_grades[l].grade_weight_id) ){
+                    sums_of_grades[grade_types[0].indexOf(current_grades[l].grade_weight_id)] += current_grades[l].grade_received
+                    number_of_grades[grade_types[0].indexOf(current_grades[l].grade_weight_id)] += 1
+                }
+            }
+
+            for (var m = 0 ; m < sums_of_grades.length ; m++){
+                grade_type_average[m] = sums_of_grades[m] / number_of_grades[m]
+            }
+
+            for (var n = 0 ; n < grade_type_average.length ; n++){
+                console.log(grade_types)
+                weighted_av_sum += (grade_type_average[n] * grade_types[1][n])
+                weight_sum += grade_types[1][n]
+            }
+
+            weightedGrade = (weighted_av_sum / weight_sum)
+            console.log(desired_grade, "  -  ", grade_type, "  - ", weightedGrade)
+            // console.log(parseFloat(desired_grade) * weight_sum, "  -  " , weighted_av_sum, "  / " , grade_type )
+            unknown_grade = ( parseFloat(desired_grade) - ((100 - grade_type)*(1/100) *  weightedGrade)) / (grade_type*(1/100));
         } else {
             unknown_grade = ( (parseFloat(desired_grade) * grade_type) -  0) / grade_type;
         }
-
 
 
         return unknown_grade

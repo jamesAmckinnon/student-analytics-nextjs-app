@@ -1,16 +1,18 @@
-import { useRouter } from 'next/router'
+import { useRouter, Router } from 'next/router'
 import { signIn, signOut, useSession } from "next-auth/client";
 import Link from 'next/link';
 import { useEntries } from '@/lib/swr-hooks';
+import React from 'react';
 
+
+//D:\Desktop\student-analytics> npm run dev <--- make sure Desktop has capital d
 function Page({ ctx }) {
   const router = useRouter()
-
-  // Make sure we're in the browser
-  if (typeof window !== 'undefined') {
-    router.push('/dashboard/home');
-    return; 
-  }
+    // Make sure we're in the browser
+    if (typeof window !== 'undefined') {
+      router.push('/dashboard/home');
+      return; 
+    }
 }
 
 Page.getInitialProps = ctx => {

@@ -35,27 +35,46 @@ function DisplayGrades( { current_grades } ) {
       gradeWeightVals[i] = [[],[],[]];
     }
 
-
     var weightedGrades = new Array(gradeWeightVals.length)
 
+    //weights grades and puts into array
     for ( var j = 0 ; j < coursesWithGrades.length ; j++ ){
       //for each course that has grade entries
-      var weighted_grades = 0;
-      var weight_percents = 0;
-      var weighted_course_grades = []
-      for ( var grade_item of current_grades ){
-        //for every grade entry in the course
-        if ( grade_item.course_id === coursesWithGrades[j]){
-          weighted_grades += ( grade_item.grade_weight * grade_item.grade_received )
-          weight_percents += grade_item.grade_weight
-          //create dictionary entry for weight
-        }
-        
+      var weight_sum = 0;
+      var weighted_av_sum = 0;
+      var grade_type_average = []
+      var grade_types = [[],[]]
+
+      for ( var k = 0 ; k < current_grades.length ; k++  ){
+        if (grade_types[0].includes(current_grades[k].grade_weight_id) === false && current_grades[k].course_id === coursesWithGrades[j]){
+          grade_types[0].push(current_grades[k].grade_weight_id)
+          grade_types[1].push(current_grades[k].grade_weight)
+        } 
       }
 
-      weightedGrades[j] = [(weighted_grades / weight_percents), coursesWithGrades[j]]
+      var sums_of_grades = new Array(grade_types[0].length).fill(0)
+      var number_of_grades = new Array(grade_types[0].length).fill(0)
+
+      for (var l = 0 ; l < current_grades.length ; l++  ){
+        if(current_grades[l].course_id === coursesWithGrades[j] && grade_types[0].includes(current_grades[l].grade_weight_id) ){
+          sums_of_grades[grade_types[0].indexOf(current_grades[l].grade_weight_id)] += current_grades[l].grade_received
+          number_of_grades[grade_types[0].indexOf(current_grades[l].grade_weight_id)] += 1
+        }
+      }
+
+      for (var m = 0 ; m < sums_of_grades.length ; m++){
+        grade_type_average[m] = sums_of_grades[m] / number_of_grades[m]
+      }
+
+      for (var n = 0 ; n < grade_type_average.length ; n++){
+        weighted_av_sum += (grade_type_average[n] * grade_types[1][n])
+        weight_sum += grade_types[1][n]
+      }
+
+      weightedGrades[j] = [(weighted_av_sum / weight_sum), coursesWithGrades[j]]
       updateGrades(weightedGrades[j][0], weightedGrades[j][1])
     }
+
 
     async function updateGrades(grade, course_id) {
       try {
@@ -189,11 +208,7 @@ function DisplayGrades( { current_grades } ) {
               </div>
             </div>
             <div className="flex w-full shadow text-lg h-100px rounded-xl mt-2 items-center justify-center">
-<<<<<<< HEAD
               <h3>No grades entered</h3>
-=======
-              <h3>No grades added</h3>
->>>>>>> b5a2216d098a0c8166ed3fcc45db02ef4d6884ff
             </div>
           </>
       }
