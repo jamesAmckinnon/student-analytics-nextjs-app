@@ -5,7 +5,9 @@ import { useEntries } from '@/lib/swr-hooks';
 import React from 'react';
 
 
-//D:\Desktop\student-analytics> npm run dev <--- make sure Desktop has capital d
+// D:\Desktop\student-analytics> npm run dev <--- make sure Desktop has capital d
+// git push origin main
+
 function Page({ ctx }) {
   const router = useRouter()
     // Make sure we're in the browser
