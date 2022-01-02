@@ -10,7 +10,7 @@ function SemesterChoices( {semester} ) {
         } else {
             setDelete(false)
         }
-      }
+    }
 
     async function deleteHandler(semester_id, season, year) {
         if(userConfirmation(season, year)){

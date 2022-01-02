@@ -128,6 +128,16 @@ export function useActivity(user_id){
   }
 }
 
+
+export function useToDoItem(user_id){
+  const {data, error} = useSWR(`/api/get-todo-items?user_id=${user_id}`, fetcher)
+
+  return {
+    todo_items: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
 export function useSchedule(user_id, current_semester){
   const {data, error} = useSWR(`/api/get-schedule?user_id=${user_id}&current_semester=${current_semester}`, fetcher)
 

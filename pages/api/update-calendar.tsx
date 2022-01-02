@@ -14,9 +14,7 @@ const { courses1,  courses2,  courses3,  courses4,  courses5,
   
   try {
     const results = await query(
-      ` ////////////////////// I think we will need to create a column for each time slot and that way every
-                               row can be assigned to a semester with all time slots for that semester's schedule.
-                               Each of these values can just be changed into a column name 
+      `
       INSERT INTO calendar ( courses1,  courses2,  courses3,  courses4,  courses5,
                              courses6,  courses7,  courses8,  courses9,  courses10,
                              courses11, courses12, courses13, courses14, courses15,
