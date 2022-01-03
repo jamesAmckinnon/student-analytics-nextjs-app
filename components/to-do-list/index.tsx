@@ -138,7 +138,7 @@ function ToDoList( {user_id, todo_items} ) {
                                 <div className="py-1 w-full flex flex-row justify-between items-center" id={e.todo_id}>
                                     <div className="flex flex-row items-center align-middle ">
                                     <input
-                                        className="mr-4 ml-2 mt-1 "
+                                        className="mr-4 ml-2 mt-1px "
                                         type="checkbox"
                                         checked={e.complete === 1}
                                         onChange={(f) => checkHandler(f.target.checked, e.todo_id)}
