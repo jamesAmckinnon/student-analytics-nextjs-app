@@ -1,7 +1,7 @@
 import cn from 'clsx'
 
 function SemesterButton({
-  onClick = console.log,
+  
   className = '',
   children = null,
   type = null,
@@ -10,7 +10,6 @@ function SemesterButton({
   return (
     <button
       type={type}
-      onClick={onClick}
       disabled={disabled}
       className={cn(
         'bg-gray-400',

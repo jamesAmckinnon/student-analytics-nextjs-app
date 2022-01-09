@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useState, useEffect} from 'react';
 import { checkServerIdentity } from 'tls';
+import SemesterButton from '@/components/semester-button'
 
 
 
@@ -9,6 +10,8 @@ function ToDoList( {user_id, todo_items} ) {
     const [addItem, setAddItem] = useState(false)
     const [item, setItem] = useState("")
     const [items, setItems] = useState(todo_items ? todo_items : [])
+    const [submitting, setSubmitting] = useState(false)
+    const [addAnother, setAddAnother] = useState('Add')
 
     function toggleDelete(toggle_delete) {
         if(!toggle_delete){
@@ -86,9 +89,10 @@ function ToDoList( {user_id, todo_items} ) {
         const json2 = await res2.json()
         setItem("")
         if (!res2.ok) throw Error(json2.message)
-        
         setItems(json2)
       }
+
+
       
 
     
@@ -101,7 +105,7 @@ function ToDoList( {user_id, todo_items} ) {
                             <div className="border-4 rounded-lg border-customBlue px-2 pb-3px">
                                 <h3 className="font-bold text-2xl">To-Do List</h3>
                             </div>
-                            <div className="flex flex-row h-36px items-center">
+                            <div className="flex flex-row h-36px items-center ">
                                 <a className="flex items-center mr-4" onClick={() => toggleDelete(deleteBool)}>
                                     <img src="/edit-icon.svg" style={{ height: 24, width: 20, cursor: 'pointer'}}/>
                                 </a>
@@ -118,9 +122,10 @@ function ToDoList( {user_id, todo_items} ) {
                             </div>
                         </div>
                         { addItem && 
-                            <div className="flex flex-row justify-items-start">
+                            <form className="flex flex-row mt-2 justify-items-start" onSubmit={() => itemHandler()}>
                                 <input
                                     id="to-do"
+                                    autoFocus
                                     autoComplete="off"
                                     className="border-b border-black pl-1 pr-1 w-full mr-4 mt-2"
                                     name="to-do"
@@ -128,10 +133,10 @@ function ToDoList( {user_id, todo_items} ) {
                                     placeholder="Add Item"
                                     onChange={(e) => setItem(e.target.value)}
                                 />
-                                <button onClick={() => itemHandler()}>
-                                    Add
-                                </button>
-                            </div>
+                                <SemesterButton disabled={submitting} type="submit">
+                                    {submitting ? 'Adding ...' : addAnother}
+                                </SemesterButton>
+                            </form>
                         }
                         <form className='flex flex-col w-full mt-3' >
                             {items.map((e) => (
