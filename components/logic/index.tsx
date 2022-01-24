@@ -11,6 +11,27 @@ export default function Logic ({children}) {
                     <>
                         <Head>
                             <title>Student Dashboard</title>
+                            <meta 
+                                property="og:title"
+                                content="Student Dashboard" 
+                                />
+                                <meta 
+                                name="og:image"
+                                property="og:image"
+                                content="http://www.studentdashboard.ca/logo.png"
+                                />
+                                <meta 
+                                name="og:author" 
+                                content="James McKinnon" 
+                                />
+                                <meta 
+                                property="og:description" 
+                                content="Student Dashboard App"
+                                />
+                                <meta 
+                                property="og:url"
+                                content="https://www.studentdashboard.ca/"
+                                />
                         </Head>
                         <div className="childCont h-full">
                             {children}
@@ -21,6 +42,27 @@ export default function Logic ({children}) {
                     <>
                         <Head>
                             <title>Student Dashboard</title>
+                            <meta 
+                                property="title"
+                                content="Student Dashboard" 
+                                />
+                                <meta 
+                                name="image"
+                                property="image"
+                                content="%../../public/logo.png%"
+                                />
+                                <meta 
+                                name="author" 
+                                content="James McKinnon" 
+                                />
+                                <meta 
+                                property="description" 
+                                content="Student Dashboard App"
+                                />
+                                <meta 
+                                property="url"
+                                content="https://www.studentdashboard.ca/"
+                                />
                         </Head>
                         <div className="w-full h-full">          
                             <div className="signInWrapper">

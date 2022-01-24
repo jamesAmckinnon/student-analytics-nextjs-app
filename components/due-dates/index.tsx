@@ -37,6 +37,9 @@ function DueDates( {user_id, current_semester} ) {
       ])
     }
 
+
+    
+
     do{
       var count = 0;
       for (let i = 0; i < ordered.length - 1 ; i++) {
@@ -65,6 +68,7 @@ function DueDates( {user_id, current_semester} ) {
     } while (count > 0)
 
     var htmlDiv = []
+   
 
     if(width > 500){
       for (let dueDate of ordered) {
@@ -98,6 +102,7 @@ function DueDates( {user_id, current_semester} ) {
         }
       }
     } else {
+
       for (let dueDate of ordered) {
         if(dueDate[3] >= 0) {
         htmlDiv.push( 
