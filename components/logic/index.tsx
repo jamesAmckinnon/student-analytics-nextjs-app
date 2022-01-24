@@ -16,7 +16,7 @@ export default function Logic ({children}) {
                                 content="Student Dashboard" 
                                 />
                                 <meta 
-                                name="og:image"
+                                name="image"
                                 property="og:image"
                                 content="https://www.studentdashboard.ca/logo.png"
                                 />
@@ -47,7 +47,7 @@ export default function Logic ({children}) {
                                 content="Student Dashboard" 
                                 />
                                 <meta 
-                                name="og:image"
+                                name="image"
                                 property="og:image"
                                 content="https://www.studentdashboard.ca/logo.png"
                                 />
