@@ -23,7 +23,6 @@ function MainDashboard() {
   if(current_semester) {
     return (
       <Layout>
-        <Html lang="en" prefix="og: http://ogp.me/ns#">
           <Head>
             <meta 
               
@@ -79,7 +78,6 @@ function MainDashboard() {
               </div>
             </div>    
           </>
-        </Html>
       </Layout>
     )
     } else {
