@@ -23,35 +23,6 @@ function MainDashboard() {
   if(current_semester) {
     return (
       <Layout>
-        <Head>
-            <title>Student Dashboard</title>
-            <meta 
-              prefix="og: http://ogp.me/ns#"
-              property="og:title"
-              content="Student Dashboard" 
-            />
-            <meta 
-              prefix="og: http://ogp.me/ns#"
-              name="image"
-              property="og:image"
-              content="https://www.studentdashboard.ca/logo.png"
-            />
-            <meta 
-              prefix="og: http://ogp.me/ns#"
-              name="og:author" 
-              content="James McKinnon" 
-            />
-            <meta
-              prefix="og: http://ogp.me/ns#" 
-              property="og:description" 
-              content="Student Dashboard App"
-            />
-            <meta 
-              prefix="og: http://ogp.me/ns#"
-              property="og:url"
-              content="https://www.studentdashboard.ca/"
-            />
-        </Head>
         <>
           <div className="flex flex-col w-full px-6 mt-8 pb-12">
             <div className="addDashboard flex flex-row">
