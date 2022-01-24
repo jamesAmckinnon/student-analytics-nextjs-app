@@ -18,7 +18,7 @@ export default function Logic ({children}) {
                                 <meta 
                                 name="og:image"
                                 property="og:image"
-                                content="http://www.studentdashboard.ca/logo.png"
+                                content="https://www.studentdashboard.ca/logo.png"
                                 />
                                 <meta 
                                 name="og:author" 
