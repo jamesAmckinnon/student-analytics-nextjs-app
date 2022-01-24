@@ -1,12 +1,13 @@
 import { signIn, signOut, useSession } from "next-auth/client";
-import Head from 'next/head';
+import {Head, Html} from 'next/document';
 
 export default function Logic ({children}) {
     const [session, loading] = useSession();
 
     if(!loading){
         return (
-            <>     
+            <>  
+            <Html lang="en" prefix="og: http://ogp.me/ns#">   
                 {session && (
                     <>
                         <div className="childCont h-full">
@@ -60,7 +61,7 @@ export default function Logic ({children}) {
                         </div>
                     </>
                 )}
-
+            </Html>
             </>
         )
     } else {
