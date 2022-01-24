@@ -10,7 +10,6 @@ import { useSession } from "next-auth/client";
 import Link from "next/link";
 import Layout from "pages/layout"
 import React from "react";
-import {Head, Html} from "next/document";
 
 function MainDashboard() {
   const [session] = useSession();
@@ -23,30 +22,6 @@ function MainDashboard() {
   if(current_semester) {
     return (
       <Layout>
-          <Head>
-            <meta 
-              
-              name="image"
-              property="og:image"
-              content="https://www.studentdashboard.ca/logo.png"
-            />
-            <title>Student Dashboard</title>
-            <meta 
-              
-              property="og:title"
-              content="Student Dashboard" 
-            />
-            <meta
-                
-              property="og:description" 
-              content="Student Dashboard App"
-            />
-            <meta 
-              
-              property="og:url"
-              content="https://www.studentdashboard.ca/dashboard/home"
-            />
-          </Head>
           <>
             <div className="flex flex-col w-full px-6 mt-8 pb-12">
               <div className="addDashboard flex flex-row">

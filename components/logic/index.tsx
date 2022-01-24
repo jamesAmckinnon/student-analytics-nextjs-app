@@ -6,8 +6,7 @@ export default function Logic ({children}) {
 
     if(!loading){
         return (
-            <>  
-            <Html lang="en" prefix="og: http://ogp.me/ns#">   
+            <>    
                 {session && (
                     <>
                         <div className="childCont h-full">
@@ -17,35 +16,6 @@ export default function Logic ({children}) {
                 )} 
                 {!session && (
                     <>
-                        <Head>
-                            <title>Student Dashboard</title>
-                            <meta 
-                                prefix="og: http://ogp.me/ns#"
-                                property="og:title"
-                                content="Student Dashboard" 
-                                />
-                                <meta 
-                                prefix="og: http://ogp.me/ns#"
-                                name="image"
-                                property="og:image"
-                                content="https://www.studentdashboard.ca/logo.png"
-                                />
-                                <meta 
-                                prefix="og: http://ogp.me/ns#"
-                                name="og:author" 
-                                content="James McKinnon" 
-                                />
-                                <meta
-                                prefix="og: http://ogp.me/ns#" 
-                                property="og:description" 
-                                content="Student Dashboard App"
-                                />
-                                <meta 
-                                prefix="og: http://ogp.me/ns#"
-                                property="og:url"
-                                content="https://www.studentdashboard.ca/"
-                                />
-                        </Head>
                         <div className="w-full h-full">          
                             <div className="signInWrapper">
                                 <div className="shadow-lg border-4 border-customBlue rounded-md h-230px w-340px flex p-4 justify-center">
@@ -61,7 +31,6 @@ export default function Logic ({children}) {
                         </div>
                     </>
                 )}
-            </Html>
             </>
         )
     } else {
