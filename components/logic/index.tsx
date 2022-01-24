@@ -43,24 +43,24 @@ export default function Logic ({children}) {
                         <Head>
                             <title>Student Dashboard</title>
                             <meta 
-                                property="title"
+                                property="og:title"
                                 content="Student Dashboard" 
                                 />
                                 <meta 
-                                name="image"
-                                property="image"
-                                content="%../../public/logo.png%"
+                                name="og:image"
+                                property="og:image"
+                                content="https://www.studentdashboard.ca/logo.png"
                                 />
                                 <meta 
-                                name="author" 
+                                name="og:author" 
                                 content="James McKinnon" 
                                 />
                                 <meta 
-                                property="description" 
+                                property="og:description" 
                                 content="Student Dashboard App"
                                 />
                                 <meta 
-                                property="url"
+                                property="og:url"
                                 content="https://www.studentdashboard.ca/"
                                 />
                         </Head>
