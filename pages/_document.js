@@ -15,7 +15,9 @@ class MyDocument extends Document {
                 property="og:image"
                 content="https://www.studentdashboard.ca/logo.png"
             />
+            <title>Student Dashboard</title>
             <meta 
+                name="title"
                 property="og:title"
                 content="Student Dashboard" 
             />
