@@ -7,6 +7,8 @@ import React from 'react';
 
 // D:\Desktop\student-analytics> npm run dev <--- make sure Desktop has capital d
 // git push origin main
+//git push -u heroku <branch>
+//git push -u origin <branch>
 
 function Page({ ctx }) {
   const router = useRouter()
