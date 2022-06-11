@@ -8,6 +8,9 @@
     "heroku-postbuild": "npm run build",
     "migrate": "node scripts/migrate-db.js"
   },
+  "engines": {
+    "node": "16.13.1"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "bad-words": "^3.0.4",
@@ -40,3 +43,4 @@
   "license": "MIT",
   "proxy": "https://personal-portal.us.auth0.com/oauth/token"
 }
+
