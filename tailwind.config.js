@@ -23,6 +23,7 @@ module.exports = {
         'customOrange' : '#ff892bff',
       },
       width: {
+        '40px' :'40px',
         '50px': '50px',
         '130px': '130px',
         '35px':'35px',
@@ -35,7 +36,10 @@ module.exports = {
         '340px': '340px',
       },
       height: {
+        '20px': '20px',
         '24px' : '24px',
+        '30px' :'30px',
+        '40px' :'40px',
         '80px' : '80px',
         '31px' : '31px',
         '36px' : '36px',

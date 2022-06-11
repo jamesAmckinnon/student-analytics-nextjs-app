@@ -23,7 +23,9 @@ export default function Logic ({children}) {
                                     <div className="flex flex-col items-center ">
                                         <h1 className="text-3xl font-bold">Student Dashboard</h1>
                                         <a className="flex flex-row mt-1" href="https://www.youtube.com/watch?v=HT8cGN-ggsA">
-                                            <img src="/youtubeLogo.png" alt="youtube" width="40" height="20"></img>
+                                            <div className="w-40px h-30px">
+                                                <img className="w-full h-full object-contain" src="/youtubeLogo.png" alt="youtube"></img>
+                                            </div>
                                             <h3 className="ml-3 "><span className="border-b border-black hover:border-gray-600 pb-0">See how it works!</span></h3>
                                             <h3 className="ml-3 text-lg">{''}</h3>
                                         </a>
